@@ -1,0 +1,87 @@
+extends CharacterBody2D
+
+@export var gravity = 1600
+const terminal_velocity = 1000
+var jumping = false
+var attacking = false
+
+var direction = 1
+
+@export var SPEED = 400.0
+@export var JUMP_VELOCITY = -640
+#@onready var jumpDuration = $jumpTimer
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+#var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+@onready var animated_sprite = $AnimatedSprite2D
+@onready var stunTimer = $stunTimer 
+
+@onready var jumpParticles = preload("res://Particles/jump_particles.tscn")
+@onready var attack1 = preload("res://attack1.tscn")
+
+func _physics_process(delta):
+	# Add the gravity.
+	
+	if not is_on_floor():
+		velocity.y += gravity * delta
+		clamp(velocity.y, -terminal_velocity, 1e9)
+	# Handle Jump.
+	if Input.is_action_just_pressed("Jump") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+#		jumpDuration.start(0.1)
+		
+		# Create particles. jump_particle.tscn contains self-termination.
+		var jp = jumpParticles.instantiate()
+		jp.direction = -velocity
+		add_child(jp)
+		
+		jumping = true
+	if Input.is_action_just_released("Jump") and stunTimer.is_stopped():
+		jumping = false
+		if(velocity.y < 0):
+			velocity.y *= 0.7
+	if Input.is_action_just_pressed("Attack") and stunTimer.is_stopped():
+		attack()
+	
+	# Get Input Direction
+	var inputDir = Input.get_axis("Left", "Right")
+	
+		
+		
+	# Get the input direction and handle the movement/deceleration.
+	if inputDir and stunTimer.is_stopped():
+		#Acceleration
+		direction = inputDir
+		velocity.x = move_toward(velocity.x, inputDir * SPEED, delta * SPEED/0.05) # delta * SPEED/x : takes x seconds to reach nmax speed from 0  
+		
+	else:
+		#Breaking w/o input
+		velocity.x = move_toward(velocity.x, 0, delta * SPEED/0.1)
+
+	move_and_slide()
+
+	# ANIMATIONS
+	if(attacking):
+		animated_sprite.play("attacking")
+	
+	elif(direction): # or other states with an animation priority
+		if(direction < 0):
+			animated_sprite.play("default") #Left
+		if(direction > 0):
+			animated_sprite.play("default") #Right
+	else:
+		animated_sprite.play("default") #Idle
+
+func attack():
+	var attack = attack1.instantiate()
+	add_child(attack)
+	
+	if(direction < 0):
+		attack.scale.x = -attack.scale.x
+		attack.position.x = -20
+	animated_sprite.play("attacking")
+	attacking = true
+	
+	await get_tree().create_timer(0.3).timeout
+	
+	attacking = false
+	
