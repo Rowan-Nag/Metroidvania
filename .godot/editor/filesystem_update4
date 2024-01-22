@@ -2,3 +2,8 @@ res://node_2d.tscn
 res://Particles/jump_particles.tscn
 res://attack1.tscn
 res://Particles/attack_particles.tscn
+res://Enemy.gd
+res://Scripts/Player.gd
+res://EnemyContactDamage.gd
+res://Scripts/attack1.gd
+res://TickEnemy.gd

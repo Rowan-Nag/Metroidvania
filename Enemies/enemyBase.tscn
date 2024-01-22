@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmmflducbnwqo"]
+
+[ext_resource type="Script" path="res://Enemy.gd" id="1_xo4py"]
+
+[node name="Enemy" type="CharacterBody2D"]
+position = Vector2(233, -28)
+collision_layer = 8
+platform_floor_layers = 4294901761
+script = ExtResource("1_xo4py")

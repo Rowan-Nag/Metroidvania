@@ -20,9 +20,11 @@ func awaitCompletion():
 
 
 func _on_area_2d_body_entered(body):
-
-	if(body.has_method("take_damage")):
-		body.take_damage(10)
+	var hitEnemy = false
+	if(body is Enemy):
+		var knockBackDir= sign(body.global_position.x-global_position.x)*500
+		body.take_damage(10, knockBackDir)
+		hitEnemy = true
 #	attackRay.set_target_position(to_local(body.global_position))
 	attackRay.force_raycast_update()
 	if(attackRay.is_colliding()):
@@ -30,5 +32,8 @@ func _on_area_2d_body_entered(body):
 		var hit = hitParticles.instantiate()
 		add_child(hit)
 		hit.position = to_local(attackRay.get_collision_point())
-		print(to_local(hit.position))
+#		print(to_local(hit.position))
 		hit.direction = -attackRay.target_position
+		if(hitEnemy):
+			hit.color = Color.RED
+			hit.scale_amount_min = 5
