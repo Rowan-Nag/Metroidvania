@@ -21,15 +21,33 @@ var direction = 1
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var stunTimer : Timer = $stunTimer 
 @onready var immunityTimer : Timer = $immunityTimer
+@onready var RayRight : RayCast2D = $RayRight
+@onready var RayLeft : RayCast2D = $RayLeft
+
 @onready var jumpParticles = preload("res://Particles/jump_particles.tscn")
 @onready var attack1 = preload("res://attack1.tscn")
 
 func _physics_process(delta):
+	
+	# Get Input Direction
+	var inputDir : float = Input.get_axis("Left", "Right")
+	
 	# Add the gravity.
 	
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		clamp(velocity.y, -terminal_velocity, 1e9)
+		if Input.is_action_just_pressed("Jump") and not is_on_floor(): 
+			# For Wall jumps
+			if (RayRight.is_colliding() and inputDir > 0):
+				velocity.y = JUMP_VELOCITY*0.8
+				velocity.x = JUMP_VELOCITY*0.6
+				stunTimer.start(0.15)
+			elif (RayLeft.is_colliding() and inputDir < 0):
+				velocity.y = JUMP_VELOCITY*0.8
+				velocity.x = -JUMP_VELOCITY*0.6
+				stunTimer.start(0.15)
+		
 	# Handle Jump.
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -48,8 +66,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("Attack") and stunTimer.is_stopped():
 		attack()
 		
-	# Get Input Direction
-	var inputDir = Input.get_axis("Left", "Right")
+	
 		
 		
 	# Get the input direction and handle the movement/deceleration.
@@ -71,7 +88,9 @@ func _physics_process(delta):
 #	if(knockbackDir != Vector2.ZERO):
 #		print(knockbackDir)
 	move_and_slide()
-
+	
+	
+		
 	# ANIMATIONS
 	if(attacking):
 		animated_sprite.play("attacking")

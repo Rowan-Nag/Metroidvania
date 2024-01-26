@@ -147,7 +147,7 @@ scale = Vector2(0.613918, 0.547057)
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("2_qcmbt")
-SPEED = 279.26
+gravity = 1000
 JUMP_VELOCITY = -500
 metadata/_edit_group_ = true
 
@@ -186,6 +186,12 @@ autostart = true
 wait_time = 0.1
 one_shot = true
 autostart = true
+
+[node name="RayRight" type="RayCast2D" parent="Player"]
+target_position = Vector2(35.8354, 0)
+
+[node name="RayLeft" type="RayCast2D" parent="Player"]
+target_position = Vector2(-30.9488, 0)
 
 [node name="Subject" type="Sprite2D" parent="."]
 position = Vector2(1314, -207)
