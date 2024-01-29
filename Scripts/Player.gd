@@ -23,6 +23,8 @@ var direction = 1
 @onready var immunityTimer : Timer = $immunityTimer
 @onready var jumpParticles = preload("res://Particles/jump_particles.tscn")
 @onready var attack1 = preload("res://attack1.tscn")
+#TODO: fix this fuckign thing
+@onready var rocket1 = preload("res://rocket.tscn")
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -46,7 +48,12 @@ func _physics_process(delta):
 		if(velocity.y < 0):
 			velocity.y *= 0.7
 	if Input.is_action_just_pressed("Attack") and stunTimer.is_stopped():
+		print("attack")
 		attack()
+		
+	if Input.is_action_just_pressed("Rocket") and stunTimer.is_stopped():
+		print("rocket")
+		rocket()
 		
 	# Get Input Direction
 	var inputDir = Input.get_axis("Left", "Right")
@@ -90,6 +97,15 @@ func _physics_process(delta):
 		modulate = Color.RED
 	else:
 		modulate = Color.WHITE
+		
+func rocket():
+	var k_rocket = rocket1.instantiate()
+	add_child(k_rocket)
+	
+
+	k_rocket.velocity.x = sign(get_local_mouse_position().x) * 300
+	k_rocket.position = global_position
+		
 func attack():
 	var attack = attack1.instantiate()
 	add_child(attack)
