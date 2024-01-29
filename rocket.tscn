@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0yvm6akxb83a"]
+
+[ext_resource type="Script" path="res://Rocket.gd" id="1_oafeh"]
+[ext_resource type="Texture2D" uid="uid://v7hnvxuq177q" path="res://icon.svg" id="2_vru4a"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jh0qr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_vru4a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_abtux"]
+
+[node name="Rocket" type="CharacterBody2D"]
+top_level = true
+scale = Vector2(1, 1)
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("1_oafeh")
+
+[node name="RocketSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0.296618, 0.41951)
+rotation = 1.5708
+scale = Vector2(0.256553, 0.442134)
+sprite_frames = SubResource("SpriteFrames_jh0qr")
+
+[node name="durationTimer" type="Timer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.386591, -0.128479)
+rotation = 1.5708
+scale = Vector2(1.82796, 1.62888)
+shape = SubResource("CapsuleShape2D_abtux")
