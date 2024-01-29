@@ -18,7 +18,7 @@ func _physics_process(delta):
 	if(is_on_floor()):
 		direction = 0
 	if(is_on_floor() and jumpTimer.is_stopped()):
-		print("jump!")
+		#print("jump!")
 		velocity.y = -500
 		jumpTimer.start(randf_range(0.5, 3))
 		direction = (randi_range(0, 1)*2-1)
