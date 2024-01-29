@@ -69,13 +69,13 @@ func _physics_process(delta):
 		print("attack")
 		attack()
 		
-    
+	
 	if Input.is_action_just_pressed("Rocket") and stunTimer.is_stopped():
 		print("rocket")
 		rocket()
 		
 	# Get Input Direction
-	var inputDir = Input.get_axis("Left", "Right")
+
 
 		
 		
