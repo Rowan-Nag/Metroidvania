@@ -1,13 +1,18 @@
-[gd_scene load_steps=16 format=3 uid="uid://dvwp3gyt6qtdc"]
+[gd_scene load_steps=31 format=3 uid="uid://dvwp3gyt6qtdc"]
 
 [ext_resource type="Texture2D" uid="uid://v7hnvxuq177q" path="res://icon.svg" id="1_tfmcr"]
-[ext_resource type="Script" path="res://Scripts/Player.gd" id="2_qcmbt"]
+[ext_resource type="Script" path="res://Scripts/PlayerNew.gd" id="2_hgwbc"]
 [ext_resource type="Texture2D" uid="uid://bvbf37s6vx5rr" path="res://standingThing_bright.png" id="3_t0bjk"]
-[ext_resource type="Texture2D" uid="uid://cf2q8xdetw2n1" path="res://standingThing.png" id="4_1tdhp"]
+[ext_resource type="Texture2D" uid="uid://cwk8mrfv1osgx" path="res://sidefeatherfrog.png" id="4_oepox"]
 [ext_resource type="Texture2D" uid="uid://bnmkrb7jmdv7x" path="res://Subject.png" id="5_wcg1j"]
+[ext_resource type="Script" path="res://Scripts/StateMachine.gd" id="5_xa24y"]
+[ext_resource type="Script" path="res://Scripts/PlayerGround.gd" id="6_3vp8f"]
+[ext_resource type="Script" path="res://Scripts/PlayerFall.gd" id="6_agqpr"]
 [ext_resource type="Script" path="res://TickEnemy.gd" id="6_h5fo1"]
 [ext_resource type="Texture2D" uid="uid://cvplq1unqx155" path="res://idleTick.png" id="7_afuxq"]
 [ext_resource type="PackedScene" uid="uid://b7gxparcwu871" path="res://Enemies/enemy_contact_damage.tscn" id="8_718tb"]
+[ext_resource type="Script" path="res://Scripts/PlayerJump.gd" id="8_bidk3"]
+[ext_resource type="Script" path="res://PlayerDash.gd" id="9_8ihbm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vvrbn"]
 texture = ExtResource("1_tfmcr")
@@ -96,6 +101,46 @@ scale_min = 4.0
 scale_max = 4.0
 color = Color(0.796078, 0.780392, 0.756863, 1)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_valfq"]
+atlas = ExtResource("4_oepox")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nmmss"]
+atlas = ExtResource("4_oepox")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2fhe"]
+atlas = ExtResource("4_oepox")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxh5k"]
+atlas = ExtResource("4_oepox")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sf3da"]
+atlas = ExtResource("4_oepox")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ddlq"]
+atlas = ExtResource("4_oepox")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkcw3"]
+atlas = ExtResource("4_oepox")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_raodf"]
+atlas = ExtResource("4_oepox")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4na8a"]
+atlas = ExtResource("4_oepox")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cqbt"]
+atlas = ExtResource("4_oepox")
+region = Rect2(288, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_ixvtf"]
 animations = [{
 "frames": [{
@@ -108,7 +153,34 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_1tdhp")
+"texture": SubResource("AtlasTexture_valfq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nmmss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2fhe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxh5k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sf3da")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ddlq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lkcw3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_raodf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4na8a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7cqbt")
 }],
 "loop": true,
 "name": &"default",
@@ -146,9 +218,10 @@ position = Vector2(15, -102)
 scale = Vector2(0.613918, 0.547057)
 collision_layer = 2
 collision_mask = 17
-script = ExtResource("2_qcmbt")
-gravity = 1000
-JUMP_VELOCITY = -500
+script = ExtResource("2_hgwbc")
+drag = 800
+acceleration = 1300
+moveSpeed = 250
 metadata/_edit_group_ = true
 
 [node name="Rain?" type="GPUParticles2D" parent="Player"]
@@ -162,10 +235,9 @@ process_material = SubResource("ParticleProcessMaterial_4qloa")
 lifetime = 13.17
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
-position = Vector2(5.70108, -7.31184)
-scale = Vector2(1.28682, 1.44409)
+position = Vector2(-13.7315, 14.4957)
+scale = Vector2(2.50135, 2.80706)
 sprite_frames = SubResource("SpriteFrames_ixvtf")
-animation = &"attacking"
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(1.79, 1.79)
@@ -192,6 +264,36 @@ target_position = Vector2(35.8354, 0)
 
 [node name="RayLeft" type="RayCast2D" parent="Player"]
 target_position = Vector2(-30.9488, 0)
+
+[node name="state_machine" type="Node" parent="Player" node_paths=PackedStringArray("starting_state")]
+script = ExtResource("5_xa24y")
+starting_state = NodePath("ground")
+
+[node name="ground" type="Node" parent="Player/state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "dash_state")]
+script = ExtResource("6_3vp8f")
+fall_state = NodePath("../fall")
+jump_state = NodePath("../jump")
+dash_state = NodePath("../Dash")
+moveSpeedMultiplier = 1
+
+[node name="fall" type="Node" parent="Player/state_machine" node_paths=PackedStringArray("ground_state", "jump_state", "dash_state")]
+script = ExtResource("6_agqpr")
+ground_state = NodePath("../ground")
+jump_state = NodePath("../jump")
+dash_state = NodePath("../Dash")
+moveSpeedMultiplier = 1
+
+[node name="jump" type="Node" parent="Player/state_machine" node_paths=PackedStringArray("fall_state", "dash_state", "ground_state")]
+script = ExtResource("8_bidk3")
+fall_state = NodePath("../fall")
+dash_state = NodePath("../Dash")
+ground_state = NodePath("../ground")
+moveSpeedMultiplier = 1
+jump_velocity = 600
+
+[node name="Dash" type="Node" parent="Player/state_machine" node_paths=PackedStringArray("fall_state")]
+script = ExtResource("9_8ihbm")
+fall_state = NodePath("../fall")
 
 [node name="Subject" type="Sprite2D" parent="."]
 position = Vector2(1314, -207)
