@@ -5,9 +5,9 @@ extends State
 @export var dash_state: State
 
 @export var gravityMultiplier: float = 1
-@export var dragMultiplier: int = 1
-@export var accelerationMultiplier: int = 1
-@export var moveSpeedMultiplier: int
+@export var dragMultiplier: float = 1
+@export var accelerationMultiplier: float = 1
+@export var moveSpeedMultiplier: float = 1
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * gravityMultiplier
 

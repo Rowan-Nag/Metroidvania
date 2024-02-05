@@ -3,11 +3,12 @@ extends State
 @export var fall_state: State
 @export var jump_state: State
 @export var dash_state: State
+@export var attack_state : State
 
 @export var gravityMultiplier: float = 1
-@export var dragMultiplier: int = 1
-@export var accelerationMultiplier: int = 1
-@export var moveSpeedMultiplier: int
+@export var dragMultiplier: float = 1
+@export var accelerationMultiplier: float = 1
+@export var moveSpeedMultiplier: float = 1
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * gravityMultiplier
 
@@ -21,7 +22,8 @@ func process_input(event: InputEvent) -> State:
 		return dash_state
 	if Input.is_action_just_pressed('Jump') and parent.is_on_floor():
 		return jump_state
-	
+	if Input.is_action_just_pressed("Attack"):
+		return attack_state
 	
 	
 	

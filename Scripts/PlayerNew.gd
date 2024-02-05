@@ -11,6 +11,8 @@ var state_machine = $state_machine
 @export var drag : int = 400
 @export var acceleration : int = 500
 @export var moveSpeed : int = 600
+@export var terminal_velocity : int = 1200
+
 
 @export_category("Combat")
 @export var maxHealth : int = 100
@@ -19,20 +21,27 @@ var health : int = maxHealth
 
 @onready var immunity : Timer = $immunityTimer
 
+signal took_damage
+signal death
+
 func take_damage(damage : int, knockback : Vector2 = Vector2.ZERO) -> void:
 	if(immunity.is_stopped()):
 		immunity.start(immunityTime)
 		health -= damage
 		velocity = knockback*400
+		
 		if(health <= 0):
 			# Die, probably should emit a signal here saying that the player died.
+			death.emit()
 			print("Dead.")
-
+		else:
+			took_damage.emit()
 
 func _ready() -> void:
 	# Initialize the state machine, passing a reference of the player to the states,
 	# that way they can move and react accordingly
 	state_machine.init(self)
+	Global.player = self
 
 func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)

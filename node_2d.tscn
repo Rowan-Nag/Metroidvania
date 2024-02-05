@@ -1,8 +1,8 @@
-[gd_scene load_steps=42 format=3 uid="uid://dvwp3gyt6qtdc"]
+[gd_scene load_steps=54 format=3 uid="uid://dvwp3gyt6qtdc"]
 
 [ext_resource type="Texture2D" uid="uid://v7hnvxuq177q" path="res://icon.svg" id="1_tfmcr"]
 [ext_resource type="Script" path="res://Scripts/PlayerNew.gd" id="2_hgwbc"]
-[ext_resource type="Texture2D" uid="uid://bvbf37s6vx5rr" path="res://standingThing_bright.png" id="3_t0bjk"]
+[ext_resource type="Texture2D" uid="uid://bpmkfdb0413yd" path="res://sidefeatherfrogoutline.png" id="4_aw0lm"]
 [ext_resource type="Texture2D" uid="uid://cwk8mrfv1osgx" path="res://sidefeatherfrog.png" id="4_oepox"]
 [ext_resource type="Texture2D" uid="uid://cx75rmkwugfy4" path="res://featherfrogrun.png" id="5_omx6f"]
 [ext_resource type="Texture2D" uid="uid://bnmkrb7jmdv7x" path="res://Subject.png" id="5_wcg1j"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://b7gxparcwu871" path="res://Enemies/enemy_contact_damage.tscn" id="8_718tb"]
 [ext_resource type="Script" path="res://Scripts/PlayerJump.gd" id="8_bidk3"]
 [ext_resource type="Script" path="res://PlayerDash.gd" id="9_8ihbm"]
+[ext_resource type="Script" path="res://Scripts/PlayerAttack.gd" id="11_snj0e"]
+[ext_resource type="Script" path="res://DebugUI.gd" id="16_we7n4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vvrbn"]
 texture = ExtResource("1_tfmcr")
@@ -102,6 +104,46 @@ scale_min = 4.0
 scale_max = 4.0
 color = Color(0.796078, 0.780392, 0.756863, 1)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0kjc"]
+atlas = ExtResource("4_aw0lm")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eu88g"]
+atlas = ExtResource("4_aw0lm")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2dwv"]
+atlas = ExtResource("4_aw0lm")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypaty"]
+atlas = ExtResource("4_aw0lm")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3lxg0"]
+atlas = ExtResource("4_aw0lm")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsqrt"]
+atlas = ExtResource("4_aw0lm")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qiiak"]
+atlas = ExtResource("4_aw0lm")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xbv0"]
+atlas = ExtResource("4_aw0lm")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1koy"]
+atlas = ExtResource("4_aw0lm")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4j64"]
+atlas = ExtResource("4_aw0lm")
+region = Rect2(288, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_valfq"]
 atlas = ExtResource("4_oepox")
 region = Rect2(0, 0, 32, 32)
@@ -186,10 +228,37 @@ region = Rect2(288, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_t0bjk")
+"texture": SubResource("AtlasTexture_m0kjc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eu88g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2dwv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypaty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3lxg0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsqrt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qiiak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xbv0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1koy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4j64")
 }],
 "loop": true,
-"name": &"attacking",
+"name": &"attack",
 "speed": 4.0
 }, {
 "frames": [{
@@ -296,8 +365,10 @@ collision_layer = 2
 collision_mask = 17
 script = ExtResource("2_hgwbc")
 drag = 800
-acceleration = 1300
+acceleration = 1500
 moveSpeed = 250
+terminal_velocity = 400
+maxHealth = 400
 immunityTime = 0.81
 metadata/_edit_group_ = true
 
@@ -315,8 +386,8 @@ lifetime = 13.17
 position = Vector2(1.62888, -5.72205e-06)
 scale = Vector2(2.50135, 2.80706)
 sprite_frames = SubResource("SpriteFrames_ixvtf")
-animation = &"idle"
-frame_progress = 0.493886
+animation = &"attack"
+frame_progress = 0.0268754
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -349,32 +420,37 @@ target_position = Vector2(-30.9488, 0)
 script = ExtResource("5_xa24y")
 starting_state = NodePath("ground")
 
-[node name="ground" type="Node" parent="Player/state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "dash_state")]
+[node name="ground" type="Node" parent="Player/state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "dash_state", "attack_state")]
 script = ExtResource("6_3vp8f")
 fall_state = NodePath("../fall")
 jump_state = NodePath("../jump")
 dash_state = NodePath("../Dash")
-moveSpeedMultiplier = 1
+attack_state = NodePath("../Attack")
 
-[node name="fall" type="Node" parent="Player/state_machine" node_paths=PackedStringArray("ground_state", "jump_state", "dash_state")]
+[node name="fall" type="Node" parent="Player/state_machine" node_paths=PackedStringArray("ground_state", "jump_state", "dash_state", "attack_state")]
 script = ExtResource("6_agqpr")
 ground_state = NodePath("../ground")
 jump_state = NodePath("../jump")
 dash_state = NodePath("../Dash")
-moveSpeedMultiplier = 1
-terminal_velocity = 600
+attack_state = NodePath("../Attack")
 
-[node name="jump" type="Node" parent="Player/state_machine" node_paths=PackedStringArray("fall_state", "dash_state", "ground_state")]
+[node name="jump" type="Node" parent="Player/state_machine" node_paths=PackedStringArray("fall_state", "dash_state", "ground_state", "attack_state")]
 script = ExtResource("8_bidk3")
 fall_state = NodePath("../fall")
 dash_state = NodePath("../Dash")
 ground_state = NodePath("../ground")
-moveSpeedMultiplier = 1
+attack_state = NodePath("../Attack")
 jump_velocity = 600
 
 [node name="Dash" type="Node" parent="Player/state_machine" node_paths=PackedStringArray("fall_state")]
 script = ExtResource("9_8ihbm")
 fall_state = NodePath("../fall")
+
+[node name="Attack" type="Node" parent="Player/state_machine" node_paths=PackedStringArray("fall_state", "ground_state")]
+script = ExtResource("11_snj0e")
+fall_state = NodePath("../fall")
+ground_state = NodePath("../ground")
+airDragMultiplier = 0.3
 
 [node name="Subject" type="Sprite2D" parent="."]
 position = Vector2(1314, -207)
@@ -399,3 +475,17 @@ position = Vector2(-2.5, -13.5)
 shape = SubResource("RectangleShape2D_fnq6b")
 
 [node name="EnemyContactDamage" parent="TickEnemy" instance=ExtResource("8_718tb")]
+
+[node name="GUI" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="DebugUI" type="VBoxContainer" parent="GUI"]
+offset_left = -235.0
+offset_top = -225.0
+offset_right = -195.0
+offset_bottom = -185.0
+script = ExtResource("16_we7n4")
+
+[node name="Label" type="Label" parent="GUI/DebugUI"]
+layout_mode = 2
+text = "Hi."
