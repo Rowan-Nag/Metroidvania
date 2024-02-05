@@ -1,12 +1,10 @@
 class_name State
 extends Node
 
-@export var animation_name: String
 var parent: Node
 
 func enter() -> void:
-	if parent.animations:
-		parent.animations.play(animation_name)
+	pass
 
 func exit() -> void:
 	pass
@@ -19,3 +17,7 @@ func process_frame(delta: float) -> State:
 
 func process_physics(delta: float) -> State:
 	return null
+
+func play_animation(animation) -> void:
+	if parent.animations:
+		parent.animations.play(animation)

@@ -9,6 +9,8 @@ extends State
 @export var accelerationMultiplier: int = 1
 @export var moveSpeedMultiplier: int
 
+@export var terminal_velocity = 100
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * gravityMultiplier
 
 
@@ -28,6 +30,7 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+	#Physics
 	var drag = parent.drag * dragMultiplier
 	var acceleration = parent.acceleration*accelerationMultiplier
 	var maxSpeed = parent.moveSpeed * moveSpeedMultiplier
@@ -42,8 +45,18 @@ func process_physics(delta: float) -> State:
 	
 	#Gravity (vertical movement)
 	parent.velocity.y += gravity*gravityMultiplier*delta
+	parent.velocity.y = clamp(parent.velocity.y, -10000, terminal_velocity)
 	
 	parent.move_and_slide()
+	
+	# Animations
+	if(inputDir == 0):
+		play_animation("idle")
+	else:
+		play_animation("walk")
+		parent.animations.scale.x = sign(inputDir)*abs(parent.animations.scale.x)
+	
+	# State switches
 	
 	if parent.is_on_floor():
 		return ground_state

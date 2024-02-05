@@ -28,6 +28,7 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+	# Physics
 	var drag = parent.drag * dragMultiplier
 	var acceleration = parent.acceleration*accelerationMultiplier
 	var maxSpeed = parent.moveSpeed * moveSpeedMultiplier
@@ -44,7 +45,14 @@ func process_physics(delta: float) -> State:
 		parent.velocity.x = move_toward(parent.velocity.x, 0, drag*delta)
 	
 	parent.move_and_slide()
+	# Animations
+	if(inputDir == 0):
+		play_animation("idle")
+	else:
+		play_animation("walk")
+		parent.animations.scale.x = sign(inputDir)*abs(parent.animations.scale.x)
 	
+	# State switches
 	if !parent.is_on_floor():
 		return fall_state
 	return null
