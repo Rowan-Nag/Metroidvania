@@ -351,14 +351,30 @@ size = Vector2(25, 43)
 
 [node name="Node2D" type="Node2D"]
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="DebugUI" type="VBoxContainer" parent="GUI"]
+offset_right = 114.0
+offset_bottom = 49.0
+script = ExtResource("16_we7n4")
+
+[node name="Label" type="Label" parent="GUI/DebugUI"]
+layout_mode = 2
+text = "Player Velocity
+Player State"
+
+[node name="Game" type="CanvasLayer" parent="."]
+layer = 0
+follow_viewport_enabled = true
+
+[node name="TileMap" type="TileMap" parent="Game"]
 scale = Vector2(1.64, 1.64)
 tile_set = SubResource("TileSet_lwr50")
 rendering_quadrant_size = 128
 format = 2
 layer_0/tile_data = PackedInt32Array(65535, 0, 0, 131071, 0, 1, 196607, 0, 2, 0, 65536, 0, 65536, 65536, 1, 131072, 65536, 2, 1, 131072, 0, 65537, 131072, 1, 131073, 131072, 2, 2, 65536, 0, 65538, 65536, 1, 131074, 65536, 2, 3, 131072, 0, 65539, 131072, 1, 131075, 131072, 2, 4, 65536, 0, 65540, 65536, 1, 131076, 65536, 2, 5, 131072, 0, 65541, 131072, 1, 131077, 131072, 2, 6, 65536, 0, 65542, 65536, 1, 131078, 65536, 2, 7, 131072, 0, 65543, 131072, 1, 131079, 131072, 2, 8, 65536, 0, 9, 131072, 0, 262143, 0, 3, 196608, 65536, 3, 196609, 131072, 3, 196610, 65536, 3, 196611, 131072, 3, 196612, 65536, 3, 196613, 131072, 3, 196614, 65536, 3, 196615, 131072, 3, 196616, 65536, 3, 196617, 131072, 3, 196618, 196608, 3, 10, 196608, 0, 65546, 196608, 1, 131082, 196608, 2, 65544, 65536, 1, 131080, 65536, 2, 65545, 131072, 1, 131081, 131072, 2, -65525, 65536, 1, -65524, 131072, 1, -65523, 65536, 1, -65522, 131072, 1, -262139, 65536, 1, -262138, 131072, 1, -262137, 65536, 1, -262136, 131072, 1, 65553, 65536, 1, 131089, 65536, 2, 65554, 131072, 1, 131090, 131072, 2, 262157, 131072, 1, 327693, 131072, 2, 262158, 65536, 1, 327694, 65536, 2, 262159, 131072, 1, 327695, 131072, 2, 458751, 65536, 1, 524287, 65536, 2, 393216, 131072, 1, 458752, 131072, 2, 393217, 65536, 1, 458753, 65536, 2, 393218, 131072, 1, 458754, 131072, 2, 393219, 65536, 1, 458755, 65536, 2, 393220, 131072, 1, 458756, 131072, 2, 393221, 65536, 1, 458757, 65536, 2, 393222, 131072, 1, 458758, 131072, 2, 393223, 65536, 1, 458759, 65536, 2, 393224, 131072, 1, 458760, 131072, 2, 393225, 65536, 1, 458761, 65536, 2, 393226, 131072, 1, 458762, 131072, 2, 393227, 65536, 1, 458763, 65536, 2, 393228, 131072, 1, 458764, 131072, 2, 458747, 65536, 1, 524283, 65536, 2, 458748, 131072, 1, 524284, 131072, 2, 458749, 65536, 1, 524285, 65536, 2, 458750, 131072, 1, 524286, 131072, 2, 393211, 65536, 1, 393212, 131072, 1, 327675, 65536, 1, 131065, 65536, 1, 196601, 65536, 2, 131066, 131072, 1, 196602, 131072, 2, 262137, 65536, 1, 327673, 65536, 2, 262138, 131072, 1, 327674, 131072, 2, 393209, 65536, 1, 458745, 65536, 2, 393210, 131072, 1, 458746, 131072, 2, 524281, 65536, 1, 524282, 131072, 1, -393219, 65536, 3, -393218, 131072, 3, -393217, 65536, 3, -458752, 131072, 3, -458751, 65536, 3, -458750, 131072, 3, -458749, 65536, 3, -458748, 131072, 3, -458747, 65536, 3, -458746, 131072, 3, -458745, 65536, 3, -458744, 131072, 3, -458743, 65536, 3, -458742, 131072, 3, -458741, 65536, 3, -458740, 131072, 3, -458739, 65536, 3, -393202, 0, 1, -327666, 0, 2, -262130, 0, 1, -458738, 65536, 3, -393223, 65536, 3, -393222, 196608, 1, -393221, 65536, 3, -393220, 65536, 3, -327686, 196608, 2, -262150, 196608, 1, -196614, 196608, 2, -131078, 196608, 1, -65542, 196608, 2, 13, 65536, 0, 65549, 65536, 1, 14, 131072, 0, 65550, 131072, 1, 15, 65536, 0, 65551, 65536, 1, 16, 131072, 0, 65552, 131072, 1, 17, 65536, 0, 18, 131072, 0, 19, 65536, 0, 65555, 65536, 1, 20, 131072, 0, 65556, 131072, 1, 21, 65536, 0, 65557, 65536, 1, 22, 131072, 0, 65558, 131072, 1, 23, 65536, 0, 65559, 65536, 1, 24, 131072, 0, 65560, 131072, 1, 25, 65536, 0, 26, 131072, 0, 27, 65536, 0, 28, 131072, 0, 29, 65536, 0, 30, 131072, 0, 31, 65536, 0, 32, 131072, 0, 33, 65536, 0, 34, 131072, 0, 35, 65536, 0, 36, 131072, 0, 37, 65536, 0, 12, 0, 0, 65548, 0, 1, 131084, 0, 2, 196620, 0, 3, 131085, 65536, 2, 131086, 131072, 2, 131087, 65536, 2, 131088, 131072, 2, 131091, 65536, 2, 131092, 131072, 2, 131093, 65536, 2, 131094, 131072, 2, 131095, 65536, 2, 131096, 131072, 2, 65561, 65536, 1, 131097, 65536, 2, 65562, 131072, 1, 131098, 131072, 2, 65563, 65536, 1, 131099, 65536, 2, 65564, 131072, 1, 131100, 131072, 2, 65565, 65536, 1, 131101, 65536, 2, 65566, 131072, 1, 131102, 131072, 2, 65567, 65536, 1, 131103, 65536, 2, 65568, 131072, 1, 131104, 131072, 2, 65569, 65536, 1, 131105, 65536, 2, 65570, 131072, 1, 131106, 131072, 2, 65571, 65536, 1, 131107, 65536, 2, 65572, 131072, 1, 131108, 131072, 2, 65573, 65536, 1, 131109, 65536, 2, 196621, 65536, 3, 196622, 131072, 3, 196623, 65536, 3, 196624, 131072, 3, 196625, 65536, 3, 196626, 131072, 3, 196627, 65536, 3, 196628, 131072, 3, 196629, 65536, 3, 196630, 131072, 3, 196631, 65536, 3, 196632, 131072, 3, 196633, 65536, 3, 196634, 131072, 3, 196635, 65536, 3, 196636, 131072, 3, 196637, 65536, 3, 196638, 131072, 3, 196639, 65536, 3, 196640, 131072, 3, 196641, 65536, 3, 196642, 131072, 3, 196643, 65536, 3, 196644, 131072, 3, 196645, 65536, 3, 38, 196608, 0, 65574, 196608, 1, 131110, 196608, 2, 196646, 196608, 3)
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="Game"]
 position = Vector2(21, -104)
 scale = Vector2(0.613918, 0.547057)
 collision_layer = 2
@@ -372,7 +388,7 @@ maxHealth = 400
 immunityTime = 0.81
 metadata/_edit_group_ = true
 
-[node name="Rain?" type="GPUParticles2D" parent="Player"]
+[node name="Rain?" type="GPUParticles2D" parent="Game/Player"]
 visibility_layer = 2
 z_index = -10
 z_as_relative = false
@@ -382,7 +398,7 @@ amount = 80
 process_material = SubResource("ParticleProcessMaterial_4qloa")
 lifetime = 13.17
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Game/Player"]
 position = Vector2(1.62888, -5.72205e-06)
 scale = Vector2(2.50135, 2.80706)
 sprite_frames = SubResource("SpriteFrames_ixvtf")
@@ -390,51 +406,47 @@ animation = &"attack"
 frame_progress = 0.0268754
 metadata/_edit_group_ = true
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(1.79, 1.79)
-position_smoothing_enabled = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Game/Player"]
 position = Vector2(1.62888, 5.48389)
 scale = Vector2(0.464608, 1)
 shape = SubResource("RectangleShape2D_luyl7")
 metadata/_edit_group_ = true
 
-[node name="stunTimer" type="Timer" parent="Player"]
+[node name="stunTimer" type="Timer" parent="Game/Player"]
 wait_time = 0.1
 one_shot = true
 autostart = true
 
-[node name="immunityTimer" type="Timer" parent="Player"]
+[node name="immunityTimer" type="Timer" parent="Game/Player"]
 wait_time = 0.1
 one_shot = true
 autostart = true
 
-[node name="RayRight" type="RayCast2D" parent="Player"]
+[node name="RayRight" type="RayCast2D" parent="Game/Player"]
 target_position = Vector2(35.8354, 0)
 
-[node name="RayLeft" type="RayCast2D" parent="Player"]
+[node name="RayLeft" type="RayCast2D" parent="Game/Player"]
 target_position = Vector2(-30.9488, 0)
 
-[node name="state_machine" type="Node" parent="Player" node_paths=PackedStringArray("starting_state")]
+[node name="state_machine" type="Node" parent="Game/Player" node_paths=PackedStringArray("starting_state")]
 script = ExtResource("5_xa24y")
 starting_state = NodePath("ground")
 
-[node name="ground" type="Node" parent="Player/state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "dash_state", "attack_state")]
+[node name="ground" type="Node" parent="Game/Player/state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "dash_state", "attack_state")]
 script = ExtResource("6_3vp8f")
 fall_state = NodePath("../fall")
 jump_state = NodePath("../jump")
 dash_state = NodePath("../Dash")
 attack_state = NodePath("../Attack")
 
-[node name="fall" type="Node" parent="Player/state_machine" node_paths=PackedStringArray("ground_state", "jump_state", "dash_state", "attack_state")]
+[node name="fall" type="Node" parent="Game/Player/state_machine" node_paths=PackedStringArray("ground_state", "jump_state", "dash_state", "attack_state")]
 script = ExtResource("6_agqpr")
 ground_state = NodePath("../ground")
 jump_state = NodePath("../jump")
 dash_state = NodePath("../Dash")
 attack_state = NodePath("../Attack")
 
-[node name="jump" type="Node" parent="Player/state_machine" node_paths=PackedStringArray("fall_state", "dash_state", "ground_state", "attack_state")]
+[node name="jump" type="Node" parent="Game/Player/state_machine" node_paths=PackedStringArray("fall_state", "dash_state", "ground_state", "attack_state")]
 script = ExtResource("8_bidk3")
 fall_state = NodePath("../fall")
 dash_state = NodePath("../Dash")
@@ -442,50 +454,40 @@ ground_state = NodePath("../ground")
 attack_state = NodePath("../Attack")
 jump_velocity = 600
 
-[node name="Dash" type="Node" parent="Player/state_machine" node_paths=PackedStringArray("fall_state")]
+[node name="Dash" type="Node" parent="Game/Player/state_machine" node_paths=PackedStringArray("fall_state")]
 script = ExtResource("9_8ihbm")
 fall_state = NodePath("../fall")
 
-[node name="Attack" type="Node" parent="Player/state_machine" node_paths=PackedStringArray("fall_state", "ground_state")]
+[node name="Attack" type="Node" parent="Game/Player/state_machine" node_paths=PackedStringArray("fall_state", "ground_state")]
 script = ExtResource("11_snj0e")
 fall_state = NodePath("../fall")
 ground_state = NodePath("../ground")
 airDragMultiplier = 0.3
 
-[node name="Subject" type="Sprite2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="Game/Player"]
+zoom = Vector2(1.5, 1.5)
+position_smoothing_enabled = true
+
+[node name="Subject" type="Sprite2D" parent="Game"]
 position = Vector2(1314, -207)
 scale = Vector2(0.585641, 0.631897)
 texture = ExtResource("5_wcg1j")
 
-[node name="TickEnemy" type="CharacterBody2D" parent="."]
+[node name="TickEnemy" type="CharacterBody2D" parent="Game"]
 position = Vector2(343, -18)
 collision_layer = 8
 script = ExtResource("6_h5fo1")
 metadata/_edit_group_ = true
 
-[node name="jumpTimer" type="Timer" parent="TickEnemy"]
+[node name="jumpTimer" type="Timer" parent="Game/TickEnemy"]
 one_shot = true
 autostart = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TickEnemy"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Game/TickEnemy"]
 sprite_frames = SubResource("SpriteFrames_ksq3d")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TickEnemy"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Game/TickEnemy"]
 position = Vector2(-2.5, -13.5)
 shape = SubResource("RectangleShape2D_fnq6b")
 
-[node name="EnemyContactDamage" parent="TickEnemy" instance=ExtResource("8_718tb")]
-
-[node name="GUI" type="CanvasLayer" parent="."]
-follow_viewport_enabled = true
-
-[node name="DebugUI" type="VBoxContainer" parent="GUI"]
-offset_left = -235.0
-offset_top = -225.0
-offset_right = -195.0
-offset_bottom = -185.0
-script = ExtResource("16_we7n4")
-
-[node name="Label" type="Label" parent="GUI/DebugUI"]
-layout_mode = 2
-text = "Hi."
+[node name="EnemyContactDamage" parent="Game/TickEnemy" instance=ExtResource("8_718tb")]
