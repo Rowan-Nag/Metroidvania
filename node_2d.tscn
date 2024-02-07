@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://dvwp3gyt6qtdc"]
+[gd_scene load_steps=54 format=3 uid="uid://dvwp3gyt6qtdc"]
 
 [ext_resource type="Texture2D" uid="uid://v7hnvxuq177q" path="res://Sprites/icon.svg" id="1_tfmcr"]
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="2_hgwbc"]
@@ -8,12 +8,13 @@
 [ext_resource type="Script" path="res://Scripts/StateMachine.gd" id="5_xa24y"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerGround.gd" id="6_3vp8f"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerFall.gd" id="6_agqpr"]
-[ext_resource type="Script" path="res://Scripts/Enemies/TickEnemy.gd" id="6_h5fo1"]
+[ext_resource type="Script" path="res://Scripts/Enemies/tickState.gd" id="6_h5fo1"]
 [ext_resource type="Texture2D" uid="uid://cvplq1unqx155" path="res://Sprites/idleTick.png" id="7_afuxq"]
 [ext_resource type="PackedScene" uid="uid://b7gxparcwu871" path="res://Enemies/enemy_contact_damage.tscn" id="8_718tb"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerJump.gd" id="8_bidk3"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerDash.gd" id="9_8ihbm"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerAttack.gd" id="11_snj0e"]
+[ext_resource type="Script" path="res://Scripts/Enemies/Enemy.gd" id="13_fdn5j"]
 [ext_resource type="Script" path="res://Scripts/DebugUI.gd" id="16_we7n4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vvrbn"]
@@ -470,12 +471,8 @@ position_smoothing_enabled = true
 [node name="TickEnemy" type="CharacterBody2D" parent="Game"]
 position = Vector2(343, -18)
 collision_layer = 8
-script = ExtResource("6_h5fo1")
+script = ExtResource("13_fdn5j")
 metadata/_edit_group_ = true
-
-[node name="jumpTimer" type="Timer" parent="Game/TickEnemy"]
-one_shot = true
-autostart = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Game/TickEnemy"]
 sprite_frames = SubResource("SpriteFrames_ksq3d")
@@ -485,3 +482,14 @@ position = Vector2(-2.5, -13.5)
 shape = SubResource("RectangleShape2D_fnq6b")
 
 [node name="EnemyContactDamage" parent="Game/TickEnemy" instance=ExtResource("8_718tb")]
+
+[node name="state_machine" type="Node" parent="Game/TickEnemy" node_paths=PackedStringArray("starting_state")]
+script = ExtResource("5_xa24y")
+starting_state = NodePath("randomJumping")
+
+[node name="randomJumping" type="Node" parent="Game/TickEnemy/state_machine"]
+script = ExtResource("6_h5fo1")
+
+[node name="jumpTimer" type="Timer" parent="Game/TickEnemy/state_machine/randomJumping"]
+one_shot = true
+autostart = true
