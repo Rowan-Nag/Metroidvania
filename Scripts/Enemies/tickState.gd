@@ -1,4 +1,4 @@
-extends Enemy
+extends State
 
 @onready var jumpTimer : Timer= $jumpTimer
 var direction = 0
@@ -9,18 +9,18 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	velocity.x = 0
+	parent.velocity.x = 0
 	
 	
 	
-	velocity.y += 1500*delta
-	velocity.x = direction*150
-	if(is_on_floor()):
+	parent.velocity.y += 1500*delta
+	parent.velocity.x = direction*150
+	if(parent.is_on_floor()):
 		direction = 0
-	if(is_on_floor() and jumpTimer.is_stopped()):
+	if(parent.is_on_floor() and jumpTimer.is_stopped()):
 		#print("jump!")
-		velocity.y = -500
+		parent.velocity.y = -500
 		jumpTimer.start(randf_range(0.5, 3))
 		direction = (randi_range(0, 1)*2-1)
-	handle_knockback(delta)
-	move_and_slide()
+	parent.handle_knockback(delta)
+	parent.move_and_slide()

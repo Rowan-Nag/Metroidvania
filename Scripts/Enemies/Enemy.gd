@@ -16,15 +16,23 @@ var movementDirection : float = 0
 @onready var enemyContactDamage = $EnemyContactDamage
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision : CollisionShape2D = $CollisionShape2D
+
+@onready var state_machine = $state_machine
+
+func _ready():
+	state_machine.init(self)
+
 func handle_knockback(delta):
 	simpleKnockback = move_toward(simpleKnockback, 0, abs(simpleKnockback)*8*delta) 
 	#technically this is an exponentially decaying velocity (should be quadratic) but this is much easier than fiddling with numbers (500*delta is alternative)
 	velocity.x += simpleKnockback
 
 func _physics_process(delta):
-	handle_knockback(delta)
-	move_and_slide()
+	state_machine.process_physics(delta)
 
+func _process(delta: float) -> void:
+	state_machine.process_frame(delta)
+	
 func deactivate_collision(): #Deactivates contact damage (like if the enemy is playing it's deaht animation before dissapearing)
 	if(has_node("EnemyContactDamage")):
 		$EnemyContactDamage.isActive = false
