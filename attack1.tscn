@@ -1,38 +1,40 @@
 [gd_scene load_steps=13 format=3 uid="uid://dcn2cqh8eybkn"]
 
-[ext_resource type="Texture2D" uid="uid://b4khygftama83" path="res://Attack.png" id="1_korlg"]
-[ext_resource type="Script" path="res://Scripts/attack1.gd" id="2_lm6cp"]
+[ext_resource type="Script" path="res://Scripts/Player/attack1.gd" id="1_plrq1"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ewkio"]
+load_path = "res://.godot/imported/Attack.png-9d74a1dcbc5058a0aebe9cb95dbec117.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2hkqx"]
-atlas = ExtResource("1_korlg")
+atlas = SubResource("CompressedTexture2D_ewkio")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r63ub"]
-atlas = ExtResource("1_korlg")
+atlas = SubResource("CompressedTexture2D_ewkio")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_senl5"]
-atlas = ExtResource("1_korlg")
+atlas = SubResource("CompressedTexture2D_ewkio")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j3gno"]
-atlas = ExtResource("1_korlg")
+atlas = SubResource("CompressedTexture2D_ewkio")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fm6k1"]
-atlas = ExtResource("1_korlg")
+atlas = SubResource("CompressedTexture2D_ewkio")
 region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_claeu"]
-atlas = ExtResource("1_korlg")
+atlas = SubResource("CompressedTexture2D_ewkio")
 region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bywnk"]
-atlas = ExtResource("1_korlg")
+atlas = SubResource("CompressedTexture2D_ewkio")
 region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8tt7e"]
-atlas = ExtResource("1_korlg")
+atlas = SubResource("CompressedTexture2D_ewkio")
 region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xj7qa"]
@@ -75,7 +77,7 @@ position = Vector2(42, 1.19209e-07)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_xj7qa")
 autoplay = "default"
-script = ExtResource("2_lm6cp")
+script = ExtResource("1_plrq1")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4

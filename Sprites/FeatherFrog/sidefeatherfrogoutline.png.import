@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3sdhmkfc2cd8"
-path="res://.godot/imported/fatcat.png-d19c5dcdfd030cd6458778b385e5f508.ctex"
+uid="uid://bpmkfdb0413yd"
+path="res://.godot/imported/sidefeatherfrogoutline.png-aa121b87d332b36663e2c6911dda1c0e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://fatcat.png"
-dest_files=["res://.godot/imported/fatcat.png-d19c5dcdfd030cd6458778b385e5f508.ctex"]
+source_file="res://Sprites/FeatherFrog/sidefeatherfrogoutline.png"
+dest_files=["res://.godot/imported/sidefeatherfrogoutline.png-aa121b87d332b36663e2c6911dda1c0e.ctex"]
 
 [params]
 

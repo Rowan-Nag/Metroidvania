@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cx75rmkwugfy4"
-path="res://.godot/imported/featherfrogrun.png-6f8dbe0e43d39513e7cdf338976d0566.ctex"
+uid="uid://cvplq1unqx155"
+path="res://.godot/imported/idleTick.png-78a57dab7304f2bfeffc2c5e6710d1c5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://featherfrogrun.png"
-dest_files=["res://.godot/imported/featherfrogrun.png-6f8dbe0e43d39513e7cdf338976d0566.ctex"]
+source_file="res://Sprites/idleTick.png"
+dest_files=["res://.godot/imported/idleTick.png-78a57dab7304f2bfeffc2c5e6710d1c5.ctex"]
 
 [params]
 

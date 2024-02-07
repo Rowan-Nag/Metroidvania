@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvbf37s6vx5rr"
-path="res://.godot/imported/standingThing_bright.png-1b76cc69635bb7d73f25b7671f3359e5.ctex"
+uid="uid://cwk8mrfv1osgx"
+path="res://.godot/imported/sidefeatherfrog.png-1ebd664bfd2215454577e4a2a88a4fc3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://standingThing_bright.png"
-dest_files=["res://.godot/imported/standingThing_bright.png-1b76cc69635bb7d73f25b7671f3359e5.ctex"]
+source_file="res://Sprites/FeatherFrog/sidefeatherfrog.png"
+dest_files=["res://.godot/imported/sidefeatherfrog.png-1ebd664bfd2215454577e4a2a88a4fc3.ctex"]
 
 [params]
 
