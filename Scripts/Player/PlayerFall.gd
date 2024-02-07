@@ -23,8 +23,16 @@ func process_input(event: InputEvent) -> State:
 		return dash_state
 	if Input.is_action_just_pressed("Attack"):
 		return attack_state
-	
-	
+	if Input.is_action_just_pressed("Jump"):
+		var canWalljump = parent.getAdjacentWalls()
+		if(canWalljump.left and Input.is_action_pressed("Left")):
+			#If there's a wall to the left...
+			parent.velocity.x = 800
+			parent.velocity.y = -500;
+		if(canWalljump.right and Input.is_action_pressed("Right")):
+			#If there's a wall to the right...
+			parent.velocity.x = -800
+			parent.velocity.y = -500
 	
 	
 	return null

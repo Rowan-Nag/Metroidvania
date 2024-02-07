@@ -13,6 +13,8 @@ var state_machine = $state_machine
 @export var moveSpeed : int = 600
 @export var terminal_velocity : int = 1200
 
+@onready var rayLeft : RayCast2D = $RayLeft
+@onready var rayRight : RayCast2D = $RayRight
 
 @export_category("Combat")
 @export var maxHealth : int = 100
@@ -47,8 +49,13 @@ func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)
 
 func _physics_process(delta: float) -> void:
-
 	state_machine.process_physics(delta)
 
 func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
+
+func getAdjacentWalls():
+	return {
+		"left": rayLeft.is_colliding(),
+		"right": rayRight.is_colliding()
+	}
