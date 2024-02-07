@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cy8qcvf0kg2f5"
-path="res://.godot/imported/astronautpxl.png-efe6aa4919861382a8f3779a400fb919.ctex"
+uid="uid://cf2q8xdetw2n1"
+path="res://.godot/imported/standingThing.png-5e704fa37bd0afb7942d40c64ebfd74a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://astronautpxl.png"
-dest_files=["res://.godot/imported/astronautpxl.png-efe6aa4919861382a8f3779a400fb919.ctex"]
+source_file="res://Sprites/standingThing.png"
+dest_files=["res://.godot/imported/standingThing.png-5e704fa37bd0afb7942d40c64ebfd74a.ctex"]
 
 [params]
 

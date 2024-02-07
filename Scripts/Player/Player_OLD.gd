@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Player
+class_name PlayerOld
 
 var maxHealth : int = 6
 var health : int = 6

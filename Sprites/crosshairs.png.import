@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvbf37s6vx5rr"
-path="res://.godot/imported/standingThing_bright.png-1b76cc69635bb7d73f25b7671f3359e5.ctex"
+uid="uid://cr3ibymqw3vow"
+path="res://.godot/imported/crosshairs.png-18c79107a8b98318c629feacc397049f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://standingThing_bright.png"
-dest_files=["res://.godot/imported/standingThing_bright.png-1b76cc69635bb7d73f25b7671f3359e5.ctex"]
+source_file="res://Sprites/crosshairs.png"
+dest_files=["res://.godot/imported/crosshairs.png-18c79107a8b98318c629feacc397049f.ctex"]
 
 [params]
 
