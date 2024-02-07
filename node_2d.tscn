@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://dvwp3gyt6qtdc"]
+[gd_scene load_steps=61 format=3 uid="uid://dvwp3gyt6qtdc"]
 
 [ext_resource type="Texture2D" uid="uid://v7hnvxuq177q" path="res://Sprites/icon.svg" id="1_tfmcr"]
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="2_hgwbc"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/PlayerGround.gd" id="6_3vp8f"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerFall.gd" id="6_agqpr"]
 [ext_resource type="Script" path="res://Scripts/Enemies/tickState.gd" id="6_h5fo1"]
+[ext_resource type="Texture2D" uid="uid://ccsulijcnsm0u" path="res://Sprites/FeatherFrog/featherfrogjump.png" id="6_iy0o0"]
 [ext_resource type="Texture2D" uid="uid://cvplq1unqx155" path="res://Sprites/idleTick.png" id="7_afuxq"]
 [ext_resource type="PackedScene" uid="uid://b7gxparcwu871" path="res://Enemies/enemy_contact_damage.tscn" id="8_718tb"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerJump.gd" id="8_bidk3"]
@@ -184,6 +185,30 @@ region = Rect2(256, 0, 32, 32)
 atlas = ExtResource("4_oepox")
 region = Rect2(288, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_sog6k"]
+atlas = ExtResource("6_iy0o0")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08jbu"]
+atlas = ExtResource("6_iy0o0")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q70gp"]
+atlas = ExtResource("6_iy0o0")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dyie"]
+atlas = ExtResource("6_iy0o0")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7t8ds"]
+atlas = ExtResource("6_iy0o0")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2jwq"]
+atlas = ExtResource("6_iy0o0")
+region = Rect2(160, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ybdv"]
 atlas = ExtResource("5_omx6f")
 region = Rect2(0, 0, 32, 32)
@@ -298,6 +323,29 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_sog6k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_08jbu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q70gp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1dyie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7t8ds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2jwq")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_8ybdv")
 }, {
 "duration": 1.0,
@@ -402,8 +450,7 @@ lifetime = 13.17
 position = Vector2(1.62888, -5.72205e-06)
 scale = Vector2(2.50135, 2.80706)
 sprite_frames = SubResource("SpriteFrames_ixvtf")
-animation = &"attack"
-frame_progress = 0.0268754
+animation = &"jump"
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Game/Player"]
