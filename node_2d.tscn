@@ -1,11 +1,10 @@
-[gd_scene load_steps=54 format=3 uid="uid://dvwp3gyt6qtdc"]
+[gd_scene load_steps=53 format=3 uid="uid://dvwp3gyt6qtdc"]
 
 [ext_resource type="Texture2D" uid="uid://v7hnvxuq177q" path="res://icon.svg" id="1_tfmcr"]
 [ext_resource type="Script" path="res://Scripts/PlayerNew.gd" id="2_hgwbc"]
 [ext_resource type="Texture2D" uid="uid://bpmkfdb0413yd" path="res://sidefeatherfrogoutline.png" id="4_aw0lm"]
 [ext_resource type="Texture2D" uid="uid://cwk8mrfv1osgx" path="res://sidefeatherfrog.png" id="4_oepox"]
 [ext_resource type="Texture2D" uid="uid://cx75rmkwugfy4" path="res://featherfrogrun.png" id="5_omx6f"]
-[ext_resource type="Texture2D" uid="uid://bnmkrb7jmdv7x" path="res://Subject.png" id="5_wcg1j"]
 [ext_resource type="Script" path="res://Scripts/StateMachine.gd" id="5_xa24y"]
 [ext_resource type="Script" path="res://Scripts/PlayerGround.gd" id="6_3vp8f"]
 [ext_resource type="Script" path="res://Scripts/PlayerFall.gd" id="6_agqpr"]
@@ -467,11 +466,6 @@ airDragMultiplier = 0.3
 [node name="Camera2D" type="Camera2D" parent="Game/Player"]
 zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
-
-[node name="Subject" type="Sprite2D" parent="Game"]
-position = Vector2(1314, -207)
-scale = Vector2(0.585641, 0.631897)
-texture = ExtResource("5_wcg1j")
 
 [node name="TickEnemy" type="CharacterBody2D" parent="Game"]
 position = Vector2(343, -18)
