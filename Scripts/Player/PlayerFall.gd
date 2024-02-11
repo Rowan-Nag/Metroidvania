@@ -16,6 +16,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * gravit
 var inputDir: float
 
 func enter() -> void:
+	play_animation("jump") # fall
 	super()
 
 func process_input(event: InputEvent) -> State:
@@ -50,11 +51,11 @@ func process_physics(delta: float) -> State:
 	parent.move_and_slide()
 	
 	# Animations
-	if(inputDir == 0):
-		play_animation("idle")
-	else:
-		play_animation("walk")
-		parent.animations.scale.x = sign(inputDir)*abs(parent.animations.scale.x)
+	#if(inputDir == 0):
+		#play_animation("idle")
+	#else:
+		#play_animation("walk")
+		#parent.animations.scale.x = sign(inputDir)*abs(parent.animations.scale.x)
 	
 	# State switches
 	
