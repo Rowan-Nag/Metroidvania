@@ -18,6 +18,7 @@ var inputDir: float
 
 func enter() -> void:
 	super()
+	play_animation("jump")
 	parent.velocity.y = -jump_velocity
 	
 func process_input(event: InputEvent) -> State:
@@ -53,11 +54,11 @@ func process_physics(delta: float) -> State:
 	parent.move_and_slide()
 	
 	# Animations
-	if(inputDir == 0):
-		play_animation("idle")
-	else:
-		play_animation("walk")
-		parent.animations.scale.x = sign(inputDir)*abs(parent.animations.scale.x)
+	#if(inputDir == 0):
+		#play_animation("idle")
+	#else:
+		#play_animation("walk")
+		#parent.animations.scale.x = sign(inputDir)*abs(parent.animations.scale.x)
 	
 	# State switches
 	if parent.velocity.y >= 0:
