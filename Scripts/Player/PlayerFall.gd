@@ -16,7 +16,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * gravit
 var inputDir: float
 
 func enter() -> void:
-	play_animation("jump") # fall
+	play_animation("fall") # fall
 	super()
 
 func process_input(event: InputEvent) -> State:
