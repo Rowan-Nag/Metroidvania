@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://dvwp3gyt6qtdc"]
+[gd_scene load_steps=57 format=3 uid="uid://dvwp3gyt6qtdc"]
 
 [ext_resource type="Texture2D" uid="uid://v7hnvxuq177q" path="res://Sprites/icon.svg" id="1_tfmcr"]
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="2_hgwbc"]
@@ -10,10 +10,12 @@
 [ext_resource type="Script" path="res://Scripts/Player/PlayerFall.gd" id="6_agqpr"]
 [ext_resource type="Script" path="res://Scripts/Enemies/tickState.gd" id="6_h5fo1"]
 [ext_resource type="Texture2D" uid="uid://cvplq1unqx155" path="res://Sprites/idleTick.png" id="7_afuxq"]
+[ext_resource type="Texture2D" uid="uid://cmbr0ep1tko1u" path="res://Sprites/FeatherFrog/wallslidefeatherfrog.png" id="7_jj6gy"]
 [ext_resource type="PackedScene" uid="uid://b7gxparcwu871" path="res://Enemies/enemy_contact_damage.tscn" id="8_718tb"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerJump.gd" id="8_bidk3"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerDash.gd" id="9_8ihbm"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerAttack.gd" id="11_snj0e"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerWallcling.gd" id="13_014ro"]
 [ext_resource type="Script" path="res://Scripts/Enemies/Enemy.gd" id="13_fdn5j"]
 [ext_resource type="Script" path="res://Scripts/DebugUI.gd" id="16_we7n4"]
 
@@ -224,6 +226,10 @@ region = Rect2(256, 0, 32, 32)
 atlas = ExtResource("5_omx6f")
 region = Rect2(288, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_5a3tv"]
+atlas = ExtResource("7_jj6gy")
+region = Rect2(0, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_ixvtf"]
 animations = [{
 "frames": [{
@@ -330,6 +336,14 @@ animations = [{
 "loop": true,
 "name": &"walk",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5a3tv")
+}],
+"loop": true,
+"name": &"wallcling",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_luyl7"]
@@ -402,8 +416,7 @@ lifetime = 13.17
 position = Vector2(1.62888, -5.72205e-06)
 scale = Vector2(2.50135, 2.80706)
 sprite_frames = SubResource("SpriteFrames_ixvtf")
-animation = &"attack"
-frame_progress = 0.0268754
+animation = &"wallcling"
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Game/Player"]
@@ -439,12 +452,13 @@ jump_state = NodePath("../jump")
 dash_state = NodePath("../Dash")
 attack_state = NodePath("../Attack")
 
-[node name="fall" type="Node" parent="Game/Player/state_machine" node_paths=PackedStringArray("ground_state", "jump_state", "dash_state", "attack_state")]
+[node name="fall" type="Node" parent="Game/Player/state_machine" node_paths=PackedStringArray("ground_state", "jump_state", "dash_state", "attack_state", "wallcling_state")]
 script = ExtResource("6_agqpr")
 ground_state = NodePath("../ground")
 jump_state = NodePath("../jump")
 dash_state = NodePath("../Dash")
 attack_state = NodePath("../Attack")
+wallcling_state = NodePath("../wallCling")
 
 [node name="jump" type="Node" parent="Game/Player/state_machine" node_paths=PackedStringArray("fall_state", "dash_state", "ground_state", "attack_state")]
 script = ExtResource("8_bidk3")
@@ -463,6 +477,14 @@ script = ExtResource("11_snj0e")
 fall_state = NodePath("../fall")
 ground_state = NodePath("../ground")
 airDragMultiplier = 0.3
+
+[node name="wallCling" type="Node" parent="Game/Player/state_machine" node_paths=PackedStringArray("ground_state", "jump_state", "dash_state", "fall_state")]
+script = ExtResource("13_014ro")
+ground_state = NodePath("../ground")
+jump_state = NodePath("../jump")
+dash_state = NodePath("../Dash")
+fall_state = NodePath("../fall")
+gravityMultiplier = 0.1
 
 [node name="Camera2D" type="Camera2D" parent="Game/Player"]
 zoom = Vector2(1.5, 1.5)
