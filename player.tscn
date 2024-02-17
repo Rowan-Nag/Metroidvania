@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ct1hn2mhdmcq3" path="res://Sprites/FeatherFrog/featherfrogfall.png" id="3_pq4y7"]
 [ext_resource type="Texture2D" uid="uid://ccsulijcnsm0u" path="res://Sprites/FeatherFrog/featherfrogjump.png" id="4_u5v6k"]
 [ext_resource type="Texture2D" uid="uid://cx75rmkwugfy4" path="res://Sprites/FeatherFrog/featherfrogrun.png" id="5_h4bds"]
-[ext_resource type="Texture2D" path="res://Sprites/FeatherFrog/wallslidefeatherfrog.png" id="6_rk5os"]
+[ext_resource type="Texture2D" uid="uid://cmbr0ep1tko1u" path="res://Sprites/FeatherFrog/wallslidefeatherfrog.png" id="6_rk5os"]
 [ext_resource type="Script" path="res://Scripts/StateMachine.gd" id="7_0xfl2"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerGround.gd" id="8_ym70h"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerFall.gd" id="9_dv7pt"]
