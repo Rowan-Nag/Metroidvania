@@ -16,7 +16,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/PlayerAttack.gd" id="11_snj0e"]
 [ext_resource type="Script" path="res://Scripts/Enemies/Enemy.gd" id="13_fdn5j"]
 [ext_resource type="Script" path="res://Scripts/DebugUI.gd" id="16_we7n4"]
-[ext_resource type="Texture2D" uid="uid://qxsqpdenonfa" path="res://Sprites/ratcapidle.png" id="17_n7u6j"]
+[ext_resource type="Texture2D" path="res://Sprites/ratcapidle.png" id="17_n7u6j"]
 [ext_resource type="Script" path="res://Scripts/Enemies/EnemyPatrolState.gd" id="18_xtxc6"]
 [ext_resource type="Script" path="res://Scripts/State.gd" id="19_i8cm7"]
 

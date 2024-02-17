@@ -37,13 +37,11 @@ func process_physics(delta: float) -> State:
 			if(alerted_state):
 				
 				return alerted_state
-		if(not floorDetector.is_colliding()):
-			print("Floor gone.")
-		if(not floorDetector.is_colliding()):
-			#TODO: Find out why it's not detector the floor???
-			#print(wallDetector.is_colliding(), not floorDetector.is_colliding(), wallDetector.target_position.x)
-			wait_and_turn()
 		
+		if(not floorDetector.is_colliding()):
+			wait_and_turn()
+		if(wallDetector.is_colliding()):
+			wait_and_turn()
 		
 		
 	else:
@@ -60,9 +58,9 @@ func play_animation(animation) -> void:
 
 func wait_and_turn():
 	waiting = true
-	await get_tree().create_timer(waitTime).timeout
 	wallDetector.target_position.x = -wallDetector.target_position.x
 	floorDetector.position.x = - floorDetector.position.x
+	await get_tree().create_timer(waitTime).timeout
 	walkSpeed = -walkSpeed
 	parent.animated_sprite.scale.x = -parent.animated_sprite.scale.x
 	waiting = false
