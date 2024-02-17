@@ -63,7 +63,7 @@ func process_physics(delta: float) -> State:
 	if(inputDir):
 		var canWalljump = parent.getAdjacentWalls()
 		print(canWalljump.left)
-		if(canWalljump.left or canWalljump.right):
+		if((canWalljump.left and inputDir < 0) or (canWalljump.right and inputDir > 0)):
 			return wallcling_state
 	
 	if parent.is_on_floor():

@@ -12,6 +12,8 @@ extends State
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * gravityMultiplier
 
+@export var horizontal_jump_velocity : int = 300
+@export var terminal_velocity : int = 300
 var adjacent_wall : int # negative: left wall, positive: right wall
 
 var inputDir: float
@@ -32,7 +34,7 @@ func process_input(event: InputEvent) -> State:
 	#if Input.is_action_just_pressed("Attack"): # Can't attack while wall clinging
 		#return attack_state 
 	if Input.is_action_just_pressed("Jump"):
-		parent.velocity.x = -adjacent_wall*200
+		parent.velocity.x = -adjacent_wall * horizontal_jump_velocity
 		return jump_state
 		#Walljump
 	
@@ -49,7 +51,7 @@ func process_physics(delta: float) -> State:
 	
 	#Gravity (vertical movement)
 	parent.velocity.y += gravity*gravityMultiplier*delta
-	parent.velocity.y = clamp(parent.velocity.y, -10000, parent.terminal_velocity)
+	parent.velocity.y = clamp(parent.velocity.y, -terminal_velocity, 200)
 	
 	parent.move_and_slide()
 	
