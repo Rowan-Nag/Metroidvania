@@ -1,4 +1,5 @@
 extends VBoxContainer
+class_name DebugUI
 
 var player : Player
 
@@ -6,6 +7,7 @@ var player : Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Global.debug = self
 	player = Global.player
 	label.text = "Player Velocity:"
 
@@ -16,3 +18,6 @@ func _physics_process(delta):
 		label.text += "Player State: " + str(player.state_machine.current_state.name)
 	else:
 		player = Global.player
+func add_text(text):
+	if(label):
+		label.text += "\n"+text
