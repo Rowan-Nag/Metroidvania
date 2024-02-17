@@ -1,10 +1,10 @@
 extends State
 
-@export var ground_state: State
-@export var jump_state: State
-@export var dash_state: State
-@export var attack_state : State
-@export var wallcling_state : State
+var ground_state: State
+var jump_state: State
+var dash_state: State
+var attack_state : State
+var wallcling_state : State
 
 @export var gravityMultiplier: float = 1
 @export var dragMultiplier: float = 1
@@ -17,6 +17,12 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * gravit
 var inputDir: float
 
 func enter() -> void:
+	ground_state = parent.ground_state
+	jump_state = parent.jump_state
+	dash_state = parent.dash_state
+	attack_state = parent.attack_state
+	print(ground_state)
+	wallcling_state = parent.wallcling_state
 	play_animation("fall") # fall
 	super()
 
@@ -64,7 +70,7 @@ func process_physics(delta: float) -> State:
 	# State switches
 	if(inputDir != 0):
 		var canWalljump = parent.getAdjacentWalls()
-		print(canWalljump.left)
+		#print(canWalljump.left)
 		if((canWalljump.left and inputDir < 0) or (canWalljump.right and inputDir > 0)):
 			return wallcling_state
 	

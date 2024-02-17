@@ -1,8 +1,6 @@
 extends State
 
-@export var fall_state: State
-@export var jump_state: State
-@export var dash_state: State
+var fall_state: State
 
 @export var gravityMultiplier: float = 1
 @export var dragMultiplier: float = 1
@@ -15,6 +13,7 @@ var inputDir: float
 
 func enter() -> void:
 	var input = Input.get_axis("Left", "Right") 
+	fall_state = parent.fall_state
 	#print(input)
 	parent.velocity.x = sign(input)*900
 	parent.velocity.y = 0
@@ -25,10 +24,10 @@ func enter() -> void:
 	
 
 func process_input(event: InputEvent) -> State:
-	if Input.is_action_just_pressed('Dash'):
-		return dash_state
-	if Input.is_action_just_pressed('Jump') and parent.is_on_floor():
-		return jump_state
+	#if Input.is_action_just_pressed('Dash'):
+		#return dash_state
+	#if Input.is_action_just_pressed('Jump') and parent.is_on_floor():
+		#return jump_state
 	
 	
 	

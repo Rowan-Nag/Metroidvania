@@ -23,6 +23,13 @@ var health : int = maxHealth
 
 @onready var immunity : Timer = $immunityTimer
 
+@onready var fall_state : State = $state_machine/fall
+@onready var ground_state : State = $state_machine/ground
+@onready var jump_state : State = $state_machine/jump
+@onready var dash_state : State = $state_machine/dash
+@onready var attack_state : State = $state_machine/attack
+@onready var wallcling_state : State = $state_machine/wallcling
+
 signal took_damage
 signal death
 
@@ -31,7 +38,7 @@ func take_damage(damage : int, knockback : Vector2 = Vector2.ZERO) -> void:
 		immunity.start(immunityTime)
 		health -= damage
 		velocity = knockback*400
-		
+		state_machine.change_state(fall_state)
 		if(health <= 0):
 			# Die, probably should emit a signal here saying that the player died.
 			death.emit()

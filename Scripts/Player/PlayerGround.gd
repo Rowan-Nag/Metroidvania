@@ -1,26 +1,33 @@
 extends State
 
-@export var fall_state: State
-@export var jump_state: State
-@export var dash_state: State
-@export var attack_state : State
+var fall_state: State
+var jump_state: State
+var dash_state: State
+var attack_state : State
 
 @export var gravityMultiplier: float = 1
 @export var dragMultiplier: float = 1
 @export var accelerationMultiplier: float = 1
 @export var moveSpeedMultiplier: float = 1
+@export var coyoteTime : float = 0.1
+
+@onready var coyoteTimer : Timer = $coyoteTimer
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * gravityMultiplier
 
 var inputDir: float
 
 func enter() -> void:
+	fall_state = parent.fall_state
+	jump_state = parent.jump_state
+	dash_state = parent.dash_state
+	attack_state = parent.attack_state
 	super()
 
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_pressed('Dash'):
 		return dash_state
-	if Input.is_action_just_pressed('Jump') and parent.is_on_floor():
+	if Input.is_action_just_pressed('Jump') and not coyoteTimer.is_stopped():
 		return jump_state
 	if Input.is_action_just_pressed("Attack"):
 		return attack_state
@@ -55,6 +62,11 @@ func process_physics(delta: float) -> State:
 		parent.animations.scale.x = sign(inputDir)*abs(parent.animations.scale.x)
 	
 	# State switches
-	if !parent.is_on_floor():
+	if(parent.is_on_floor()):
+		coyoteTimer.start(coyoteTime)
+		
+	if !parent.is_on_floor() and (coyoteTimer.is_stopped() or inputDir==0):
 		return fall_state
+		
+	Global.set_debug_text("Remaining coyote time: " + str(int(coyoteTimer.time_left*1000))+"ms")
 	return null

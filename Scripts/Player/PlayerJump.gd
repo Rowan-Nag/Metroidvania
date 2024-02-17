@@ -1,9 +1,9 @@
 extends State
 
-@export var fall_state: State
-@export var dash_state: State
-@export var ground_state: State
-@export var attack_state : State
+var fall_state: State
+var dash_state: State
+var ground_state: State
+var attack_state : State
 
 @export var gravityMultiplier: float = 1
 @export var dragMultiplier: float = 1
@@ -18,6 +18,10 @@ var inputDir: float
 
 func enter() -> void:
 	super()
+	ground_state = parent.ground_state
+	fall_state = parent.fall_state
+	dash_state = parent.dash_state
+	attack_state = parent.attack_state
 	play_animation("jump")
 	parent.velocity.y = -jump_velocity
 	

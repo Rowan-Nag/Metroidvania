@@ -17,6 +17,8 @@ var attackFinished = false
 
 func enter() -> void:
 	super()
+	ground_state = parent.ground_state
+	fall_state = parent.fall_state
 	attackFinished = false
 	direction = sign(parent.animations.scale.x)
 	play_animation("attack")

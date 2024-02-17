@@ -1,9 +1,9 @@
 extends State
 
-@export var ground_state: State
-@export var jump_state: State
-@export var dash_state: State
-@export var fall_state : State
+var ground_state: State
+var jump_state: State
+var dash_state: State
+var fall_state : State
 
 @export var gravityMultiplier: float = 1
 @export var dragMultiplier: float = 1
@@ -19,7 +19,12 @@ var adjacent_wall : int # negative: left wall, positive: right wall
 var inputDir: float
 
 func enter() -> void:
-	print("Entered!")
+	#print("Entered!")
+	ground_state = parent.ground_state
+	jump_state = parent.jump_state
+	dash_state = parent.dash_state
+	fall_state = parent.fall_state
+	
 	parent.velocity.y = 0
 
 	play_animation("wallcling")
@@ -56,7 +61,11 @@ func process_physics(delta: float) -> State:
 	parent.move_and_slide()
 	
 	# State switches
-	
+	var adjacentWalls = parent.getAdjacentWalls()
+	if(adjacent_wall < 0 and not adjacentWalls.left):
+		return fall_state
+	if(adjacent_wall > 0 and not adjacentWalls.right):
+		return fall_state
 	if(sign(inputDir) != sign(adjacent_wall)):
 		return fall_state
 	if parent.is_on_floor():
