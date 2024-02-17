@@ -3,8 +3,7 @@ extends State
 @export var ground_state: State
 @export var jump_state: State
 @export var dash_state: State
-@export var attack_state : State
-@export var wallcling_state : State
+@export var fall_state : State
 
 @export var gravityMultiplier: float = 1
 @export var dragMultiplier: float = 1
@@ -13,19 +12,31 @@ extends State
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * gravityMultiplier
 
+@export var horizontal_jump_velocity : int = 300
+@export var terminal_velocity : int = 300
+var adjacent_wall : int # negative: left wall, positive: right wall
 
 var inputDir: float
 
 func enter() -> void:
-	play_animation("fall") # fall
+	print("Entered!")
+	parent.velocity.y = 0
+
+	play_animation("wallcling")
+	inputDir = Input.get_axis("Left", "Right")
+	adjacent_wall = inputDir
+	parent.animations.scale.x = -sign(adjacent_wall)*abs(parent.animations.scale.x)
 	super()
 
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_pressed('Dash'):
 		return dash_state
-	if Input.is_action_just_pressed("Attack"):
-		return attack_state
-		
+	#if Input.is_action_just_pressed("Attack"): # Can't attack while wall clinging
+		#return attack_state 
+	if Input.is_action_just_pressed("Jump"):
+		parent.velocity.x = -adjacent_wall * horizontal_jump_velocity
+		return jump_state
+		#Walljump
 	
 	
 	return null
@@ -38,34 +49,17 @@ func process_physics(delta: float) -> State:
 	
 	inputDir = Input.get_axis("Left", "Right")
 	
-	
-	
-	if(inputDir):
-		
-		parent.velocity.x = move_toward(parent.velocity.x, inputDir*maxSpeed, acceleration*delta)
-	else:
-		parent.velocity.x = move_toward(parent.velocity.x, 0, drag*delta)
-	
 	#Gravity (vertical movement)
 	parent.velocity.y += gravity*gravityMultiplier*delta
-	parent.velocity.y = clamp(parent.velocity.y, -10000, parent.terminal_velocity)
+	parent.velocity.y = clamp(parent.velocity.y, -terminal_velocity, 200)
 	
 	parent.move_and_slide()
 	
-	# Animations
-	#if(inputDir == 0):
-		#play_animation("idle")
-	#else:
-		#play_animation("walk")
-		#parent.animations.scale.x = sign(inputDir)*abs(parent.animations.scale.x)
-	
 	# State switches
-	if(inputDir):
-		var canWalljump = parent.getAdjacentWalls()
-		print(canWalljump.left)
-		if((canWalljump.left and inputDir < 0) or (canWalljump.right and inputDir > 0)):
-			return wallcling_state
 	
+	if(sign(inputDir) != sign(adjacent_wall)):
+		return fall_state
 	if parent.is_on_floor():
 		return ground_state
+	
 	return null
