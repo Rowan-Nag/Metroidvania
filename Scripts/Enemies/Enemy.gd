@@ -19,7 +19,10 @@ var movementDirection : float = 0
 
 @onready var state_machine = $state_machine
 
+var animationNames
+
 func _ready():
+	animationNames = animated_sprite.sprite_frames.get_animation_names()
 	state_machine.init(self)
 
 func handle_knockback(delta):
@@ -55,7 +58,7 @@ func knockback(knockbackDir):
 #	print("knockback:", simpleKnockback)
 func die():
 	#When the enemy is killed, try to play it's "death" animation
-	var animationNames = animated_sprite.sprite_frames.get_animation_names()
+	
 	deactivate_collision()
 	
 	if("death" in animationNames): #If it has a death animation, play it, wait for it to complete, then remove itself
@@ -67,5 +70,14 @@ func die():
 	else: #If it doesn't have a death animation, wait 0.2 secs, then remove itself.
 		await get_tree().create_timer(0.2).timeout
 		queue_free()
+
+func play_animation(animationName):
+
+	if(animationName in animationNames):
+		animated_sprite.play(animationName)
 	
-	
+func getPlayerDistance() -> float:
+	return getPlayerRelativePosition().length()
+
+func getPlayerRelativePosition() -> Vector2:
+	return to_local(Global.player.global_position)
