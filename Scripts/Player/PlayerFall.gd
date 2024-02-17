@@ -53,6 +53,8 @@ func process_physics(delta: float) -> State:
 	parent.move_and_slide()
 	
 	# Animations
+	if(inputDir != 0):
+		parent.animations.scale.x = sign(inputDir)*abs(parent.animations.scale.x)
 	#if(inputDir == 0):
 		#play_animation("idle")
 	#else:
@@ -60,7 +62,7 @@ func process_physics(delta: float) -> State:
 		#parent.animations.scale.x = sign(inputDir)*abs(parent.animations.scale.x)
 	
 	# State switches
-	if(inputDir):
+	if(inputDir != 0):
 		var canWalljump = parent.getAdjacentWalls()
 		print(canWalljump.left)
 		if((canWalljump.left and inputDir < 0) or (canWalljump.right and inputDir > 0)):

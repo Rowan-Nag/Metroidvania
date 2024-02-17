@@ -49,6 +49,7 @@ func process_physics(delta: float) -> State:
 		parent.play_animation("idle")
 		
 	parent.move_and_slide()
+	parent.handle_knockback(delta)
 	return null
 
 func play_animation(animation) -> void:
