@@ -21,7 +21,7 @@ func enter() -> void:
 	jump_state = parent.jump_state
 	dash_state = parent.dash_state
 	attack_state = parent.attack_state
-	print(ground_state)
+	#print(ground_state)
 	wallcling_state = parent.wallcling_state
 	play_animation("fall") # fall
 	super()
