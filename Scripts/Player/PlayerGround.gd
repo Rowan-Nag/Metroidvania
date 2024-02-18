@@ -4,6 +4,7 @@ var fall_state: State
 var jump_state: State
 var dash_state: State
 var attack_state : State
+var shield_state : State
 
 @export var gravityMultiplier: float = 1
 @export var dragMultiplier: float = 1
@@ -22,6 +23,7 @@ func enter() -> void:
 	jump_state = parent.jump_state
 	dash_state = parent.dash_state
 	attack_state = parent.attack_state
+	shield_state = parent.shield_state
 	super()
 
 func process_input(event: InputEvent) -> State:
@@ -29,7 +31,8 @@ func process_input(event: InputEvent) -> State:
 		return dash_state
 	if Input.is_action_just_pressed("Attack"):
 		return attack_state
-	
+	if Input.is_action_just_pressed("Shield"):
+		return shield_state
 	
 	
 	return null

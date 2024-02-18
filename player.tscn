@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://cta7vnl86huxp"]
+[gd_scene load_steps=65 format=3 uid="uid://cta7vnl86huxp"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_m1lax"]
 [ext_resource type="Texture2D" uid="uid://bpmkfdb0413yd" path="res://Sprites/FeatherFrog/sidefeatherfrogoutline.png" id="2_a1ld4"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/PlayerDash.gd" id="11_yqrcq"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerAttack.gd" id="12_x4vra"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerWallcling.gd" id="13_r3n26"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerShield.gd" id="14_tc112"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m0kjc"]
 atlas = ExtResource("2_a1ld4")
@@ -380,8 +381,13 @@ animations = [{
 radius = 14.0237
 height = 84.0863
 
+[sub_resource type="Curve" id="Curve_x7ev7"]
+min_value = 2.13163e-14
+_data = [Vector2(0, 2.13163e-14), 0.0, 0.0, 0, 0, Vector2(0.492718, 0.954598), 0.0, 0.0, 0, 0, Vector2(1, 2.13163e-14), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(21, -104)
+position = Vector2(1, 0)
 scale = Vector2(0.613918, 0.547057)
 collision_layer = 2
 collision_mask = 17
@@ -452,3 +458,21 @@ airDragMultiplier = 0.3
 
 [node name="wallcling" type="Node" parent="state_machine"]
 script = ExtResource("13_r3n26")
+
+[node name="shield" type="Node" parent="state_machine"]
+script = ExtResource("14_tc112")
+
+[node name="shieldParticles" type="CPUParticles2D" parent="state_machine/shield"]
+emitting = false
+amount = 30
+lifetime = 0.75
+one_shot = true
+explosiveness = 1.0
+emission_shape = 2
+emission_sphere_radius = 29.5
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+orbit_velocity_min = 0.5
+orbit_velocity_max = 0.5
+orbit_velocity_curve = SubResource("Curve_x7ev7")
+
+[connection signal="took_damage" from="." to="state_machine/shield" method="_on_player_took_damage"]
