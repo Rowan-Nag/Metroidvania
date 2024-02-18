@@ -27,8 +27,6 @@ func enter() -> void:
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_pressed('Dash'):
 		return dash_state
-	if Input.is_action_just_pressed('Jump') and not coyoteTimer.is_stopped():
-		return jump_state
 	if Input.is_action_just_pressed("Attack"):
 		return attack_state
 	
@@ -52,6 +50,9 @@ func process_physics(delta: float) -> State:
 		parent.velocity.x = move_toward(parent.velocity.x, inputDir*maxSpeed, acceleration*delta)
 	else:
 		parent.velocity.x = move_toward(parent.velocity.x, 0, drag*delta)
+	
+	if parent.jump_buffered() and Input.is_action_pressed("Jump") and not coyoteTimer.is_stopped():
+		return jump_state
 	
 	parent.move_and_slide()
 	# Animations

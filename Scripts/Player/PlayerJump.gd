@@ -10,6 +10,7 @@ var attack_state : State
 @export var accelerationMultiplier: float = 1
 @export var moveSpeedMultiplier: float = 1
 
+
 @export var jump_velocity : int
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * gravityMultiplier
@@ -45,7 +46,11 @@ func process_physics(delta: float) -> State:
 	var acceleration = parent.acceleration*accelerationMultiplier
 	var maxSpeed = parent.moveSpeed * moveSpeedMultiplier
 	
+	#if(parent.velocity.y > -200): #
+		#acceleration *= 1.2
+	
 	inputDir = Input.get_axis("Left", "Right")
+	
 	if(inputDir):
 		parent.velocity.x = move_toward(parent.velocity.x, inputDir*maxSpeed, acceleration*delta)
 	else:

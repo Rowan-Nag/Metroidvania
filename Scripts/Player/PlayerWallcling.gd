@@ -38,11 +38,6 @@ func process_input(event: InputEvent) -> State:
 		return dash_state
 	#if Input.is_action_just_pressed("Attack"): # Can't attack while wall clinging
 		#return attack_state 
-	if Input.is_action_just_pressed("Jump"):
-		parent.velocity.x = -adjacent_wall * horizontal_jump_velocity
-		return jump_state
-		#Walljump
-	
 	
 	return null
 
@@ -57,6 +52,10 @@ func process_physics(delta: float) -> State:
 	#Gravity (vertical movement)
 	parent.velocity.y += gravity*gravityMultiplier*delta
 	parent.velocity.y = clamp(parent.velocity.y, -terminal_velocity, 200)
+	
+	if parent.jump_buffered() and Input.is_action_pressed("Jump"):
+		parent.velocity.x = -adjacent_wall * horizontal_jump_velocity
+		return jump_state
 	
 	parent.move_and_slide()
 	

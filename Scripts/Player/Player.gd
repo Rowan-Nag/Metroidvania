@@ -22,6 +22,7 @@ var health : int = maxHealth
 @export var immunityTime : float = 0.2
 
 @onready var immunity : Timer = $immunityTimer
+@onready var jumpBuffer : Timer = $jumpBufferTimer
 
 @onready var fall_state : State = $state_machine/fall
 @onready var ground_state : State = $state_machine/ground
@@ -29,6 +30,9 @@ var health : int = maxHealth
 @onready var dash_state : State = $state_machine/dash
 @onready var attack_state : State = $state_machine/attack
 @onready var wallcling_state : State = $state_machine/wallcling
+
+
+@export var jumpBufferTime : float = 0.2
 
 signal took_damage
 signal death
@@ -53,6 +57,8 @@ func _ready() -> void:
 	Global.player = self
 
 func _unhandled_input(event: InputEvent) -> void:
+	if(Input.is_action_just_pressed("Jump")):
+		jumpBuffer.start(jumpBufferTime)
 	state_machine.process_input(event)
 
 func _physics_process(delta: float) -> void:
@@ -66,3 +72,7 @@ func getAdjacentWalls():
 		"left": rayLeft.is_colliding(),
 		"right": rayRight.is_colliding()
 	}
+	
+func jump_buffered() -> bool:
+	return not jumpBuffer.is_stopped()
+	
