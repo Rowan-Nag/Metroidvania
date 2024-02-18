@@ -8,7 +8,8 @@ var current_state: State
 # parent object it belongs to and enter the default starting_state.
 func init(parent) -> void:
 	for child in get_children():
-		child.parent = parent
+		if(child is State):
+			child.parent = parent
 	# Initialize to the default state
 	change_state(starting_state)
 

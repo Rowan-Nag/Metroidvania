@@ -53,7 +53,7 @@ func take_damage(damage : float, knockbackDir: float = 0):
 		has_been_killed.emit(damage)
 		
 		
-func knockback(knockbackDir):
+func knockback(knockbackDir : float):
 	simpleKnockback = knockbackDir
 #	print("knockback:", simpleKnockback)
 func die():
