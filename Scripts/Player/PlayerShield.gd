@@ -71,9 +71,7 @@ func process_physics(delta: float) -> State:
 func _on_player_took_damage(amount, enemy):
 	if(shielding):
 		parent.grant_immunity(2)
-		print("Shielded!")
 		if(enemy is Enemy):
-			print("Knockback!")
 			#print(parent.to_local(enemy.global_position))
 			enemy.knockback(sign(parent.to_local(enemy.global_position).x)*1000)
 		print("ATTACK SHIELDED")
