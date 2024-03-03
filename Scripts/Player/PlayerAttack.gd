@@ -3,6 +3,10 @@ extends State
 @export var fall_state : State
 @export var ground_state : State
 
+@export_range(0.1, 4) var attack_rate : float = 1
+@export var frames_before_attack : int = 1
+@export var frames_after_attack : int = 1
+
 @export var gravityMultiplier: float = 1
 @export var floorDragMultiplier: float = 1
 @export var airDragMultiplier: float = 1
@@ -21,11 +25,15 @@ func enter() -> void:
 	fall_state = parent.fall_state
 	attackFinished = false
 	direction = sign(parent.animations.scale.x)
+	parent.animations.speed_scale = attack_rate
 	play_animation("attack")
+	await get_tree().create_timer(frames_before_attack / (12 * attack_rate)).timeout 
 	attack()
-	
-	await get_tree().create_timer(0.1).timeout 
+	await get_tree().create_timer((5 + frames_after_attack) / (12 * attack_rate)).timeout  
 	attackFinished = true
+
+func exit() -> void:
+	parent.animations.speed_scale = 1 # resetting it to default
 
 func process_input(event: InputEvent) -> State:
 	# No inputs while attacking
@@ -64,7 +72,8 @@ func process_physics(delta: float) -> State:
 	
 	
 func attack():
-	var attack = attack1.instantiate()
+	var attack : AnimatedSprite2D = attack1.instantiate()
+	attack.speed_scale = attack_rate
 	parent.add_child(attack)
 	
 	if(direction < 0):
