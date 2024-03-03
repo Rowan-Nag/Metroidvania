@@ -14,5 +14,9 @@ func _on_body_entered(body):
 		var knockbackDir = Vector2()
 		knockbackDir.x = sign(body.global_position.x-global_position.x)*1 #gets -2 or 2
 		knockbackDir.y = -1.5
-		body.take_damage(contactDamage, knockbackDir*contactKnockback)
+		var enemy = get_parent()
+		if(enemy is Enemy):
+			body.take_damage(contactDamage, knockbackDir*contactKnockback, enemy)
+		else:
+			body.take_damage(contactDamage, knockbackDir*contactKnockback)
 		#this is: Player.take_damage(damage, knockback)

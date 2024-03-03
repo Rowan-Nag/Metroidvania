@@ -30,14 +30,18 @@ var health : int = maxHealth
 @onready var dash_state : State = $state_machine/dash
 @onready var attack_state : State = $state_machine/attack
 @onready var wallcling_state : State = $state_machine/wallcling
-
+@onready var shield_state : State = $state_machine/shield
 
 @export var jumpBufferTime : float = 0.2
 
-signal took_damage
+signal took_damage(amount, enemy)
 signal death
 
-func take_damage(damage : int, knockback : Vector2 = Vector2.ZERO) -> void:
+func grant_immunity(immuneTime):
+	immunity.start(immuneTime)
+
+func take_damage(damage : int, knockback : Vector2 = Vector2.ZERO, enemy : Enemy = null) -> void:
+	took_damage.emit(damage, enemy)
 	if(immunity.is_stopped()):
 		immunity.start(immunityTime)
 		health -= damage
@@ -47,8 +51,7 @@ func take_damage(damage : int, knockback : Vector2 = Vector2.ZERO) -> void:
 			# Die, probably should emit a signal here saying that the player died.
 			death.emit()
 			print("Dead.")
-		else:
-			took_damage.emit()
+		
 
 func _ready() -> void:
 	# Initialize the state machine, passing a reference of the player to the states,
