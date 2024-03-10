@@ -10,10 +10,10 @@ extends Node
 @onready var fastSparks : CPUParticles2D = $fastLightningParticles
 
 ## Time between lightning strikes
-@export var lightningInterval : float = 20
+@export var lightningInterval : float = 6
 
 ## Time between lock-on and lightning strike
-@export var lockOnDelay : float = 0.5
+@export var lockOnDelay : float = 0.1
 
 var lockedOn = false
 
@@ -24,9 +24,15 @@ var lockedOn = false
 # Locks position x seconds before firing
 # Creates lightning_strike and hits player (or whatever position)
 
+func _ready():
+	lightningTimer.start(lightningInterval)
+	lockedOn = false
+	lightning.visible = false
+	lightningCollider.monitoring = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	#lightning.visible = false
 	ceilingChecker.position = Global.player.position # move it to the player
 	ceilingChecker.position.y -= 300 # move it above player 
 
@@ -41,10 +47,10 @@ func _physics_process(delta):
 		
 		
 	if (lightningTimer.time_left < lockOnDelay):
-		
+		#print(lightningTimer.time_left)
 		slowSparks.emitting = false; # Stop all sparks and start a strike.
 		mediumSparks.emitting = false;
-		fastSparks.emitting = false;
+		fastSparks.emitting = false; 
 		
 		if (!lockedOn): # If we're not already locked-on and firing, we begin a lightning strike.
 			lightning_strike(Global.player.position, lockOnDelay)
@@ -75,30 +81,12 @@ func _physics_process(delta):
 		mediumSparks.emitting = false;
 		fastSparks.emitting = false;
 	
-	
-#func charge_lightning_strike(interval : float, warnings : int):
-	#var sparks = warnings
-	#while(sparks >= 1):
-		#var lp = lightningParticles.instantiate()
-		#lp.position = Global.player.position
-		#lp.emitting = true
-		#add_child(lp)
-		#await get_tree().create_timer(interval).timeout
-		##print("warning")
-		#sparks -=1
-	#lightning_strike(Global.player.position)
-	#lightningTimer.start(lightningInterval)
-	#
-#func get_player_cover():
-	#
-	#ceilingChecker.force_raycast_update()
-	#return ceilingChecker.get_collision_point()
 
 func lightning_strike(position, delay):
 	await get_tree().create_timer(delay).timeout # This basically acts as a lock-on delay
 	
 	lightningTimer.start(lightningInterval) # Restart lightning timer
-	lightningCollider.monitoring = false # Enable hitbox
+	lightningCollider.monitoring = true  # Enable hitbox
 	
 	lightning.position = position # Move lightning to player, make it visible, and play it's animation.
 	lightning.visible = true
@@ -106,12 +94,17 @@ func lightning_strike(position, delay):
 	
 	await lightning.animation_finished # When it's done, we hide it again and reset states & hide lightning.
 	
-	lightningCollider.monitoring = true
+	lightningCollider.monitoring = false
 	lightning.visible = false
 	lockedOn = false
-
-
-
+#
+#
+#
 func _on_collider_body_entered(body): # Signal - connected by Area2D Node
-	if(body.has_meta("take_damage")):
-		body.take_damage(10, body.position-lightning.position)
+	print("Enter")
+	if(body is Player):
+		#print("Ow!")
+		body.take_damage(10, (body.position-lightning.position).normalized())
+	if(body is Enemy):
+		print("Ouch")
+		body.take_damage(10, body.position.x-lightning.position.x)
