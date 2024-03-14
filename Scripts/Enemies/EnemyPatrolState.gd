@@ -12,13 +12,22 @@ extends State
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-var waiting = false
+@export var waiting = false
 
 func enter() -> void:
 	parent.play_animation("walk")
 	wallDetector = parent.find_child("wallDetector")
 	floorDetector = parent.find_child("floorDetector")
-
+	
+	if(has_node("AnimationPlayer")): #If there's an assigned wait animation
+		var waitAnim : AnimationPlayer = get_node("AnimationPlayer")
+		waitAnim.pause()
+		var offset = (randf() * 4)
+		print(offset)
+		await get_tree().create_timer(offset).timeout #We offset it by 1-2 seconds (at random) to add variation.
+		waitAnim.play()
+	
+	
 func exit() -> void:
 	pass
 
