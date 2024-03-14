@@ -1,0 +1,113 @@
+[gd_scene load_steps=7 format=3 uid="uid://de8voypeq2hwm"]
+
+[ext_resource type="Script" path="res://Scripts/DebugUI.gd" id="1_64hth"]
+[ext_resource type="Texture2D" uid="uid://buw8lditwsrud" path="res://CoastalTileset.png" id="3_upaqj"]
+[ext_resource type="PackedScene" uid="uid://cta7vnl86huxp" path="res://player.tscn" id="5_p7opc"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_blqph"]
+texture = ExtResource("3_upaqj")
+texture_region_size = Vector2i(32, 32)
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:0/next_alternative_id = 4
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:0/next_alternative_id = 3
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:0/next_alternative_id = 3
+3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:0/2 = 2
+3:0/2/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/2/physics_layer_0/angular_velocity = 0.0
+3:0/2/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+4:0/next_alternative_id = 5
+4:0/0 = 0
+4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_0/angular_velocity = 0.0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+5:0/next_alternative_id = 5
+5:0/0 = 0
+5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:0/0/physics_layer_0/angular_velocity = 0.0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+6:0/next_alternative_id = 6
+6:0/0 = 0
+6:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:0/0/physics_layer_0/angular_velocity = 0.0
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSet" id="TileSet_u1kcs"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+terrain_set_0/mode = 2
+terrain_set_0/terrain_0/name = "Pipes"
+terrain_set_0/terrain_0/color = Color(0.721569, 0.0196078, 0.176471, 1)
+sources/21 = SubResource("TileSetAtlasSource_blqph")
+tile_proxies/coords_level = [[0, Vector2i(0, 0)], [21, Vector2i(0, 0)], [1, Vector2i(0, 0)], [21, Vector2i(1, 0)], [2, Vector2i(0, 0)], [21, Vector2i(2, 0)], [3, Vector2i(0, 0)], [21, Vector2i(3, 0)], [4, Vector2i(0, 0)], [21, Vector2i(4, 0)], [5, Vector2i(0, 0)], [21, Vector2i(5, 0)], [6, Vector2i(0, 0)], [21, Vector2i(6, 0)], [7, Vector2i(0, 0)], [21, Vector2i(0, 1)], [8, Vector2i(0, 0)], [21, Vector2i(1, 1)], [9, Vector2i(0, 0)], [21, Vector2i(2, 1)], [10, Vector2i(0, 0)], [21, Vector2i(3, 1)], [11, Vector2i(0, 0)], [21, Vector2i(4, 1)], [12, Vector2i(0, 0)], [21, Vector2i(5, 1)], [13, Vector2i(0, 0)], [21, Vector2i(6, 1)], [14, Vector2i(0, 0)], [21, Vector2i(0, 2)], [15, Vector2i(0, 0)], [21, Vector2i(1, 2)], [16, Vector2i(0, 0)], [21, Vector2i(2, 2)], [17, Vector2i(0, 0)], [21, Vector2i(3, 2)], [18, Vector2i(0, 0)], [21, Vector2i(4, 2)], [19, Vector2i(0, 0)], [21, Vector2i(5, 2)], [20, Vector2i(0, 0)], [21, Vector2i(6, 2)]]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ci0cj"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(600, 1, 1)
+direction = Vector3(2.66, 3, 2.08165e-12)
+spread = 6.97
+initial_velocity_min = 607.98
+initial_velocity_max = 607.98
+gravity = Vector3(2.08165e-12, 10, 2.08165e-12)
+scale_min = 3.0
+scale_max = 3.0
+color = Color(0.796078, 0.780392, 0.756863, 1)
+
+[node name="Coast-1" type="Node2D"]
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="DebugUI" type="VBoxContainer" parent="GUI"]
+offset_right = 114.0
+offset_bottom = 49.0
+script = ExtResource("1_64hth")
+
+[node name="Label" type="Label" parent="GUI/DebugUI"]
+layout_mode = 2
+text = "Player Velocity
+Player State"
+
+[node name="Game" type="CanvasLayer" parent="."]
+layer = 0
+follow_viewport_enabled = true
+
+[node name="TileMap2" type="TileMap" parent="Game"]
+tile_set = SubResource("TileSet_u1kcs")
+format = 2
+layer_0/tile_data = PackedInt32Array(65541, 196629, 131072, 65540, 196629, 0, 65539, 196629, 131072, 65538, 196629, 0, 65537, 196629, 0, 65536, 196629, 0, 131071, 196629, 131072, 131070, 196629, 131072, 131069, 196629, 0, 131068, 196629, 131072, 131067, 196629, 131072, 131066, 196629, 131072, 131065, 196629, 131072, 65542, 196629, 131072, 65543, 196629, 0, 65544, 196629, 0, 65545, 196629, 0, 65546, 196629, 0, 65547, 196629, 0, 65548, 196629, 131072, 65549, 196629, 0, 131064, 196629, 131072, 131063, 196629, 131072, 131062, 196629, 131072, 131061, 196629, 0, 131060, 196629, 131072, 131059, 196629, 0, 131056, 196629, 0, -131086, 21, 0, -131085, 21, 0, -131084, 21, 0, -131083, 21, 0, -131082, 21, 0, -131081, 21, 0, -131080, 21, 0, -131079, 21, 0, -131078, 21, 0, -131077, 21, 0, -131076, 21, 0, -65540, 65557, 0, -65541, 65557, 0, -65542, 65557, 0, -65543, 65557, 0, -65544, 65557, 0, -65545, 65557, 0, -65546, 65557, 0, -65547, 65557, 0, -65548, 65557, 0, -65549, 65557, 0, -65550, 65557, 0, -14, 131093, 0, -13, 131093, 0, -12, 131093, 0, -11, 131093, 0, -10, 131093, 0, -9, 131093, 0, -8, 131093, 0, -7, 131093, 0, -6, 131093, 0, -5, 131093, 0, -4, 131093, 0, 65532, 65557, 0, 65531, 65557, 0, 65530, 65557, 0, 65529, 65557, 0, 65528, 65557, 0, 65527, 65557, 0, 65526, 65557, 0, 65525, 65557, 0, 65524, 65557, 0, 65523, 65557, 0, 65522, 65557, 0)
+
+[node name="Player" parent="Game" instance=ExtResource("5_p7opc")]
+position = Vector2(26, -42)
+scale = Vector2(0.693916, 0.618343)
+metadata/_edit_group_ = true
+
+[node name="Camera2D2" type="Camera2D" parent="Game/Player"]
+zoom = Vector2(1.5, 1.5)
+position_smoothing_enabled = true
+
+[node name="Rain?2" type="GPUParticles2D" parent="Game/Player"]
+modulate = Color(0, 0.74902, 1, 1)
+visibility_layer = 2
+z_index = -10
+z_as_relative = false
+position = Vector2(-30.9488, -573.98)
+scale = Vector2(1.62888, 1.82796)
+amount = 1600
+process_material = SubResource("ParticleProcessMaterial_ci0cj")
+lifetime = 13.17

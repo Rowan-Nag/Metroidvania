@@ -1,0 +1,145 @@
+[gd_scene load_steps=15 format=3 uid="uid://dxhfulnluuln5"]
+
+[ext_resource type="Script" path="res://lightningRodController.gd" id="1_j6ucy"]
+[ext_resource type="Texture2D" path="res://Sprites/lightning_placeholder.webp" id="2_1nbmr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oiikt"]
+atlas = ExtResource("2_1nbmr")
+region = Rect2(43, 66, 42, 214)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u57iu"]
+atlas = ExtResource("2_1nbmr")
+region = Rect2(85, 66, 42, 214)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10cxe"]
+atlas = ExtResource("2_1nbmr")
+region = Rect2(127, 66, 42, 214)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctyc8"]
+atlas = ExtResource("2_1nbmr")
+region = Rect2(169, 66, 42, 214)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvih4"]
+atlas = ExtResource("2_1nbmr")
+region = Rect2(211, 66, 42, 214)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k08aq"]
+atlas = ExtResource("2_1nbmr")
+region = Rect2(253, 66, 42, 214)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8k8v"]
+atlas = ExtResource("2_1nbmr")
+region = Rect2(337, 66, 42, 214)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nx7r"]
+atlas = ExtResource("2_1nbmr")
+region = Rect2(379, 66, 42, 214)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dhixw"]
+atlas = ExtResource("2_1nbmr")
+region = Rect2(421, 66, 42, 214)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwsh4"]
+atlas = ExtResource("2_1nbmr")
+region = Rect2(295, 66, 42, 214)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gmdhw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oiikt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u57iu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10cxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctyc8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvih4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k08aq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b8k8v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nx7r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dhixw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwsh4")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g8g31"]
+size = Vector2(39, 194)
+
+[node name="lightning_rod" type="Node"]
+script = ExtResource("1_j6ucy")
+
+[node name="lightningSprite" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.376471)
+sprite_frames = SubResource("SpriteFrames_gmdhw")
+frame_progress = 0.204972
+offset = Vector2(-3.36, 2.08165e-12)
+
+[node name="Area2D" type="Area2D" parent="lightningSprite"]
+collision_layer = 0
+collision_mask = 10
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lightningSprite/Area2D"]
+position = Vector2(-3.5, -9)
+shape = SubResource("RectangleShape2D_g8g31")
+
+[node name="lightningTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="ceilingChecker" type="RayCast2D" parent="."]
+target_position = Vector2(2.08165e-12, 300)
+
+[node name="slowLightningParticles" type="CPUParticles2D" parent="."]
+explosiveness = 1.0
+direction = Vector2(2.08165e-12, -1)
+spread = 29.59
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 40.53
+initial_velocity_max = 180.17
+radial_accel_min = -100.0
+radial_accel_max = -100.0
+
+[node name="medLightningParticles" type="CPUParticles2D" parent="."]
+lifetime = 0.5
+explosiveness = 1.0
+direction = Vector2(2.08165e-12, -1)
+spread = 29.59
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 40.53
+initial_velocity_max = 180.17
+radial_accel_min = -100.0
+radial_accel_max = -100.0
+
+[node name="fastLightningParticles" type="CPUParticles2D" parent="."]
+amount = 16
+lifetime = 0.25
+explosiveness = 1.0
+direction = Vector2(2.08165e-12, -1)
+spread = 29.59
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 40.53
+initial_velocity_max = 180.17
+radial_accel_min = -100.0
+radial_accel_max = -100.0
+
+[connection signal="body_entered" from="lightningSprite/Area2D" to="." method="_on_collider_body_entered"]
