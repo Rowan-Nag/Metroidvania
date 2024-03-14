@@ -1,10 +1,11 @@
-[gd_scene load_steps=105 format=3 uid="uid://cta7vnl86huxp"]
+[gd_scene load_steps=119 format=3 uid="uid://cta7vnl86huxp"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_m1lax"]
 [ext_resource type="Texture2D" uid="uid://bpmkfdb0413yd" path="res://Sprites/FeatherFrog/sidefeatherfrogoutline.png" id="2_a1ld4"]
 [ext_resource type="Texture2D" uid="uid://ct1hn2mhdmcq3" path="res://Sprites/FeatherFrog/featherfrogfall.png" id="3_pq4y7"]
 [ext_resource type="Texture2D" uid="uid://ccsulijcnsm0u" path="res://Sprites/FeatherFrog/featherfrogjump.png" id="4_u5v6k"]
 [ext_resource type="Texture2D" uid="uid://cykur00es85bw" path="res://Sprites/FeatherFrog/featherfrogrun.png" id="5_h4bds"]
+[ext_resource type="Texture2D" uid="uid://dfa1tp45eqrpw" path="res://Sprites/RobotGuy/robotguygunattack.png" id="6_3vu45"]
 [ext_resource type="Texture2D" uid="uid://cmbr0ep1tko1u" path="res://Sprites/FeatherFrog/wallslidefeatherfrog.png" id="6_rk5os"]
 [ext_resource type="Script" path="res://Scripts/StateMachine.gd" id="7_0xfl2"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerGround.gd" id="8_ym70h"]
@@ -19,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://b8prvp7n621ss" path="res://Sprites/RobotGuy/robotguyjump.png" id="17_vyy50"]
 [ext_resource type="Texture2D" uid="uid://bn3v3ilnguhy4" path="res://Sprites/RobotGuy/robotguyrun.png" id="18_tirwi"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerShield.gd" id="19_okehv"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerShoot.gd" id="20_jqvoq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h3i86"]
 atlas = ExtResource("14_ckadx")
@@ -131,6 +133,46 @@ region = Rect2(64, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_03rhl"]
 atlas = ExtResource("17_vyy50")
 region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3f5q"]
+atlas = ExtResource("6_3vu45")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hcl8"]
+atlas = ExtResource("6_3vu45")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5a4n"]
+atlas = ExtResource("6_3vu45")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rngpi"]
+atlas = ExtResource("6_3vu45")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skhrc"]
+atlas = ExtResource("6_3vu45")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8b4jt"]
+atlas = ExtResource("6_3vu45")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k34t1"]
+atlas = ExtResource("6_3vu45")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5m7d0"]
+atlas = ExtResource("6_3vu45")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ij631"]
+atlas = ExtResource("6_3vu45")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2kqnt"]
+atlas = ExtResource("6_3vu45")
+region = Rect2(288, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s75lh"]
 atlas = ExtResource("18_tirwi")
@@ -261,6 +303,41 @@ animations = [{
 "loop": false,
 "name": &"jump",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3f5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6hcl8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n5a4n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rngpi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skhrc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8b4jt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k34t1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5m7d0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ij631")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2kqnt")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -658,6 +735,43 @@ max_value = 4.0
 _data = [Vector2(0, 0.912689), 0.0, 0.0, 0, 0, Vector2(0.502427, 2.51688), 0.0, 0.0, 0, 0, Vector2(1, 0.125728), 0.0, 0.0, 0, 0]
 point_count = 3
 
+[sub_resource type="Animation" id="Animation_5gecj"]
+resource_name = "PlayerShootAnimation"
+length = 0.81
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0505349),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.515406),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"exitState"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w7evk"]
+_data = {
+"PlayerShootAnimation": SubResource("Animation_5gecj")
+}
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(-1, -1)
 scale = Vector2(0.613918, 0.547057)
@@ -676,7 +790,7 @@ jumpBufferTime = 0.032
 position = Vector2(6.51553, 7.31186)
 scale = Vector2(2.44927, 2.44927)
 sprite_frames = SubResource("SpriteFrames_ydj5b")
-animation = &"jump"
+animation = &"shoot"
 speed_scale = 1.5
 
 [node name="AnimatedSprite2D_frog" type="AnimatedSprite2D" parent="."]
@@ -756,5 +870,13 @@ gravity = Vector2(2.08165e-12, 2.08165e-12)
 orbit_velocity_min = 0.5
 orbit_velocity_max = 0.5
 orbit_velocity_curve = SubResource("Curve_w8qbk")
+
+[node name="shoot" type="Node" parent="state_machine"]
+script = ExtResource("20_jqvoq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="state_machine/shoot"]
+libraries = {
+"": SubResource("AnimationLibrary_w7evk")
+}
 
 [connection signal="took_damage" from="." to="state_machine/shield" method="_on_player_took_damage"]

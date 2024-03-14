@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3 uid="uid://d4k1ctclci8v1"]
+
+[ext_resource type="Texture2D" uid="uid://b2f0a3rb6fued" path="res://Sprites/robotguygunattackeffect.png" id="1_kldty"]
+[ext_resource type="Script" path="res://Scripts/Player/RobotGunAttack.gd" id="2_oyvd5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p85ie"]
+atlas = ExtResource("1_kldty")
+region = Rect2(0, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jo031"]
+atlas = ExtResource("1_kldty")
+region = Rect2(40, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfwg1"]
+atlas = ExtResource("1_kldty")
+region = Rect2(80, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2f4ti"]
+atlas = ExtResource("1_kldty")
+region = Rect2(120, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kl2wv"]
+atlas = ExtResource("1_kldty")
+region = Rect2(160, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5phqn"]
+atlas = ExtResource("1_kldty")
+region = Rect2(200, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xy1al"]
+atlas = ExtResource("1_kldty")
+region = Rect2(240, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g22sj"]
+atlas = ExtResource("1_kldty")
+region = Rect2(280, 0, 40, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_80mwp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p85ie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jo031")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wfwg1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2f4ti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kl2wv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5phqn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xy1al")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g22sj")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_unlo4"]
+size = Vector2(25, 34)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_80mwp")
+autoplay = "default"
+script = ExtResource("2_oyvd5")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(7.5, 1)
+shape = SubResource("RectangleShape2D_unlo4")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
