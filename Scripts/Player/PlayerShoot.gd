@@ -15,17 +15,27 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * gravit
 
 @export var finished = false # Animation should set to true when it's done.
 
+var damage = 0
+var chargeTimer : Timer
+
 func shoot():
 	var attack = gunAttack.instantiate()
 	attack.position = parent.position
 	attack.position.x += 15*parent.animations.scale.x
 	attack.scale.x = sign(parent.animations.scale.x)
+	
 	add_child(attack)
+	
+	attack.damage = chargeTimer.time_left * -1 * damage
+	print("attacks with" + str(attack.damage))
 
 func exitState():
 	finished = true
 
 func enter() -> void:
+	chargeTimer = Timer.new()
+	chargeTimer.start(0)
+	
 	ground_state = parent.ground_state
 	
 	finished = false
@@ -39,6 +49,9 @@ func exit() -> void:
 	controlAnimation.pause()
 
 func process_input(event: InputEvent) -> State:
+	if (Input.is_action_just_released("Rocket")) :
+		shoot()
+	
 	return null
 
 func process_physics(delta: float) -> State:
