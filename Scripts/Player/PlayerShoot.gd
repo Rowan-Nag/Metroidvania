@@ -13,21 +13,24 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * gravit
 @onready var gunAttack = preload("res://RobotGunAttack.tscn")
 @onready var controlAnimation = $AnimationPlayer
 
-@export var finished = false # Animation should set to true when it's done.
+@export var canShoot = false # when the player can release their shot
+@export var animationPaused = false # for pausing/unpausing animation
+var finished = false # signals to exit state
 
 var damage = 0
 var chargeTimer : Timer
 
 func shoot():
-	var attack = gunAttack.instantiate()
-	attack.position = parent.position
-	attack.position.x += 15*parent.animations.scale.x
-	attack.scale.x = sign(parent.animations.scale.x)
-	
-	add_child(attack)
-	
-	attack.damage = chargeTimer.time_left * -1 * damage
-	print("attacks with" + str(attack.damage))
+	if(animationPaused):
+		animationPaused = false
+		var attack = gunAttack.instantiate()
+		attack.position = parent.position
+		attack.position.x += 15*parent.animations.scale.x
+		attack.scale.x = sign(parent.animations.scale.x)
+		
+		add_child(attack)
+		
+		attack.damage = chargeTimer.time_left * -1 * damage
 
 func exitState():
 	finished = true
@@ -49,7 +52,7 @@ func exit() -> void:
 	controlAnimation.pause()
 
 func process_input(event: InputEvent) -> State:
-	if (Input.is_action_just_released("Rocket")) :
+	if (!Input.is_action_pressed("Rocket") and canShoot):
 		shoot()
 	
 	return null
@@ -70,7 +73,10 @@ func process_physics(delta: float) -> State:
 	parent.velocity.y = clamp(parent.velocity.y, -10000, parent.terminal_velocity)
 	
 	parent.move_and_slide()
-	
+	if(animationPaused):
+		parent.animations.pause()
+	else:
+		parent.animations.play()
 	# State change for is finished
 	if(finished):
 		return ground_state
