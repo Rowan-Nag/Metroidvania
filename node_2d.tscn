@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dvwp3gyt6qtdc"]
+[gd_scene load_steps=35 format=3 uid="uid://dvwp3gyt6qtdc"]
 
 [ext_resource type="Texture2D" uid="uid://dh07y0gkmbou7" path="res://Sprites/Tiles/mountainTiles.png" id="2_gcxgv"]
 [ext_resource type="Texture2D" uid="uid://booq60j6bjl03" path="res://Sprites/Tiles/steppegrasstile.png" id="2_jls8h"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://d4hdlevqc1qdw" path="res://Sprites/Tiles/treeprop01.png" id="3_aqdhh"]
 [ext_resource type="Script" path="res://Scripts/StateMachine.gd" id="5_xa24y"]
 [ext_resource type="Script" path="res://Scripts/Enemies/tickState.gd" id="6_h5fo1"]
+[ext_resource type="Script" path="res://ControllableCamera.gd" id="6_srgtg"]
+[ext_resource type="PackedScene" uid="uid://osrkuvyh5mee" path="res://camera_shake.tscn" id="7_35857"]
 [ext_resource type="Texture2D" uid="uid://cvplq1unqx155" path="res://Sprites/idleTick.png" id="7_afuxq"]
 [ext_resource type="PackedScene" uid="uid://b7gxparcwu871" path="res://Enemies/enemy_contact_damage.tscn" id="8_718tb"]
 [ext_resource type="Script" path="res://Scripts/Enemies/Enemy.gd" id="13_fdn5j"]
@@ -202,6 +204,9 @@ scale = Vector2(0.693916, 0.618343)
 [node name="Camera2D2" type="Camera2D" parent="Game/Player"]
 zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
+script = ExtResource("6_srgtg")
+
+[node name="camera_shake" parent="Game/Player/Camera2D2" instance=ExtResource("7_35857")]
 
 [node name="Rain?2" type="GPUParticles2D" parent="Game/Player"]
 modulate = Color(0, 0.74902, 1, 1)
