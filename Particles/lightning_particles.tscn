@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs2ouo4fisdgb"]
+
+[ext_resource type="Script" path="res://Particles/selfTerminating_CPUParticle.gd" id="1_fcwlw"]
+
+[node name="lightningParticles" type="CPUParticles2D"]
+emitting = false
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(2.08165e-12, -1)
+spread = 29.59
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 40.53
+initial_velocity_max = 180.17
+radial_accel_min = -100.0
+radial_accel_max = -100.0
+script = ExtResource("1_fcwlw")
