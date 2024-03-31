@@ -72,6 +72,7 @@ func process_physics(delta: float) -> State:
 	
 	
 func attack():
+	Global.screen_shake()
 	var attack : AnimatedSprite2D = attack1.instantiate()
 	attack.speed_scale = attack_rate
 	parent.add_child(attack)

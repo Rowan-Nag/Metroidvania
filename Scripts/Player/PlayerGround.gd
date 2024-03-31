@@ -33,7 +33,8 @@ func process_input(event: InputEvent) -> State:
 		return attack_state
 	if Input.is_action_just_pressed("Shield"):
 		return shield_state
-	
+	if Input.is_action_just_pressed("Rocket"):
+		return parent.shoot_state
 	
 	return null
 
