@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dvwp3gyt6qtdc"]
+[gd_scene load_steps=31 format=3 uid="uid://dvwp3gyt6qtdc"]
 
 [ext_resource type="Texture2D" uid="uid://dh07y0gkmbou7" path="res://Sprites/Tiles/mountainTiles.png" id="2_gcxgv"]
 [ext_resource type="Texture2D" uid="uid://booq60j6bjl03" path="res://Sprites/Tiles/steppegrasstile.png" id="2_jls8h"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://cvplq1unqx155" path="res://Sprites/idleTick.png" id="7_afuxq"]
 [ext_resource type="PackedScene" uid="uid://b7gxparcwu871" path="res://Enemies/enemy_contact_damage.tscn" id="8_718tb"]
 [ext_resource type="Script" path="res://Scripts/Enemies/Enemy.gd" id="13_fdn5j"]
-[ext_resource type="PackedScene" uid="uid://c7bluxuv6c2rp" path="res://Scripts/Enemies/trash_collector.tscn" id="14_feol2"]
 [ext_resource type="Script" path="res://Scripts/DebugUI.gd" id="16_we7n4"]
 [ext_resource type="Texture2D" uid="uid://qxsqpdenonfa" path="res://Sprites/ratcapidle.png" id="17_n7u6j"]
 [ext_resource type="Script" path="res://Scripts/Enemies/EnemyPatrolState.gd" id="18_xtxc6"]
@@ -270,12 +269,3 @@ waitTime = 1.0
 
 [node name="chase" type="Node" parent="Game/RatCapEnemy/state_machine"]
 script = ExtResource("19_i8cm7")
-
-[node name="Trash_Collector" parent="." instance=ExtResource("14_feol2")]
-position = Vector2(-283, -68)
-
-[node name="Trash_Collector2" parent="." instance=ExtResource("14_feol2")]
-position = Vector2(-246, -165)
-
-[node name="Trash_Collector3" parent="." instance=ExtResource("14_feol2")]
-position = Vector2(-143, -159)
