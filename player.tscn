@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ct1hn2mhdmcq3" path="res://Sprites/FeatherFrog/featherfrogfall.png" id="3_pq4y7"]
 [ext_resource type="Texture2D" uid="uid://ccsulijcnsm0u" path="res://Sprites/FeatherFrog/featherfrogjump.png" id="4_u5v6k"]
 [ext_resource type="Texture2D" uid="uid://cykur00es85bw" path="res://Sprites/FeatherFrog/featherfrogrun.png" id="5_h4bds"]
-[ext_resource type="Texture2D" uid="uid://dfa1tp45eqrpw" path="res://Sprites/RobotGuy/robotguygunattack.png" id="6_3vu45"]
+[ext_resource type="Texture2D" path="res://Sprites/RobotGuy/robotguygunattack.png" id="6_3vu45"]
 [ext_resource type="Texture2D" uid="uid://cmbr0ep1tko1u" path="res://Sprites/FeatherFrog/wallslidefeatherfrog.png" id="6_rk5os"]
 [ext_resource type="Script" path="res://Scripts/StateMachine.gd" id="7_0xfl2"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerGround.gd" id="8_ym70h"]
@@ -828,7 +828,7 @@ jumpBufferTime = 0.032
 position = Vector2(6.51553, 7.31186)
 scale = Vector2(2.44927, 2.44927)
 sprite_frames = SubResource("SpriteFrames_ydj5b")
-animation = &"shoot"
+animation = &"attack"
 speed_scale = 1.5
 
 [node name="AnimatedSprite2D_frog" type="AnimatedSprite2D" parent="."]
@@ -886,7 +886,7 @@ script = ExtResource("11_yqrcq")
 
 [node name="attack" type="Node" parent="state_machine"]
 script = ExtResource("12_x4vra")
-attack_rate = 0.8
+attack_rate = 1.58
 frames_before_attack = 3
 airDragMultiplier = 0.3
 
