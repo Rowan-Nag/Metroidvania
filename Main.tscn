@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bc30sl33ar0er"]
+[gd_scene load_steps=14 format=3 uid="uid://bc30sl33ar0er"]
 
 [ext_resource type="Script" path="res://Scripts/DebugUI.gd" id="1_dv0al"]
 [ext_resource type="PackedScene" uid="uid://cta7vnl86huxp" path="res://player.tscn" id="2_lx8fk"]
@@ -7,6 +7,11 @@
 [ext_resource type="TileSet" uid="uid://5iwb7kuuxp5u" path="res://Sprites/Tiles/Coast/CoastTileset.tres" id="3_xe3hy"]
 [ext_resource type="PackedScene" uid="uid://eo28tapbfmtf" path="res://CameraBounds.tscn" id="4_3mewt"]
 [ext_resource type="PackedScene" uid="uid://osrkuvyh5mee" path="res://camera_shake.tscn" id="4_xn4hc"]
+[ext_resource type="Shader" path="res://Lines.gdshader" id="8_8uuey"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b58oq"]
+shader = ExtResource("8_8uuey")
+shader_parameter/scanline_count = 120.0
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ofhjd"]
 particle_flag_disable_z = true
@@ -75,6 +80,15 @@ layer = 0
 follow_viewport_enabled = true
 script = ExtResource("2_oe6uh")
 
+[node name="ColorRect" type="ColorRect" parent="Game"]
+z_index = 5
+material = SubResource("ShaderMaterial_b58oq")
+offset_left = -977.0
+offset_top = -687.0
+offset_right = 1401.0
+offset_bottom = 764.0
+mouse_filter = 2
+
 [node name="Coast" type="Node2D" parent="Game"]
 
 [node name="Level" type="Node" parent="Game/Coast"]
@@ -94,7 +108,7 @@ layer_0/tile_data = PackedInt32Array(262134, 4, 5, 262135, 65540, 5, 262136, 131
 [node name="Camera-Nodes" type="Node" parent="Game/Coast"]
 
 [node name="Area2D" parent="Game/Coast/Camera-Nodes" instance=ExtResource("4_3mewt")]
-position = Vector2(-237, -34)
+position = Vector2(-237, -31)
 scale = Vector2(17.251, 10.533)
 bound_by_bottom = false
 
