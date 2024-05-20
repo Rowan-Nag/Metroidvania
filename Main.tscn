@@ -113,8 +113,8 @@ scale = Vector2(17.251, 10.533)
 bound_by_bottom = false
 
 [node name="Area2D2" parent="Game/Coast/Camera-Nodes" instance=ExtResource("4_3mewt")]
-position = Vector2(159, -31)
-scale = Vector2(21.571, 10.533)
+position = Vector2(167, -31)
+scale = Vector2(20.971, 10.24)
 bound_by_bottom = false
 
 [node name="Player" parent="Game" instance=ExtResource("2_lx8fk")]
@@ -129,7 +129,7 @@ terminal_velocity = 200
 zoom = Vector2(5, 5)
 limit_smoothed = true
 position_smoothing_enabled = true
-position_smoothing_speed = 8.0
+position_smoothing_speed = 6.0
 script = ExtResource("3_f6oo0")
 
 [node name="camera_shake" parent="Game/Player/Camera2D" instance=ExtResource("4_xn4hc")]
