@@ -72,8 +72,6 @@ script = ExtResource("1_dv0al")
 
 [node name="Label" type="Label" parent="GUI/DebugUI"]
 layout_mode = 2
-text = "Player Velocity
-Player State"
 
 [node name="Game" type="CanvasLayer" parent="."]
 layer = 0
