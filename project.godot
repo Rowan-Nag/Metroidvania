@@ -82,9 +82,9 @@ Shield={
 
 [physics]
 
-2d/default_gravity=1600.0
+2d/default_gravity=600.0
 
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-environment/defaults/default_clear_color=Color(0.266667, 0.156863, 0.101961, 1)
+environment/defaults/default_clear_color=Color(0.0313726, 0.0313726, 0.0313726, 1)

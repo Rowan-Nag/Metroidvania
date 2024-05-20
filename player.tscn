@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ct1hn2mhdmcq3" path="res://Sprites/FeatherFrog/featherfrogfall.png" id="3_pq4y7"]
 [ext_resource type="Texture2D" uid="uid://ccsulijcnsm0u" path="res://Sprites/FeatherFrog/featherfrogjump.png" id="4_u5v6k"]
 [ext_resource type="Texture2D" uid="uid://cykur00es85bw" path="res://Sprites/FeatherFrog/featherfrogrun.png" id="5_h4bds"]
-[ext_resource type="Texture2D" path="res://Sprites/RobotGuy/robotguygunattack.png" id="6_3vu45"]
+[ext_resource type="Texture2D" uid="uid://dfa1tp45eqrpw" path="res://Sprites/RobotGuy/robotguygunattack.png" id="6_3vu45"]
 [ext_resource type="Texture2D" uid="uid://cmbr0ep1tko1u" path="res://Sprites/FeatherFrog/wallslidefeatherfrog.png" id="6_rk5os"]
 [ext_resource type="Script" path="res://Scripts/StateMachine.gd" id="7_0xfl2"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerGround.gd" id="8_ym70h"]
@@ -725,9 +725,8 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m8j6x"]
-radius = 14.0237
-height = 84.0863
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wf78i"]
+size = Vector2(21.4022, 31.0754)
 
 [sub_resource type="Curve" id="Curve_w8qbk"]
 min_value = -4.0
@@ -826,23 +825,19 @@ jumpBufferTime = 0.032
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(6.51553, 7.31186)
-scale = Vector2(2.44927, 2.44927)
 sprite_frames = SubResource("SpriteFrames_ydj5b")
-animation = &"attack"
-speed_scale = 1.5
+animation = &"walk"
 
 [node name="AnimatedSprite2D_frog" type="AnimatedSprite2D" parent="."]
 visible = false
 position = Vector2(1.62888, -5.72205e-06)
-scale = Vector2(2.50135, 2.80706)
 sprite_frames = SubResource("SpriteFrames_ixvtf")
 animation = &"jump"
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3.25776, 3.65592)
-scale = Vector2(1.69027, 1.00438)
-shape = SubResource("CapsuleShape2D_m8j6x")
+position = Vector2(3.95885, 8.22583)
+shape = SubResource("RectangleShape2D_wf78i")
 metadata/_edit_group_ = true
 
 [node name="stunTimer" type="Timer" parent="."]
@@ -856,10 +851,12 @@ one_shot = true
 autostart = true
 
 [node name="RayRight" type="RayCast2D" parent="."]
-target_position = Vector2(35.8354, 0)
+position = Vector2(4.88665, 7.31185)
+target_position = Vector2(14.6599, 0)
 
 [node name="RayLeft" type="RayCast2D" parent="."]
-target_position = Vector2(-30.9488, 0)
+position = Vector2(4.88665, 7.31185)
+target_position = Vector2(-16.2888, 0)
 
 [node name="jumpBufferTimer" type="Timer" parent="."]
 one_shot = true
@@ -879,7 +876,7 @@ script = ExtResource("9_dv7pt")
 
 [node name="jump" type="Node" parent="state_machine"]
 script = ExtResource("10_lx6wb")
-jump_velocity = 600
+jump_velocity = 200
 
 [node name="dash" type="Node" parent="state_machine"]
 script = ExtResource("11_yqrcq")
@@ -892,6 +889,8 @@ airDragMultiplier = 0.3
 
 [node name="wallcling" type="Node" parent="state_machine"]
 script = ExtResource("13_r3n26")
+horizontal_jump_velocity = 100
+terminal_velocity = 50
 
 [node name="shield" type="Node" parent="state_machine"]
 script = ExtResource("19_okehv")
