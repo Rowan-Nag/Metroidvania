@@ -904,7 +904,6 @@ airDragMultiplier = 0.3
 
 [node name="wallcling" type="Node" parent="state_machine"]
 script = ExtResource("13_r3n26")
-horizontal_jump_velocity = 100
 gravityMultiplier = 0.5
 horizontal_jump_velocity = 150
 vertical_jump_velocity = 150
