@@ -726,7 +726,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wf78i"]
-size = Vector2(21.4022, 31.0754)
+size = Vector2(14.66, 29.2474)
 
 [sub_resource type="Curve" id="Curve_w8qbk"]
 min_value = -4.0
@@ -826,7 +826,7 @@ jumpBufferTime = 0.032
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(6.51553, 7.31186)
 sprite_frames = SubResource("SpriteFrames_ydj5b")
-animation = &"walk"
+animation = &"idle"
 
 [node name="AnimatedSprite2D_frog" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -836,7 +836,7 @@ animation = &"attack"
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3.95885, 8.22583)
+position = Vector2(7.32998, 9.13982)
 shape = SubResource("RectangleShape2D_wf78i")
 metadata/_edit_group_ = true
 
