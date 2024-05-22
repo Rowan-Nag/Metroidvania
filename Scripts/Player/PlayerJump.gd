@@ -4,6 +4,7 @@ var fall_state: State
 var dash_state: State
 var ground_state: State
 var attack_state : State
+var shoot_state : State
 
 @export var gravityMultiplier: float = 1
 @export var dragMultiplier: float = 1
@@ -35,9 +36,10 @@ func process_input(event: InputEvent) -> State:
 		return fall_state
 	if Input.is_action_just_pressed("Dash"):
 		return dash_state
-	if Input.is_action_just_pressed("Attack"):
+	if Input.is_action_just_pressed("Attack") and parent.attackCooldown.is_stopped():
 		return attack_state
-	
+	if Input.is_action_just_pressed("Rocket"):
+		return parent.shoot_state
 	return null
 
 func process_physics(delta: float) -> State:

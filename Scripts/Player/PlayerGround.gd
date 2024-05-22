@@ -29,7 +29,8 @@ func enter() -> void:
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_pressed('Dash'):
 		return dash_state
-	if Input.is_action_just_pressed("Attack"):
+	if Input.is_action_just_pressed("Attack") and parent.attackCooldown.is_stopped():
+		print(parent.attackCooldown.time_left)
 		return attack_state
 	if Input.is_action_just_pressed("Shield"):
 		return shield_state

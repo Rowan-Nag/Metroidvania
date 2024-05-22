@@ -1,5 +1,5 @@
-extends VBoxContainer
 class_name DebugUI
+extends VBoxContainer
 
 var player : Player
 

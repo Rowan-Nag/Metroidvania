@@ -29,9 +29,10 @@ func enter() -> void:
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_pressed('Dash'):
 		return dash_state
-	if Input.is_action_just_pressed("Attack"):
+	if Input.is_action_just_pressed("Attack") and parent.attackCooldown.is_stopped():
 		return attack_state
-		
+	if Input.is_action_just_pressed("Rocket"):
+		return parent.shoot_state
 	
 	
 	return null
@@ -68,7 +69,7 @@ func process_physics(delta: float) -> State:
 		#parent.animations.scale.x = sign(inputDir)*abs(parent.animations.scale.x)
 	
 	# State switches
-	if(inputDir != 0):
+	if(inputDir != 0 and parent.wallClingCooldown.is_stopped()):
 		var canWalljump = parent.getAdjacentWalls()
 		#print(canWalljump.left)
 		if((canWalljump.left and inputDir < 0) or (canWalljump.right and inputDir > 0)):

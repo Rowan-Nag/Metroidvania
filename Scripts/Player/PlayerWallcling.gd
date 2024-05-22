@@ -13,6 +13,7 @@ var fall_state : State
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * gravityMultiplier
 
 @export var horizontal_jump_velocity : int = 300
+@export var vertical_jump_velocity : int = 200
 @export var terminal_velocity : int = 300
 var adjacent_wall : int # negative: left wall, positive: right wall
 
@@ -42,6 +43,7 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+	parent.wallClingCooldown.start()
 	#Physics
 	var drag = parent.drag * dragMultiplier
 	var acceleration = parent.acceleration*accelerationMultiplier
@@ -50,12 +52,20 @@ func process_physics(delta: float) -> State:
 	inputDir = Input.get_axis("Left", "Right")
 	
 	#Gravity (vertical movement)
-	parent.velocity.y += gravity*gravityMultiplier*delta
-	parent.velocity.y = clamp(parent.velocity.y, -terminal_velocity, 200)
+	if (Input.is_action_pressed("Jump")):
+		parent.velocity.y = 0
+		if (Input.is_action_just_pressed("Attack") and parent.attackCooldown.is_stopped()):
+			parent.attack_state.attack();
+		if (Input.is_action_just_pressed("Rocket")):
+			parent.shoot_state.shoot();
+	else: 
+		parent.velocity.y += gravity*gravityMultiplier*delta
+		parent.velocity.y = clamp(parent.velocity.y, -terminal_velocity, 200)
 	
 	if parent.jump_buffered() and Input.is_action_pressed("Jump"):
 		parent.velocity.x = -adjacent_wall * horizontal_jump_velocity
-		return jump_state
+		parent.velocity.y = -1 * vertical_jump_velocity
+		return fall_state
 	
 	parent.move_and_slide()
 	

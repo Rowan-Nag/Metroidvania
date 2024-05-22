@@ -24,7 +24,8 @@ var health : int = maxHealth
 
 @onready var immunity : Timer = $immunityTimer
 @onready var jumpBuffer : Timer = $jumpBufferTimer
-
+@onready var attackCooldown : Timer = $AttackCooldown
+@onready var wallClingCooldown : Timer = $WallClingCooldown
 @onready var fall_state : State = $state_machine/fall
 @onready var ground_state : State = $state_machine/ground
 @onready var jump_state : State = $state_machine/jump

@@ -1,7 +1,6 @@
 extends State
 
 @export var ground_state : State
-
 @export var gravityMultiplier: float = 1
 @export var floorDragMultiplier: float = 1
 @export var airDragMultiplier: float = 1
@@ -37,10 +36,10 @@ func shoot():
 		
 		attack.damage = chargeDuration * damage
 		attack.knockbackMultiplier = chargeDuration+1
-		attack.scale = Vector2.ONE * (chargeDuration+1)
+		attack.scale *= (chargeDuration+1)
 		
 		
-		print(chargeTimer.time_left)
+		##print(chargeTimer.time_left)
 		await get_tree().create_timer(postShotAnimationLock).timeout 
 		finished = true
 		
@@ -67,7 +66,7 @@ func exit() -> void:
 	controlAnimation.pause()
 
 func process_input(event: InputEvent) -> State:
-	print(!Input.is_action_pressed("Rocket"))
+	##print(!Input.is_action_pressed("Rocket"))
 	if (!Input.is_action_pressed("Rocket") and canShoot):
 		shoot()
 	return null
@@ -94,6 +93,7 @@ func process_physics(delta: float) -> State:
 	else:
 		parent.animations.play()
 	# State change for is finished
+	
 	if(finished):
 		return ground_state
 	return null

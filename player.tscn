@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=3 uid="uid://cta7vnl86huxp"]
+[gd_scene load_steps=119 format=3 uid="uid://bb6s6ij8eshi3"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_m1lax"]
 [ext_resource type="Texture2D" uid="uid://bpmkfdb0413yd" path="res://Sprites/FeatherFrog/sidefeatherfrogoutline.png" id="2_a1ld4"]
@@ -823,6 +823,16 @@ maxHealth = 400
 immunityTime = 0.81
 jumpBufferTime = 0.032
 
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+autostart = true
+
+[node name="WallClingCooldown" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+autostart = true
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(6.51553, 7.31186)
 sprite_frames = SubResource("SpriteFrames_ydj5b")
@@ -895,6 +905,9 @@ airDragMultiplier = 0.3
 [node name="wallcling" type="Node" parent="state_machine"]
 script = ExtResource("13_r3n26")
 horizontal_jump_velocity = 100
+gravityMultiplier = 0.5
+horizontal_jump_velocity = 150
+vertical_jump_velocity = 150
 terminal_velocity = 50
 
 [node name="shield" type="Node" parent="state_machine"]
