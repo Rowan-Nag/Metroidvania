@@ -67,7 +67,8 @@ func process_physics(delta: float) -> State:
 			var tile : TileData = col.get_cell_tile_data(0, col.local_to_map(parent.rayDown.get_collision_point()))
 			if(tile.get_custom_data("is_safe")):
 				Game.last_safe_position = parent.position
-				print(parent.position)
+				Global.set_debug_text("SAFE SAFE SAFE SAFE - POSITION SAVED")
+				#print(parent.position)
 			#else:
 				#print("bad")
 	

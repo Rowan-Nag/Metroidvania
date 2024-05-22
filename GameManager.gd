@@ -19,3 +19,8 @@ func load_new_scene(new_scene : PackedScene):
 		current_scene = new_scene
 		#Fade back in
 		fade_animation_player.play("fade_in")
+
+func reset_player_to_checkpoint():
+	Global.player.position = last_safe_position
+	Global.player.velocity = Vector2.ZERO
+	print("RESET PLAYER POSITION")
