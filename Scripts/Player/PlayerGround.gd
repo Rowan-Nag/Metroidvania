@@ -59,15 +59,15 @@ func process_physics(delta: float) -> State:
 		return jump_state
 	
 	parent.move_and_slide()
-	if (parent.rayDown.is_colliding()):
-		var col = parent.rayDown.get_collider()
-		if (col is TileMap):
-			# local_to_map: Converts the local coordinates (of where the player touches the ground) to the tile's position
-			# get_cell_tile_data: gets the TileData given a tile position
-			var tile : TileData = col.get_cell_tile_data(0, col.local_to_map(parent.rayDown.get_collision_point()))
-			if(tile.get_custom_data("is_safe")):
-				Game.last_safe_position = parent.position
-				Global.set_debug_text("SAFE SAFE SAFE SAFE - POSITION SAVED")
+	#if (parent.rayDown.is_colliding()):
+		#var col = parent.rayDown.get_collider()
+		#if (col is TileMap):
+			## local_to_map: Converts the local coordinates (of where the player touches the ground) to the tile's position
+			## get_cell_tile_data: gets the TileData given a tile position
+			#var tile : TileData = col.get_cell_tile_data(0, col.local_to_map(parent.rayDown.get_collision_point()))
+			#if(tile.get_custom_data("is_safe")):
+				#Game.last_safe_position = parent.position
+				#Global.set_debug_text("SAFE SAFE SAFE SAFE - POSITION SAVED")
 				#print(parent.position)
 			#else:
 				#print("bad")

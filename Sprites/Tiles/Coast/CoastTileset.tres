@@ -1,7 +1,8 @@
-[gd_resource type="TileSet" load_steps=16 format=3 uid="uid://5iwb7kuuxp5u"]
+[gd_resource type="TileSet" load_steps=17 format=3 uid="uid://5iwb7kuuxp5u"]
 
 [ext_resource type="PackedScene" uid="uid://dp8fe63ip15pr" path="res://Spike.tscn" id="1_wbwio"]
 [ext_resource type="Texture2D" uid="uid://cqtockwxxt1e5" path="res://Sprites/Tiles/Coast/coastshippingprop1.png" id="1_x4woj"]
+[ext_resource type="PackedScene" uid="uid://tu3oxdjmmc77" path="res://safe_marker.tscn" id="2_60aot"]
 [ext_resource type="Texture2D" uid="uid://bbg7px2uhnu2w" path="res://Sprites/Tiles/Coast/coastPlants.png" id="3_xhgio"]
 [ext_resource type="Texture2D" uid="uid://dmvhgpqi7r63e" path="res://Sprites/Tiles/Coast/allCoastWalls.png" id="4_5u0vt"]
 [ext_resource type="Texture2D" uid="uid://cx8lxh6ebcbiw" path="res://Sprites/Tiles/Coast/animatedBackgrounds.png" id="4_xlnjj"]
@@ -14,6 +15,7 @@ tile_data = PackedInt32Array(0, 10, 0, 65536, 10, 1, 131072, 10, 2, 1, 65546, 0,
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_dtpxo"]
 resource_name = "Utility"
 scenes/1/scene = ExtResource("1_wbwio")
+scenes/2/scene = ExtResource("2_60aot")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c3qvw"]
 texture = ExtResource("1_x4woj")

@@ -24,3 +24,4 @@ func reset_player_to_checkpoint():
 	Global.player.position = last_safe_position
 	Global.player.velocity = Vector2.ZERO
 	print("RESET PLAYER POSITION")
+

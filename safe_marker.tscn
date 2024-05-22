@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://tu3oxdjmmc77"]
+
+[ext_resource type="Script" path="res://Safe_Marker.gd" id="1_khmqs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wshtv"]
+size = Vector2(16, 18)
+
+[node name="Safe_Marker" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_khmqs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_wshtv")
+debug_color = Color(0, 0.945098, 0.380392, 0.141176)
+
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
