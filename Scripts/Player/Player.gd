@@ -15,6 +15,7 @@ var state_machine = $state_machine
 
 @onready var rayLeft : RayCast2D = $RayLeft
 @onready var rayRight : RayCast2D = $RayRight
+@onready var rayDown : RayCast2D = $RayDown
 
 @export_category("Combat")
 @export var maxHealth : int = 100

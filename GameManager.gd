@@ -3,6 +3,9 @@ extends CanvasLayer
 var current_scene : PackedScene
 @onready var fade_animation_player : AnimationPlayer = $LoadingScreen/Fade_AnimationPlayer
 
+var last_safe_position : Vector2 = Vector2.ZERO
+
+
 func load_new_scene(new_scene : PackedScene):
 	
 	if(new_scene and new_scene != current_scene):
