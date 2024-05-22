@@ -898,14 +898,13 @@ script = ExtResource("11_yqrcq")
 [node name="attack" type="Node" parent="state_machine"]
 script = ExtResource("12_x4vra")
 attack_rate = 1.8
-frames_before_attack = 3
 frames_after_attack = 3
 airDragMultiplier = 0.3
 
 [node name="wallcling" type="Node" parent="state_machine"]
 script = ExtResource("13_r3n26")
 gravityMultiplier = 0.5
-horizontal_jump_velocity = 150
+horizontal_jump_velocity = 200
 vertical_jump_velocity = 150
 terminal_velocity = 50
 
