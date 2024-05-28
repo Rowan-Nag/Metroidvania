@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dp8fe63ip15pr" path="res://Spike.tscn" id="1_wbwio"]
 [ext_resource type="Texture2D" uid="uid://cqtockwxxt1e5" path="res://Sprites/Tiles/Coast/coastshippingprop1.png" id="1_x4woj"]
-[ext_resource type="PackedScene" uid="uid://bsow0po6o6p75" path="res://safe_marker.tscn" id="2_60aot"]
+[ext_resource type="PackedScene" uid="uid://tu3oxdjmmc77" path="res://safe_marker.tscn" id="2_60aot"]
 [ext_resource type="Texture2D" uid="uid://bbg7px2uhnu2w" path="res://Sprites/Tiles/Coast/coastPlants.png" id="3_xhgio"]
 [ext_resource type="Texture2D" uid="uid://dmvhgpqi7r63e" path="res://Sprites/Tiles/Coast/allCoastWalls.png" id="4_5u0vt"]
 [ext_resource type="Texture2D" uid="uid://cx8lxh6ebcbiw" path="res://Sprites/Tiles/Coast/animatedBackgrounds.png" id="4_xlnjj"]

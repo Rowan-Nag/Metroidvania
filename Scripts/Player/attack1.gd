@@ -3,6 +3,9 @@ extends AnimatedSprite2D
 @onready var hitParticles = preload("res://Particles/attack_particles.tscn")
 @onready var attackRay = $RayCast2D
 # Called when the node enters the scene tree for the first time.
+@export var knockbackMagnitude : int = 100
+@export var enemyFreezeTime : float = 0.1
+
 func _ready():
 	awaitCompletion() # Awaits to remove itself (putting it in a function like this starts it as a coroutine)
 	
@@ -22,8 +25,10 @@ func awaitCompletion():
 func _on_area_2d_body_entered(body):
 	var hitEnemy = false
 	if(body is Enemy):
-		var knockBackDir= sign(body.global_position.x-global_position.x)*500
-		body.take_damage(10, knockBackDir)
+		var knockBackDir= sign(body.global_position.x-global_position.x) * knockbackMagnitude * Global.player.weight
+		body.take_damage(10, 0)
+		body.change_time_scale(0, enemyFreezeTime * Global.player.weight / body.weight, knockBackDir)
+		Global.player.knockback(-knockBackDir)
 		hitEnemy = true
 #	attackRay.set_target_position(to_local(body.global_position))
 	attackRay.force_raycast_update()

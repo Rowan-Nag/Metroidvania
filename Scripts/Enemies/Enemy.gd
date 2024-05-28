@@ -9,9 +9,16 @@ signal has_been_killed(killingBlowDamage)
 
 @export var maxHealth : float = 100 # Enemy max health
 var health : float = maxHealth # Enemy current health
+@export_category("Weight / Knockback")
+@export var weight = 10
+@export var knockbackMultiplier : float = 1
+
+var time_scale : float = 1.0 # used for freezing / unfreezing enemies, or slowing them down.
 
 var simpleKnockback : float = 0
 var movementDirection : float = 0
+
+var ongoing_time_scale_effects : Array = [1.0]
 
 @onready var enemyContactDamage = $EnemyContactDamage
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
@@ -26,9 +33,10 @@ func _ready():
 	state_machine.init(self)
 
 func handle_knockback(delta):
-	simpleKnockback = move_toward(simpleKnockback, 0, abs(simpleKnockback)*8*delta) 
+	simpleKnockback = move_toward(simpleKnockback, 0, abs(simpleKnockback)*8*delta*time_scale) 
 	#technically this is an exponentially decaying velocity (should be quadratic) but this is much easier than fiddling with numbers (500*delta is alternative)
 	velocity.x += simpleKnockback
+	velocity.y += simpleKnockback / 10
 
 func _physics_process(delta):
 	state_machine.process_physics(delta)
@@ -54,7 +62,7 @@ func take_damage(damage : float, knockbackDir: float = 0):
 		
 		
 func knockback(knockbackDir : float):
-	simpleKnockback = knockbackDir
+	simpleKnockback = knockbackDir * knockbackMultiplier / weight
 #	print("knockback:", simpleKnockback)
 func die():
 	#When the enemy is killed, try to play it's "death" animation
@@ -81,3 +89,26 @@ func getPlayerDistance() -> float:
 
 func getPlayerRelativePosition() -> Vector2:
 	return to_local(Global.player.global_position)
+
+func move_and_slide_timewise():
+	velocity *= time_scale
+	move_and_slide()
+	velocity /= time_scale
+
+func change_time_scale(new_time_scale : float, duration : float, delayed_knockback : float = 0):
+	if(new_time_scale == 0):
+		new_time_scale = 0.0000001
+	
+	ongoing_time_scale_effects.append(new_time_scale)
+	time_scale = ongoing_time_scale_effects.min()
+	animated_sprite.speed_scale = time_scale
+	
+	
+	await get_tree().create_timer(duration).timeout
+	
+	if (delayed_knockback != 0): 
+		knockback(delayed_knockback)
+	
+	ongoing_time_scale_effects.erase(new_time_scale)
+	time_scale = ongoing_time_scale_effects.min() # if all time scale effects are gone, there will still be a 1.0 in the array.
+	animated_sprite.speed_scale = time_scale

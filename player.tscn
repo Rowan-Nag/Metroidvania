@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=3 uid="uid://bb6s6ij8eshi3"]
+[gd_scene load_steps=119 format=3 uid="uid://cta7vnl86huxp"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_m1lax"]
 [ext_resource type="Texture2D" uid="uid://bpmkfdb0413yd" path="res://Sprites/FeatherFrog/sidefeatherfrogoutline.png" id="2_a1ld4"]
@@ -905,7 +905,6 @@ airDragMultiplier = 0.3
 script = ExtResource("13_r3n26")
 gravityMultiplier = 0.5
 horizontal_jump_velocity = 200
-vertical_jump_velocity = 150
 terminal_velocity = 50
 
 [node name="shield" type="Node" parent="state_machine"]

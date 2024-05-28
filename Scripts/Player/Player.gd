@@ -22,6 +22,10 @@ var state_machine = $state_machine
 var health : int = maxHealth
 @export var immunityTime : float = 0.2
 
+@export_category("Weight / Knockback")
+@export var weight = 10
+@export var knockbackMultiplier = 1
+
 @onready var immunity : Timer = $immunityTimer
 @onready var jumpBuffer : Timer = $jumpBufferTimer
 @onready var attackCooldown : Timer = $AttackCooldown
@@ -43,12 +47,15 @@ signal death
 func grant_immunity(immuneTime):
 	immunity.start(immuneTime)
 
-func take_damage(damage : int, knockback : Vector2 = Vector2.ZERO, enemy : Enemy = null) -> void:
+func take_damage(damage : int, knockback, enemy : Enemy = null) -> void:
 	took_damage.emit(damage, enemy)
 	if(immunity.is_stopped()):
 		immunity.start(immunityTime)
 		health -= damage
-		velocity = knockback*400
+		if (knockback is float):
+			knockback(knockback)
+		if (knockback is Vector2):
+			knockback_vec(knockback)
 		state_machine.change_state(fall_state)
 		if(health <= 0):
 			# Die, probably should emit a signal here saying that the player died.
@@ -81,4 +88,9 @@ func getAdjacentWalls():
 	
 func jump_buffered() -> bool:
 	return not jumpBuffer.is_stopped()
-	
+
+func knockback(direction : float):
+	velocity.x = direction * knockbackMultiplier / weight
+
+func knockback_vec(direction : Vector2):
+	velocity = direction * knockbackMultiplier / weight
