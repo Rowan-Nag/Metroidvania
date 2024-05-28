@@ -4,7 +4,7 @@ var player : Player
 var activeCamera : ControllableCamera
 var debug : DebugUI
 
-var camera_shake = preload("res://camera_shake.tscn")
+var camera_shake = preload("res://Level Scenes/Helper Scenes/camera_shake.tscn")
 
 func set_debug_text(text):
 	if(debug):

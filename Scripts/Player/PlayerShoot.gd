@@ -9,7 +9,7 @@ extends State
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * gravityMultiplier
 
-@onready var gunAttack = preload("res://RobotGunAttack.tscn")
+@onready var gunAttack = preload("res://Player Scenes/RobotGunAttack.tscn")
 @onready var controlAnimation = $AnimationPlayer
 
 @export var postShotAnimationLock : float = 0.3

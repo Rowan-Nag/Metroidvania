@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dp8fe63ip15pr"]
 
 [ext_resource type="Texture2D" uid="uid://ckx7etp3q8ofm" path="res://Sprites/Tiles/spikePlaceholder.png" id="1_wp04i"]
-[ext_resource type="Script" path="res://Scripts/Spike.gd" id="2_x14qc"]
+[ext_resource type="Script" path="res://Scripts/Spike.gd" id="2_f83mk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ktpwm"]
 size = Vector2(16, 13)
@@ -11,7 +11,7 @@ size = Vector2(16, 9)
 
 [node name="Spike" type="Sprite2D"]
 texture = ExtResource("1_wp04i")
-script = ExtResource("2_x14qc")
+script = ExtResource("2_f83mk")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 2

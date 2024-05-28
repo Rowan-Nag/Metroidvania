@@ -15,7 +15,7 @@ extends State
 var inputDir: float
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * gravityMultiplier
 
-@onready var attack1 = preload("res://attack1.tscn")
+@onready var attack1 = preload("res://Player Scenes/attack1.tscn")
 var direction: float = 1
 var attackFinished = false
 

@@ -1,26 +1,26 @@
 [gd_scene load_steps=10 format=3 uid="uid://dcn2cqh8eybkn"]
 
-[ext_resource type="Script" path="res://Scripts/Player/attack1.gd" id="1_plrq1"]
-[ext_resource type="Texture2D" uid="uid://b2yirjfrbybme" path="res://Sprites/RobotGuy/robotguyattackeffect.png" id="1_qacph"]
+[ext_resource type="Texture2D" uid="uid://b2yirjfrbybme" path="res://Sprites/RobotGuy/robotguyattackeffect.png" id="1_t4gp0"]
+[ext_resource type="Script" path="res://Scripts/Player/attack1.gd" id="2_r4t7h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hjjar"]
-atlas = ExtResource("1_qacph")
+atlas = ExtResource("1_t4gp0")
 region = Rect2(0, 0, 60, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_byrml"]
-atlas = ExtResource("1_qacph")
+atlas = ExtResource("1_t4gp0")
 region = Rect2(60, 0, 60, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_acy7y"]
-atlas = ExtResource("1_qacph")
+atlas = ExtResource("1_t4gp0")
 region = Rect2(120, 0, 60, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qd6ju"]
-atlas = ExtResource("1_qacph")
+atlas = ExtResource("1_t4gp0")
 region = Rect2(180, 0, 60, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_07x2t"]
-atlas = ExtResource("1_qacph")
+atlas = ExtResource("1_t4gp0")
 region = Rect2(240, 0, 60, 40)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xj7qa"]
@@ -53,7 +53,7 @@ size = Vector2(28.7812, 31.6406)
 position = Vector2(42, 1.19209e-07)
 sprite_frames = SubResource("SpriteFrames_xj7qa")
 autoplay = "default"
-script = ExtResource("1_plrq1")
+script = ExtResource("2_r4t7h")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4
