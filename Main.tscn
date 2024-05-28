@@ -1,13 +1,13 @@
 [gd_scene load_steps=14 format=3 uid="uid://bc30sl33ar0er"]
 
 [ext_resource type="Script" path="res://Scripts/DebugUI.gd" id="1_dv0al"]
-[ext_resource type="PackedScene" uid="uid://cta7vnl86huxp" path="res://player.tscn" id="2_lx8fk"]
+[ext_resource type="PackedScene" uid="uid://cta7vnl86huxp" path="res://Player Scenes/player.tscn" id="2_lx8fk"]
 [ext_resource type="Script" path="res://GameManager.gd" id="2_oe6uh"]
-[ext_resource type="Script" path="res://ControllableCamera.gd" id="3_f6oo0"]
+[ext_resource type="Script" path="res://Scripts/ControllableCamera.gd" id="3_f6oo0"]
 [ext_resource type="TileSet" uid="uid://5iwb7kuuxp5u" path="res://Sprites/Tiles/Coast/CoastTileset.tres" id="3_xe3hy"]
-[ext_resource type="PackedScene" uid="uid://eo28tapbfmtf" path="res://CameraBounds.tscn" id="4_3mewt"]
-[ext_resource type="PackedScene" uid="uid://osrkuvyh5mee" path="res://camera_shake.tscn" id="4_xn4hc"]
-[ext_resource type="PackedScene" uid="uid://c7bluxuv6c2rp" path="res://Scripts/Enemies/trash_collector.tscn" id="5_tib4v"]
+[ext_resource type="PackedScene" uid="uid://eo28tapbfmtf" path="res://Level Scenes/CameraBounds.tscn" id="4_3mewt"]
+[ext_resource type="PackedScene" uid="uid://osrkuvyh5mee" path="res://Level Scenes/Helper Scenes/camera_shake.tscn" id="4_xn4hc"]
+[ext_resource type="PackedScene" uid="uid://c7bluxuv6c2rp" path="res://Enemies/trash_collector.tscn" id="5_tib4v"]
 [ext_resource type="Shader" path="res://Lines.gdshader" id="8_8uuey"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b58oq"]
@@ -142,8 +142,8 @@ libraries = {
 }
 
 [connection signal="body_exited" from="Game/Coast/Level/Foreground/Safe_Marker" to="Game/Coast/Level/Foreground/Safe_Marker" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/Foreground/@Area2D@114329" to="Game/Coast/Level/Foreground/@Area2D@114329" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/Foreground/@Area2D@114330" to="Game/Coast/Level/Foreground/@Area2D@114330" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/Foreground/@Area2D@114331" to="Game/Coast/Level/Foreground/@Area2D@114331" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/Foreground/@Area2D@114332" to="Game/Coast/Level/Foreground/@Area2D@114332" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/Foreground/@Area2D@114333" to="Game/Coast/Level/Foreground/@Area2D@114333" method="_on_body_exited"]
+[connection signal="body_exited" from="Game/Coast/Level/Foreground/@Area2D@122030" to="Game/Coast/Level/Foreground/@Area2D@122030" method="_on_body_exited"]
+[connection signal="body_exited" from="Game/Coast/Level/Foreground/@Area2D@122031" to="Game/Coast/Level/Foreground/@Area2D@122031" method="_on_body_exited"]
+[connection signal="body_exited" from="Game/Coast/Level/Foreground/@Area2D@122032" to="Game/Coast/Level/Foreground/@Area2D@122032" method="_on_body_exited"]
+[connection signal="body_exited" from="Game/Coast/Level/Foreground/@Area2D@122033" to="Game/Coast/Level/Foreground/@Area2D@122033" method="_on_body_exited"]
+[connection signal="body_exited" from="Game/Coast/Level/Foreground/@Area2D@122034" to="Game/Coast/Level/Foreground/@Area2D@122034" method="_on_body_exited"]

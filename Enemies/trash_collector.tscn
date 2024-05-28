@@ -1,10 +1,10 @@
 [gd_scene load_steps=27 format=3 uid="uid://c7bluxuv6c2rp"]
 
-[ext_resource type="Script" path="res://Scripts/Enemies/Enemy.gd" id="1_uhhc5"]
+[ext_resource type="Script" path="res://Scripts/Enemies & States/Enemy.gd" id="1_uhhc5"]
 [ext_resource type="PackedScene" uid="uid://b7gxparcwu871" path="res://Enemies/enemy_contact_damage.tscn" id="2_558rh"]
 [ext_resource type="Texture2D" uid="uid://dbbodknu0st5h" path="res://Sprites/tinycollector.png" id="3_gus4p"]
 [ext_resource type="Script" path="res://Scripts/StateMachine.gd" id="4_s30be"]
-[ext_resource type="Script" path="res://Scripts/Enemies/EnemyPatrolState.gd" id="5_3q4so"]
+[ext_resource type="Script" path="res://Scripts/Enemies & States/EnemyPatrolState.gd" id="5_3q4so"]
 [ext_resource type="Script" path="res://Scripts/State.gd" id="6_v4y22"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_twcrd"]
