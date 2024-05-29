@@ -80,7 +80,7 @@ func process_physics(delta: float) -> State:
 		parent.velocity.x = move_toward(parent.velocity.x, inputDir*maxSpeed, acceleration*delta)
 	else:
 		if(parent.is_on_floor()):
-			drag  = parent.drag * floorDragMultiplier
+			drag = parent.drag * floorDragMultiplier
 		else:
 			drag = parent.drag * airDragMultiplier
 		
@@ -118,12 +118,34 @@ func process_physics(delta: float) -> State:
 	
 	return null
 	
+
+func push_player_forward(amount : int = 50):
+	#sign(parent.animations.scale.x) * parent.velocity.x 
+	#Negative if going backwards, pos if going forwards.
+	#Magnitude represents velocity in that direction.
 	
+	# arrest player momentum if going in opposite direction
+	if (sign(parent.animations.scale.x) * parent.velocity.x < -25):
+		parent.velocity.x *= 0.5
+	#push the player forward (as long as they're not movinng very quickly already)
+	if (sign(parent.animations.scale.x) * parent.velocity.x < 30):
+		parent.velocity.x += parent.animations.scale.x * amount
+	# if the player is moving forward already, no need to give them extra vel.
+	#parent.velocity.x += parent.animations.scale.x * amount
+	
+	
+	
+
 func attack(modulate : Color = Color.WHITE):
 	Global.screen_shake()
 	parent.attackCooldown.start()
 	var attack : AnimatedSprite2D = attack1.instantiate()
 	attack.speed_scale = attack_rate
+	
+	attack.selfKnockbackMultiplier = 0.5
+	if(attackNum == 3):
+		attack.speed_scale *= 0.3
+		attack.knockbackMagnitude = 200
 	parent.add_child(attack)
 	
 	attack.modulate = modulate

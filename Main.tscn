@@ -140,10 +140,3 @@ color = Color(0.0705882, 0.0705882, 0.0705882, 1)
 libraries = {
 "": SubResource("AnimationLibrary_0leaw")
 }
-
-[connection signal="body_exited" from="Game/Coast/Level/Foreground/Safe_Marker" to="Game/Coast/Level/Foreground/Safe_Marker" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/Foreground/@Area2D@166404" to="Game/Coast/Level/Foreground/@Area2D@166404" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/Foreground/@Area2D@166405" to="Game/Coast/Level/Foreground/@Area2D@166405" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/Foreground/@Area2D@166406" to="Game/Coast/Level/Foreground/@Area2D@166406" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/Foreground/@Area2D@166407" to="Game/Coast/Level/Foreground/@Area2D@166407" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/Foreground/@Area2D@166408" to="Game/Coast/Level/Foreground/@Area2D@166408" method="_on_body_exited"]

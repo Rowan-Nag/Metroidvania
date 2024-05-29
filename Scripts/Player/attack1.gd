@@ -4,6 +4,7 @@ extends AnimatedSprite2D
 @onready var attackRay = $RayCast2D
 # Called when the node enters the scene tree for the first time.
 @export var knockbackMagnitude : int = 100
+@export var selfKnockbackMultiplier : float = 1.0
 @export var enemyFreezeTime : float = 0.1
 
 func _ready():
@@ -28,7 +29,7 @@ func _on_area_2d_body_entered(body):
 		var knockBackDir= sign(body.global_position.x-global_position.x) * knockbackMagnitude * Global.player.weight
 		body.take_damage(10, 0)
 		body.change_time_scale(0, enemyFreezeTime * Global.player.weight / body.weight, knockBackDir)
-		Global.player.knockback(-knockBackDir)
+		Global.player.knockback(-knockBackDir * selfKnockbackMultiplier)
 		hitEnemy = true
 #	attackRay.set_target_position(to_local(body.global_position))
 	attackRay.force_raycast_update()
