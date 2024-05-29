@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=3 uid="uid://cta7vnl86huxp"]
+[gd_scene load_steps=122 format=3 uid="uid://cta7vnl86huxp"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_m1lax"]
 [ext_resource type="Texture2D" uid="uid://bpmkfdb0413yd" path="res://Sprites/FeatherFrog/sidefeatherfrogoutline.png" id="2_a1ld4"]
@@ -728,6 +728,124 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wf78i"]
 size = Vector2(14.66, 29.2474)
 
+[sub_resource type="Animation" id="Animation_j4g8i"]
+resource_name = "attack1"
+step = 0.016
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:canAttackAgain")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16, 0.528, 0.544),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:attackFinished")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.555373),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["attack"],
+"method": &"play_animation"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.128),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_s42jm"]
+resource_name = "attack2"
+step = 0.016
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:canAttackAgain")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.48, 0.528, 0.544),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:attackFinished")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.576),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["jump"],
+"method": &"play_animation"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.192),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [Color(0.972549, 0.933333, 0.176471, 1)],
+"method": &"attack"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_46o5h"]
+_data = {
+"attack1": SubResource("Animation_j4g8i"),
+"attack2": SubResource("Animation_s42jm")
+}
+
 [sub_resource type="Curve" id="Curve_w8qbk"]
 min_value = -4.0
 max_value = 4.0
@@ -810,7 +928,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(-1, -1)
+position = Vector2(-2.38419e-07, 0)
 scale = Vector2(0.613918, 0.547057)
 collision_layer = 2
 collision_mask = 17
@@ -824,7 +942,7 @@ immunityTime = 0.81
 jumpBufferTime = 0.032
 
 [node name="AttackCooldown" type="Timer" parent="."]
-wait_time = 0.4
+wait_time = 0.5
 one_shot = true
 autostart = true
 
@@ -834,7 +952,7 @@ one_shot = true
 autostart = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(6.51553, 7.31186)
+position = Vector2(1.34006, -2.27963)
 sprite_frames = SubResource("SpriteFrames_ydj5b")
 animation = &"idle"
 
@@ -846,7 +964,7 @@ animation = &"attack"
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(7.32998, 9.13982)
+position = Vector2(2.15451, -0.451672)
 shape = SubResource("RectangleShape2D_wf78i")
 metadata/_edit_group_ = true
 
@@ -861,15 +979,15 @@ one_shot = true
 autostart = true
 
 [node name="RayRight" type="RayCast2D" parent="."]
-position = Vector2(4.88665, 7.31185)
+position = Vector2(-0.288818, -2.27964)
 target_position = Vector2(14.6599, 0)
 
 [node name="RayLeft" type="RayCast2D" parent="."]
-position = Vector2(4.88665, 7.31185)
+position = Vector2(-0.288818, -2.27964)
 target_position = Vector2(-16.2888, 0)
 
 [node name="RayDown" type="RayCast2D" parent="."]
-position = Vector2(3.25776, 21.9356)
+position = Vector2(-1.91771, 12.3441)
 target_position = Vector2(-4.76837e-07, 3.65593)
 
 [node name="jumpBufferTimer" type="Timer" parent="."]
@@ -898,8 +1016,13 @@ script = ExtResource("11_yqrcq")
 [node name="attack" type="Node" parent="state_machine"]
 script = ExtResource("12_x4vra")
 attack_rate = 1.8
-frames_after_attack = 3
+frames_after_attack = 30
 airDragMultiplier = 0.3
+
+[node name="AttackAnimationPlayer" type="AnimationPlayer" parent="state_machine/attack"]
+libraries = {
+"": SubResource("AnimationLibrary_46o5h")
+}
 
 [node name="wallcling" type="Node" parent="state_machine"]
 script = ExtResource("13_r3n26")

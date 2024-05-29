@@ -30,7 +30,6 @@ func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_pressed('Dash'):
 		return dash_state
 	if Input.is_action_just_pressed("Attack") and parent.attackCooldown.is_stopped():
-		print(parent.attackCooldown.time_left)
 		return attack_state
 	if Input.is_action_just_pressed("Shield"):
 		return shield_state
@@ -74,12 +73,13 @@ func process_physics(delta: float) -> State:
 				#print("bad")
 	
 	# Animations
+	Global.set_debug_text("parent scale: " + str(parent.scale.x))
 	if(inputDir == 0):
 		play_animation("idle")
 	else:
 		play_animation("walk")
-		parent.animations.scale.x = sign(inputDir)*abs(parent.animations.scale.x)
-	
+		parent.animations.scale.x = sign(inputDir) * abs(parent.animations.scale.x)
+		
 	# State switches
 	if(parent.is_on_floor()):
 		coyoteTimer.start(coyoteTime)

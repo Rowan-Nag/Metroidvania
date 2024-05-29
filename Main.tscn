@@ -12,7 +12,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b58oq"]
 shader = ExtResource("8_8uuey")
-shader_parameter/scanline_count = 120.0
+shader_parameter/scanline_count = 190.0
 
 [sub_resource type="Animation" id="Animation_bhwx3"]
 resource_name = "fade_in"
@@ -66,7 +66,7 @@ layer = 0
 follow_viewport_enabled = true
 script = ExtResource("2_oe6uh")
 
-[node name="ColorRect" type="ColorRect" parent="Game"]
+[node name="Scanlines" type="ColorRect" parent="Game"]
 z_index = 5
 material = SubResource("ShaderMaterial_b58oq")
 offset_left = -977.0
@@ -111,8 +111,8 @@ bound_by_top = false
 bound_by_bottom = false
 
 [node name="Player" parent="Game" instance=ExtResource("2_lx8fk")]
-position = Vector2(341, 12)
-scale = Vector2(0.693916, 0.618343)
+position = Vector2(322, -49)
+scale = Vector2(0.694, 0.618)
 drag = 500
 acceleration = 700
 moveSpeed = 120
@@ -142,8 +142,8 @@ libraries = {
 }
 
 [connection signal="body_exited" from="Game/Coast/Level/Foreground/Safe_Marker" to="Game/Coast/Level/Foreground/Safe_Marker" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/Foreground/@Area2D@122030" to="Game/Coast/Level/Foreground/@Area2D@122030" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/Foreground/@Area2D@122031" to="Game/Coast/Level/Foreground/@Area2D@122031" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/Foreground/@Area2D@122032" to="Game/Coast/Level/Foreground/@Area2D@122032" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/Foreground/@Area2D@122033" to="Game/Coast/Level/Foreground/@Area2D@122033" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/Foreground/@Area2D@122034" to="Game/Coast/Level/Foreground/@Area2D@122034" method="_on_body_exited"]
+[connection signal="body_exited" from="Game/Coast/Level/Foreground/@Area2D@166404" to="Game/Coast/Level/Foreground/@Area2D@166404" method="_on_body_exited"]
+[connection signal="body_exited" from="Game/Coast/Level/Foreground/@Area2D@166405" to="Game/Coast/Level/Foreground/@Area2D@166405" method="_on_body_exited"]
+[connection signal="body_exited" from="Game/Coast/Level/Foreground/@Area2D@166406" to="Game/Coast/Level/Foreground/@Area2D@166406" method="_on_body_exited"]
+[connection signal="body_exited" from="Game/Coast/Level/Foreground/@Area2D@166407" to="Game/Coast/Level/Foreground/@Area2D@166407" method="_on_body_exited"]
+[connection signal="body_exited" from="Game/Coast/Level/Foreground/@Area2D@166408" to="Game/Coast/Level/Foreground/@Area2D@166408" method="_on_body_exited"]

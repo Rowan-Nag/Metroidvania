@@ -54,6 +54,7 @@ func activate_collision(): #Activates contact damage
 
 func take_damage(damage : float, knockbackDir: float = 0):
 #	print(health)
+
 	health -= damage
 	knockback(knockbackDir)
 	if(health <= 0):

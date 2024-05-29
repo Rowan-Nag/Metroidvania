@@ -18,6 +18,6 @@ func process_frame(delta: float) -> State:
 func process_physics(delta: float) -> State:
 	return null
 
-func play_animation(animation) -> void:
+func play_animation(animation : String) -> void:
 	if parent.animations:
 		parent.animations.play(animation)

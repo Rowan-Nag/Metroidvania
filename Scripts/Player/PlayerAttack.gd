@@ -3,6 +3,7 @@ extends State
 @export var fall_state : State
 @export var ground_state : State
 
+@export var maxAttacks : int = 3
 @export_range(0.1, 4) var attack_rate : float = 1
 ## @export var frames_before_attack : int = 1
 @export var frames_after_attack : int = 1
@@ -12,33 +13,53 @@ extends State
 @export var airDragMultiplier: float = 1
 @export var accelerationMultiplier: float = 1
 @export var moveSpeedMultiplier: float = 1
+
+@export_category("Animation Properties. Don't edit.")
+var attackNum = 1
+var attackBuffered : bool = false
+@export var canAttackAgain : bool = false
+@export var attackFinished = false
+
+@onready var attackPropertyAnimation : AnimationPlayer = $AttackAnimationPlayer
+
 var inputDir: float
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * gravityMultiplier
 
 @onready var attack1 = preload("res://Player Scenes/attack1.tscn")
+
 var direction: float = 1
-var attackFinished = false
 
 func enter() -> void:
 	super()
 	ground_state = parent.ground_state
 	fall_state = parent.fall_state
-	attackFinished = false
-	direction = sign(parent.animations.scale.x)
+	#attackFinished = false
+	#direction = sign(parent.animations.scale.x)
+	attackNum = 1 # resetting to defaults
+	attackFinished = false;
+	canAttackAgain = false;
+	attackBuffered = false;
+	
 	parent.animations.speed_scale = attack_rate
+	attackPropertyAnimation.seek(0)
+	attackPropertyAnimation.play("attack1")
 
-	play_animation("attack") 
-	attack()
-	await get_tree().create_timer((frames_after_attack) / (60.0)).timeout  
-	attackFinished = true
+	#play_animation("attack") 
+	#attack()
+	#await get_tree().create_timer((frames_after_attack) / (60.0)).timeout  
+	#attackFinished = true
 
 func exit() -> void:
 	parent.animations.speed_scale = 1 # resetting it to default
+	attackNum = 1
+	attackFinished = false;
+	canAttackAgain = false;
+	attackBuffered = false;
 
 func process_input(event: InputEvent) -> State:
 	# No inputs while attacking
-	
-	
+	if (Input.is_action_just_pressed("Attack")):
+		attackBuffered = true
 	
 	
 	
@@ -51,7 +72,8 @@ func process_physics(delta: float) -> State:
 	var maxSpeed = parent.moveSpeed * moveSpeedMultiplier
 	inputDir = Input.get_axis("Left", "Right")
 	
-	
+	if (inputDir):
+		attackBuffered = false #This stops player from sliding while multi-attacking. Remove if wanted.
 	
 	if(inputDir and parent.is_on_floor()):
 		
@@ -71,8 +93,24 @@ func process_physics(delta: float) -> State:
 	
 	parent.move_and_slide()
 	
+	Global.set_debug_text("canAttackAgain: " + str(canAttackAgain))
+	
 	# State switches
-	if(attackFinished):
+	if (attackBuffered and canAttackAgain):
+		print("ANOTHER ATTACK")
+		parent.attackCooldown.start()
+		attackBuffered = false
+		if(attackNum == 1):
+			attackPropertyAnimation.play('attack2')
+			
+			attackNum = 2
+		elif(attackNum == 2):
+			attackPropertyAnimation.play('attack1')
+			attackNum = 3
+	
+	if (attackFinished):
+		attackNum = 1;
+		attackFinished = false
 		if(parent.is_on_floor()):
 			return ground_state
 		else:
@@ -81,13 +119,14 @@ func process_physics(delta: float) -> State:
 	return null
 	
 	
-func attack():
+func attack(modulate : Color = Color.WHITE):
 	Global.screen_shake()
 	parent.attackCooldown.start()
 	var attack : AnimatedSprite2D = attack1.instantiate()
 	attack.speed_scale = attack_rate
 	parent.add_child(attack)
 	
+	attack.modulate = modulate
+	
 	if(sign(parent.animations.scale.x) < 0):
 		attack.scale.x = -attack.scale.x
-		attack.position.x = -20

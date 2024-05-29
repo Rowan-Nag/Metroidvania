@@ -61,7 +61,7 @@ func process_physics(delta: float) -> State:
 	
 	# Animations
 	if(inputDir != 0):
-		parent.animations.scale.x = sign(inputDir)*abs(parent.animations.scale.x)
+		parent.animations.scale.x = sign(inputDir) * abs(parent.animations.scale.x)
 	#if(inputDir == 0):
 		#play_animation("idle")
 	#else:
