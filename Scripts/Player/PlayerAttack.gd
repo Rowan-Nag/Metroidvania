@@ -97,7 +97,7 @@ func process_physics(delta: float) -> State:
 	
 	# State switches
 	if (attackBuffered and canAttackAgain):
-		print("ANOTHER ATTACK")
+		#print("ANOTHER ATTACK")
 		parent.attackCooldown.start()
 		attackBuffered = false
 		if(attackNum == 1):
