@@ -90,7 +90,12 @@ func jump_buffered() -> bool:
 	return not jumpBuffer.is_stopped()
 
 func knockback(direction : float):
-	velocity.x = direction * knockbackMultiplier / weight
+	var kbAmt = direction * knockbackMultiplier / weight
+	velocity.x = kbAmt
+	
+	var scaledKb = abs(kbAmt / 50) # Scaling it down so the numbers don't destroy the screen in the next line.
+	# SCREEN SHAKER defaults: 10, 6, 3
+	Global.screen_shake(scaledKb * 10)
 
 func knockback_vec(direction : Vector2):
 	velocity = direction * knockbackMultiplier / weight

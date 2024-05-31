@@ -73,7 +73,6 @@ func process_physics(delta: float) -> State:
 				#print("bad")
 	
 	# Animations
-	Global.set_debug_text("parent scale: " + str(parent.scale.x))
 	if(inputDir == 0):
 		play_animation("idle")
 	else:

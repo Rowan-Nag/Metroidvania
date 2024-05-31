@@ -72,10 +72,12 @@ func process_physics(delta: float) -> State:
 	var maxSpeed = parent.moveSpeed * moveSpeedMultiplier
 	inputDir = Input.get_axis("Left", "Right")
 	
-	if (inputDir):
-		attackBuffered = false #This stops player from sliding while multi-attacking. Remove if wanted.
+	#if (inputDir):
+		#attackBuffered = false #This stops player from sliding while multi-attacking. Remove if wanted.
 	
-	if(inputDir and parent.is_on_floor()):
+	if(inputDir and attackNum == 1): 
+		# attackNum == 1 Locks the player into attacking instead of moving
+		# (forced into using the attack-momentum instead of movement-momentum) 
 		
 		parent.velocity.x = move_toward(parent.velocity.x, inputDir*maxSpeed, acceleration*delta)
 	else:
@@ -105,7 +107,7 @@ func process_physics(delta: float) -> State:
 			
 			attackNum = 2
 		elif(attackNum == 2):
-			attackPropertyAnimation.play('attack1')
+			attackPropertyAnimation.play('attack3')
 			attackNum = 3
 	
 	if (attackFinished):
@@ -124,12 +126,17 @@ func push_player_forward(amount : int = 50):
 	#Negative if going backwards, pos if going forwards.
 	#Magnitude represents velocity in that direction.
 	
-	# arrest player momentum if going in opposite direction
-	if (sign(parent.animations.scale.x) * parent.velocity.x < -25):
-		parent.velocity.x *= 0.5
-	#push the player forward (as long as they're not movinng very quickly already)
-	if (sign(parent.animations.scale.x) * parent.velocity.x < 30):
-		parent.velocity.x += parent.animations.scale.x * amount
+	# Assume that if the player is holding the opposite direction, they do not want to be pushed forward.
+	if (sign(inputDir) != -sign(parent.animations.scale.x)):
+		#print("pushing player")
+		# arrest player momentum if going in opposite direction
+		if (sign(parent.animations.scale.x) * parent.velocity.x < -25):
+			#print("Arrest velocity")
+			parent.velocity.x *= 0.5
+		#push the player forward (as long as they're not movinng very quickly already)
+		if (sign(parent.animations.scale.x) * parent.velocity.x < 30):
+			#print("Push forward")
+			parent.velocity.x += parent.animations.scale.x * amount
 	# if the player is moving forward already, no need to give them extra vel.
 	#parent.velocity.x += parent.animations.scale.x * amount
 	
@@ -137,7 +144,9 @@ func push_player_forward(amount : int = 50):
 	
 
 func attack(modulate : Color = Color.WHITE):
-	Global.screen_shake()
+	Global.screen_shake(3, 6, 3)
+	#if(attackNum == 3):
+		#Global.screen_shake()
 	parent.attackCooldown.start()
 	var attack : AnimatedSprite2D = attack1.instantiate()
 	attack.speed_scale = attack_rate

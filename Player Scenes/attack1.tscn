@@ -47,7 +47,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exruq"]
-size = Vector2(28.7812, 31.6406)
+size = Vector2(51.7812, 31.6406)
 
 [node name="Attack" type="AnimatedSprite2D"]
 position = Vector2(3, 0)
@@ -63,7 +63,7 @@ collision_layer = 4
 collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(13.6094, 0.390625)
+position = Vector2(25.1094, 0.390625)
 shape = SubResource("RectangleShape2D_exruq")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
