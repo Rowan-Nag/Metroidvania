@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cxkb6djm1ghu"]
+[gd_scene load_steps=10 format=3 uid="uid://cxkb6djm1ghu"]
 
 [ext_resource type="Texture2D" uid="uid://c4eee1otpli42" path="res://GUI/menuselectoption1.png" id="1_8ofhl"]
 [ext_resource type="Texture2D" uid="uid://m5s742r3utuh" path="res://GUI/menuselectoption2.png" id="1_mruc6"]
 [ext_resource type="Texture2D" uid="uid://c2np32cd0o1so" path="res://GUI/mainmenu1.png" id="2_tj0m6"]
 [ext_resource type="Script" path="res://GUI/main_menu.gd" id="3_slnl8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s7o8b"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o8i4j"]
 content_margin_left = 0.0
@@ -34,17 +36,10 @@ Button/colors/font_hover_pressed_color = Color(0.239216, 0.239216, 0.239216, 1)
 Button/colors/font_pressed_color = Color(0.184314, 0.184314, 0.184314, 1)
 Button/colors/icon_focus_color = Color(0.764706, 0.764706, 0.764706, 1)
 Button/font_sizes/font_size = 35
+Button/styles/focus = SubResource("StyleBoxEmpty_s7o8b")
 Button/styles/hover = SubResource("StyleBoxTexture_o8i4j")
 Button/styles/normal = SubResource("StyleBoxTexture_iqgfk")
 Button/styles/pressed = SubResource("StyleBoxTexture_2hhjy")
-
-[sub_resource type="Gradient" id="Gradient_7tgdi"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.12)
-colors = PackedColorArray(0, 0, 0, 1, 0.589396, 0.433987, 0.271853, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_x2qt2"]
-gradient = SubResource("Gradient_7tgdi")
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -70,9 +65,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -746.0
-offset_top = 170.0
+offset_top = -36.0
 offset_right = -415.0
-offset_bottom = 444.0
+offset_bottom = 480.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 25
@@ -86,12 +81,10 @@ layout_mode = 2
 text = "SETTINGS
 "
 
-[node name="TextureRect2" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 75.0
-offset_top = 47.0
-offset_right = 1515.0
-offset_bottom = 930.0
-texture = SubResource("GradientTexture1D_x2qt2")
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "QUIT
+"
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

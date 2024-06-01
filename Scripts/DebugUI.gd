@@ -13,7 +13,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	if(player):
+	if(player and is_instance_valid(player)):
 		label.text = "FPS: " + str(Engine.get_frames_per_second()) + "\n"
 		label.text += "Player Velocity: " + str(player.velocity) + "\n"
 		label.text += "Player State: " + str(player.state_machine.current_state.name)

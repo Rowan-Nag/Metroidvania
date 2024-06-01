@@ -1,14 +1,33 @@
-[gd_scene load_steps=14 format=3 uid="uid://bc30sl33ar0er"]
+[gd_scene load_steps=21 format=3 uid="uid://bc30sl33ar0er"]
 
 [ext_resource type="Script" path="res://Scripts/DebugUI.gd" id="1_dv0al"]
 [ext_resource type="PackedScene" uid="uid://cta7vnl86huxp" path="res://Player Scenes/player.tscn" id="2_lx8fk"]
 [ext_resource type="Script" path="res://GameManager.gd" id="2_oe6uh"]
+[ext_resource type="Texture2D" uid="uid://bp2n7kk5opnct" path="res://GUI/pausemenu.png" id="2_p1yx2"]
 [ext_resource type="Script" path="res://Scripts/ControllableCamera.gd" id="3_f6oo0"]
+[ext_resource type="Script" path="res://GUI/PauseMenu.gd" id="3_ufsyv"]
 [ext_resource type="TileSet" uid="uid://5iwb7kuuxp5u" path="res://Sprites/Tiles/Coast/CoastTileset.tres" id="3_xe3hy"]
 [ext_resource type="PackedScene" uid="uid://eo28tapbfmtf" path="res://Level Scenes/CameraBounds.tscn" id="4_3mewt"]
 [ext_resource type="PackedScene" uid="uid://osrkuvyh5mee" path="res://Level Scenes/Helper Scenes/camera_shake.tscn" id="4_xn4hc"]
 [ext_resource type="PackedScene" uid="uid://c7bluxuv6c2rp" path="res://Enemies/trash_collector.tscn" id="5_tib4v"]
 [ext_resource type="Shader" path="res://Lines.gdshader" id="8_8uuey"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bqtkt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kfe8a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_syhsh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0tlrp"]
+
+[sub_resource type="Theme" id="Theme_jxttm"]
+Button/colors/font_hover_color = Color(0.717647, 0.686275, 0.65098, 1)
+Button/font_sizes/font_size = 40
+Button/styles/focus = SubResource("StyleBoxEmpty_bqtkt")
+Button/styles/hover = SubResource("StyleBoxEmpty_kfe8a")
+Button/styles/normal = SubResource("StyleBoxEmpty_syhsh")
+Button/styles/pressed = SubResource("StyleBoxEmpty_0tlrp")
+VBoxContainer/constants/separation = 85
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b58oq"]
 shader = ExtResource("8_8uuey")
@@ -60,6 +79,66 @@ script = ExtResource("1_dv0al")
 
 [node name="Label" type="Label" parent="GUI/DebugUI"]
 layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="GUI"]
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.133333, 0.133333, 0.133333, 0.764706)
+script = ExtResource("3_ufsyv")
+
+[node name="PauseMenu" type="TextureRect" parent="GUI/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.5
+offset_top = -402.5
+offset_right = 256.5
+offset_bottom = 402.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_jxttm")
+texture = ExtResource("2_p1yx2")
+
+[node name="Resume" type="Button" parent="GUI/ColorRect/PauseMenu"]
+layout_mode = 2
+offset_left = 91.0
+offset_top = 90.0
+offset_right = 425.0
+offset_bottom = 214.0
+text = "RESUME"
+
+[node name="Settings" type="Button" parent="GUI/ColorRect/PauseMenu"]
+layout_mode = 2
+offset_left = 91.0
+offset_top = 233.0
+offset_right = 426.0
+offset_bottom = 354.0
+text = "SETTINGS"
+
+[node name="BugReport" type="Button" parent="GUI/ColorRect/PauseMenu"]
+layout_mode = 2
+offset_left = 90.0
+offset_top = 372.0
+offset_right = 424.0
+offset_bottom = 494.0
+text = "REPORT BUG
+"
+
+[node name="Quit" type="Button" parent="GUI/ColorRect/PauseMenu"]
+layout_mode = 2
+offset_left = 89.0
+offset_top = 514.0
+offset_right = 424.0
+offset_bottom = 636.0
+text = "MAIN MENU"
 
 [node name="Game" type="CanvasLayer" parent="."]
 layer = 0
@@ -140,3 +219,6 @@ color = Color(0.0705882, 0.0705882, 0.0705882, 1)
 libraries = {
 "": SubResource("AnimationLibrary_0leaw")
 }
+
+[connection signal="pressed" from="GUI/ColorRect/PauseMenu/Resume" to="GUI/ColorRect" method="_on_resume_pressed"]
+[connection signal="pressed" from="GUI/ColorRect/PauseMenu/Quit" to="GUI/ColorRect" method="_on_quit_pressed"]

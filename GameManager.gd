@@ -1,3 +1,4 @@
+class_name  GameManager
 extends CanvasLayer
 
 var current_scene : PackedScene
@@ -5,6 +6,8 @@ var current_scene : PackedScene
 
 var last_safe_position : Vector2 = Vector2.ZERO
 
+func _ready():
+	Global.Game = self;
 
 func load_new_scene(new_scene : PackedScene):
 	
@@ -25,3 +28,4 @@ func reset_player_to_checkpoint():
 	Global.player.velocity = Vector2.ZERO
 	print("RESET PLAYER POSITION")
 
+			
