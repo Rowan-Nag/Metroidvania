@@ -91,11 +91,15 @@ func getPlayerDistance() -> float:
 func getPlayerRelativePosition() -> Vector2:
 	return to_local(Global.player.global_position)
 
-func move_and_slide_timewise():
+func move_and_slide_timewise() -> bool:
 	velocity *= time_scale
-	move_and_slide()
+	var did_collide = move_and_slide()
 	velocity /= time_scale
-
+	return did_collide
+	
+func move_and_collide_timewise(delta) -> KinematicCollision2D:
+	return move_and_collide(velocity * delta * time_scale)
+	
 func change_time_scale(new_time_scale : float, duration : float, delayed_knockback : float = 0):
 	if(new_time_scale == 0):
 		new_time_scale = 0.0000001

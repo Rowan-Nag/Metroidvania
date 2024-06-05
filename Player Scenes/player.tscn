@@ -1095,6 +1095,10 @@ maxHealth = 400
 immunityTime = 0.81
 jumpBufferTime = 0.032
 
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+modulate = Color(1, 1, 1, 0.109804)
+radius = 50.0
+
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
