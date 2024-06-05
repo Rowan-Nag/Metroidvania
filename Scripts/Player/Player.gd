@@ -41,6 +41,8 @@ var health : int = maxHealth
 
 @export var jumpBufferTime : float = 0.2
 
+var animationNames
+
 signal took_damage(amount, enemy)
 signal death
 
@@ -68,6 +70,7 @@ func _ready() -> void:
 	# that way they can move and react accordingly
 	state_machine.init(self)
 	Global.player = self
+	animationNames = animations.sprite_frames.get_animation_names()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if(Input.is_action_just_pressed("Jump")):
@@ -99,3 +102,7 @@ func knockback(direction : float):
 
 func knockback_vec(direction : Vector2):
 	velocity = direction * knockbackMultiplier / weight
+
+func play_animation(animationName):
+	if(animationNames and animationName in animationNames):
+		animations.play(animationName)

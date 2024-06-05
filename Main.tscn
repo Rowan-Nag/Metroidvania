@@ -250,8 +250,9 @@ knockbackMultiplier = 1.0
 
 [node name="Heli_Rotor" type="CharacterBody2D" parent="Game/Coast/Enemies"]
 position = Vector2(285, -65)
-collision_layer = 0
+collision_layer = 8
 script = ExtResource("8_ruxkq")
+weight = 20
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Game/Coast/Enemies/Heli_Rotor"]
 target_desired_distance = 30.0
@@ -263,7 +264,6 @@ debug_path_custom_color = Color(1, 0.411765, 0.34902, 1)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Game/Coast/Enemies/Heli_Rotor"]
 sprite_frames = SubResource("SpriteFrames_u5erw")
 animation = &"flying"
-frame_progress = 0.503014
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Game/Coast/Enemies/Heli_Rotor"]
 shape = SubResource("RectangleShape2D_o1t1g")
@@ -274,12 +274,15 @@ starting_state = NodePath("Flying")
 
 [node name="Flying" type="Node" parent="Game/Coast/Enemies/Heli_Rotor/state_machine"]
 script = ExtResource("10_wfg6f")
-ideal_range = 100
+ideal_range = 40
 player_detection_range = 700
 speed = 100
+accel = 3.0
 
 [node name="navigationUpdateTimer" type="Timer" parent="Game/Coast/Enemies/Heli_Rotor/state_machine/Flying"]
-wait_time = 0.1
+process_callback = 0
+wait_time = 0.2
+autostart = true
 
 [node name="Camera-Nodes" type="Node" parent="Game/Coast"]
 
@@ -289,8 +292,8 @@ scale = Vector2(17.251, 10.533)
 bound_by_bottom = false
 
 [node name="Area2D2" parent="Game/Coast/Camera-Nodes" instance=ExtResource("4_3mewt")]
-position = Vector2(167, -31)
-scale = Vector2(20.971, 10.24)
+position = Vector2(186, -31)
+scale = Vector2(23.411, 10.24)
 bound_by_top = false
 bound_by_bottom = false
 
@@ -328,8 +331,9 @@ libraries = {
 [connection signal="pressed" from="GUI/ColorRect/PauseMenu/Resume" to="GUI/ColorRect" method="_on_resume_pressed"]
 [connection signal="pressed" from="GUI/ColorRect/PauseMenu/Quit" to="GUI/ColorRect" method="_on_quit_pressed"]
 [connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/Safe_Marker" to="Game/Coast/Level/NavigationRegion2D/Foreground/Safe_Marker" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@58560" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@58560" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@58561" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@58561" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@58562" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@58562" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@58563" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@58563" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@58564" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@58564" method="_on_body_exited"]
+[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@67356" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@67356" method="_on_body_exited"]
+[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@67357" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@67357" method="_on_body_exited"]
+[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@67358" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@67358" method="_on_body_exited"]
+[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@67359" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@67359" method="_on_body_exited"]
+[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@67360" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@67360" method="_on_body_exited"]
+[connection signal="timeout" from="Game/Coast/Enemies/Heli_Rotor/state_machine/Flying/navigationUpdateTimer" to="Game/Coast/Enemies/Heli_Rotor/state_machine/Flying" method="_on_navigation_update_timer_timeout"]

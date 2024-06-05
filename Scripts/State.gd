@@ -19,5 +19,5 @@ func process_physics(delta: float) -> State:
 	return null
 
 func play_animation(animation : String) -> void:
-	if parent.animations:
-		parent.animations.play(animation)
+	if parent.has_method('play_animation'):
+		parent.play_animation(animation)
