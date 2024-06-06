@@ -83,6 +83,10 @@ Shield={
 2d_physics/layer_4="Enemy"
 2d_physics/layer_5="EnemyAttacks"
 
+[navigation]
+
+2d/default_cell_size=2.0
+
 [physics]
 
 2d/default_gravity=600.0

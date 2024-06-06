@@ -38,10 +38,11 @@ shader = ExtResource("8_8uuey")
 shader_parameter/scanline_count = 190.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_gicn1"]
-vertices = PackedVector2Array(390, -198, 390, 38, 362, -20, 362, -42, 202, -134, 282, -166, 266, -74, 282, -198, 214, -166, 202, -170, 214, -198, -134, -198, 134, -170, 266, -42, 230, -74, 218, -90, 266, 26, 266, -20, 182, -90, 182, 38, 170, 38, 170, -10, 138, -10, 138, -74, 122, -74, 122, -106, 134, -134, 74, -106, 74, -118, 106, -118, 102, -70, 102, 22, 86, 22, 58, -42, 86, 29, 74, 29, 74, 22, 58, 22, -42, 22, -42, 38, -134, 38, -134, -6, 10, -6, 22, 22, 22, -42, 10, -42, -134, -42, -134, -68, -38, -68, -38, -90, -134, -90, 38, -154, 218, 38, 230, 26, 106, -154, 38, -70)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 0, 3, 6), PackedInt32Array(5, 7, 0), PackedInt32Array(8, 5, 4), PackedInt32Array(8, 4, 9, 10), PackedInt32Array(11, 10, 9, 12), PackedInt32Array(3, 13, 6), PackedInt32Array(4, 6, 14, 15), PackedInt32Array(16, 17, 2, 1), PackedInt32Array(18, 19, 20, 21), PackedInt32Array(21, 22, 23, 18), PackedInt32Array(18, 23, 24, 25, 26, 4), PackedInt32Array(25, 27, 28, 29), PackedInt32Array(30, 31, 32, 33), PackedInt32Array(32, 34, 35, 36), PackedInt32Array(36, 37, 33), PackedInt32Array(38, 39, 40, 41), PackedInt32Array(38, 41, 42, 43), PackedInt32Array(44, 43, 42, 45), PackedInt32Array(45, 46, 47, 48), PackedInt32Array(49, 50, 11, 51), PackedInt32Array(16, 1, 52, 53), PackedInt32Array(53, 52, 15, 14), PackedInt32Array(4, 15, 18), PackedInt32Array(26, 25, 29, 54, 12), PackedInt32Array(11, 12, 54, 51), PackedInt32Array(45, 48, 49, 51, 55, 44), PackedInt32Array(33, 44, 55, 30), PackedInt32Array(33, 32, 36)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(422, 58, 423, -221, -154, -214, -152, 54)])
+vertices = PackedVector2Array(395, -149, 395, 43, 357, -26, 357, -37, 277, -171, 395, -155, 261, -69, 197, -139, 197, -165, 219, -171, 187, -85, 133, -69, 117, -75, 117, -101, 139, -139, 395, -203, 277, -197, -139, -203, 219, -197, 409, -155, 409, -149, 261, -37, 235, -69, 213, -85, 261, 21, 261, -26, 69, -101, 69, -123, 101, -123, 187, 43, 165, 43, 165, -5, 139, -5, 139, 43, 133, 43, 107, -69, 107, 27, 91, 27, 53, -37, 91, 34, 69, 34, 69, 27, 53, 27, 27, -37, 27, 27, 11, 27, 5, -11, 5, -37, 11, 34, 5, 34, 5, 27, -37, 27, -37, 43, -139, 43, -139, -11, -139, -37, -139, -74, -43, -74, -43, -85, -139, -85, 43, -149, 139, -165, 213, 43, 235, 21, 101, -149, 43, -75)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 0, 3, 6, 7, 8, 9), PackedInt32Array(10, 11, 12, 13, 14, 7), PackedInt32Array(15, 5, 4, 16), PackedInt32Array(17, 15, 16, 18), PackedInt32Array(5, 19, 20, 0), PackedInt32Array(3, 21, 6), PackedInt32Array(7, 6, 22, 23), PackedInt32Array(24, 25, 2, 1), PackedInt32Array(13, 26, 27, 28), PackedInt32Array(10, 29, 30, 31), PackedInt32Array(32, 33, 34, 11), PackedInt32Array(35, 36, 37, 38), PackedInt32Array(37, 39, 40, 41), PackedInt32Array(41, 42, 38), PackedInt32Array(43, 44, 45, 46, 47), PackedInt32Array(45, 48, 49, 50), PackedInt32Array(51, 52, 53, 54), PackedInt32Array(51, 54, 46, 50), PackedInt32Array(45, 50, 46), PackedInt32Array(47, 55, 56, 57), PackedInt32Array(58, 59, 17, 60), PackedInt32Array(17, 18, 9, 8, 61), PackedInt32Array(24, 1, 62, 63), PackedInt32Array(63, 62, 23, 22), PackedInt32Array(7, 23, 10), PackedInt32Array(14, 13, 28, 64, 61), PackedInt32Array(17, 61, 64, 60), PackedInt32Array(47, 57, 58, 60, 65, 43), PackedInt32Array(38, 43, 65, 12, 35), PackedInt32Array(31, 32, 11, 10), PackedInt32Array(12, 11, 35), PackedInt32Array(38, 37, 41)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(413, -222, 416, 62, -164, 64, -161, -224)])
 source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 5.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m0oo1"]
 atlas = ExtResource("9_41pfd")
@@ -99,6 +100,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o1t1g"]
+size = Vector2(14, 14)
 
 [sub_resource type="Animation" id="Animation_bhwx3"]
 resource_name = "fade_in"
@@ -238,7 +240,7 @@ constrain_avoidance = true
 [node name="Foreground" type="TileMap" parent="Game/Coast/Level/NavigationRegion2D"]
 tile_set = ExtResource("3_xe3hy")
 format = 2
-layer_0/tile_data = PackedInt32Array(262134, 4, 1, 262135, 65540, 1, 262136, 131076, 1, 262137, 4, 1, 262138, 65540, 1, 262139, 131076, 1, 262140, 4, 1, 262141, 65540, 1, 262142, 131076, 1, 262143, 4, 1, 196608, 65540, 1, 196609, 131076, 1, 196610, 4, 1, 196611, 65540, 1, 196612, 131076, 1, 196613, 4, 1, 196614, 65540, 1, 196615, 131076, 1, 196616, 4, 1, 196617, 65540, 1, 196618, 131076, 1, 196619, 4, 1, 196620, 65540, 1, 196621, 131076, 1, 196622, 4, 1, 196623, 65540, 1, 196624, 131076, 1, 196625, 4, 1, 196626, 65540, 1, 196627, 131076, 1, 196628, 4, 1, 196629, 65540, 1, 196630, 131076, 1, 196631, 4, 1, 196632, 65540, 1, 196633, 131076, 1, -10, 131076, 4, 65526, 131076, 2, 131062, 131076, 3, -196618, 131076, 4, -131082, 131076, 2, -65546, 131076, 3, -393226, 131076, 4, -327690, 131076, 2, -262154, 131076, 3, -589834, 131076, 4, -524298, 131076, 2, -458762, 131076, 3, -786442, 131076, 4, -720906, 131076, 2, -655370, 131076, 3, 196598, 131076, 4, 25, 4, 2, 65561, 4, 3, 131097, 4, 4, -196583, 4, 2, -131047, 4, 3, -65511, 4, 4, -393191, 4, 2, -327655, 4, 3, -262119, 4, 4, -589799, 4, 2, -524263, 4, 3, -458727, 4, 4, -786407, 4, 2, -720871, 4, 3, -983015, 4, 2, -917479, 131076, 5, -851943, 4, 4, -851978, 4, 5, -851977, 65540, 5, -851976, 131076, 5, -851975, 4, 5, -851974, 65540, 5, -851973, 131076, 5, -851972, 4, 5, -851971, 65540, 5, -851970, 131076, 5, -851969, 4, 5, -917504, 65540, 5, -917503, 131076, 5, -917502, 4, 5, -917501, 65540, 5, -917500, 131076, 5, -917499, 4, 5, -917498, 65540, 5, -917497, 131076, 5, -917496, 4, 5, -917495, 65540, 5, -917494, 131076, 5, -917493, 4, 5, -917492, 65540, 5, -917491, 131076, 5, -917490, 4, 5, -917489, 65540, 5, -917488, 131076, 5, -917487, 4, 5, -917486, 65540, 5, -917485, 131076, 5, -917484, 4, 5, -917483, 65540, 5, -917482, 131076, 5, -917481, 4, 5, -917480, 65540, 5, -65545, 4, 1, -65544, 65540, 1, -65543, 131076, 1, -65542, 4, 1, -65541, 65540, 1, -65540, 131076, 1, -65539, 4, 1, -65538, 65540, 1, -65537, 131076, 1, -131070, 131076, 3, -65534, 131076, 4, 2, 131076, 2, 65538, 131076, 3, 131074, 131076, 4, -917514, 131076, 2, 131079, 131076, 3, 65543, 131076, 4, -65529, 131076, 2, 7, 131076, 3, -262137, 131076, 2, -196601, 131076, 3, -131065, 131076, 4, 9, 131076, 2, 65545, 131076, 3, 131081, 131076, 4, 12, 131076, 2, 65548, 131076, 3, 131084, 131076, 4, -196596, 131076, 4, -131060, 131076, 3, -65524, 131076, 4, -327668, 131076, 2, -262132, 131076, 3, -65521, 131076, 2, 15, 131076, 3, -262129, 131076, 2, -196593, 131076, 3, -131057, 131076, 4, -131056, 10, 0, -65520, 10, 1, 16, 10, 2, -131055, 65546, 0, -65519, 65546, 1, 17, 65546, 2, -131054, 131082, 0, -65518, 131082, 1, 18, 131082, 2, -524285, 131076, 2, -458749, 131076, 3, -393213, 131076, 4, -393212, 4, 5, -393211, 65540, 5, -393210, 131076, 5, -589821, 4, 5, -589820, 65540, 5, -589819, 131076, 5, -655351, 4, 5, -655350, 65540, 5, -655349, 131076, 5, -786418, 4, 5, -786417, 65540, 5, -786416, 131076, 5, -131053, 196618, 0, -65517, 196618, 1, 19, 196618, 2, -131052, 262154, 0, -65516, 262154, 1, 20, 262154, 2, -131051, 327690, 0, -65515, 327690, 1, 21, 327690, 2, -262153, 10, 0, -196617, 10, 1, -131081, 10, 2, -262152, 65546, 0, -196616, 65546, 1, -131080, 65546, 2, -262151, 131082, 0, -196615, 131082, 1, -131079, 131082, 2, -262150, 196618, 0, -196614, 196618, 1, -131078, 196618, 2, -262149, 262154, 0, -196613, 262154, 1, -131077, 262154, 2, -262148, 327690, 0, -196612, 327690, 1, -131076, 327690, 2, 131076, 0, 65536, 131077, 0, 65536, 131072, 0, 65536, 131073, 4, 4, 196606, 4, 4, 196607, 4, 4, 131075, 4, 4, 131078, 4, 4)
+layer_0/tile_data = PackedInt32Array(262134, 4, 1, 262135, 65540, 1, 262136, 131076, 1, 262137, 4, 1, 262138, 65540, 1, 262139, 131076, 1, 262140, 4, 1, 262141, 65540, 1, 262142, 131076, 1, 262143, 4, 1, 196608, 65540, 1, 196609, 131076, 1, 196610, 4, 1, 196611, 65540, 1, 196612, 131076, 1, 196613, 4, 1, 196614, 65540, 1, 196615, 131076, 1, 196616, 4, 1, 196617, 65540, 1, 196618, 131076, 1, 196619, 4, 1, 196620, 65540, 1, 196621, 131076, 1, 196622, 4, 1, 196623, 65540, 1, 196624, 131076, 1, 196625, 4, 1, 196626, 65540, 1, 196627, 131076, 1, 196628, 4, 1, 196629, 65540, 1, 196630, 131076, 1, 196631, 4, 1, 196632, 65540, 1, 196633, 131076, 1, -10, 131076, 4, 65526, 131076, 2, 131062, 131076, 3, -196618, 131076, 4, -131082, 131076, 2, -65546, 131076, 3, -393226, 131076, 4, -327690, 131076, 2, -262154, 131076, 3, -589834, 131076, 4, -524298, 131076, 2, -458762, 131076, 3, -786442, 131076, 4, -720906, 131076, 2, -655370, 131076, 3, 196598, 131076, 4, 25, 4, 2, 65561, 4, 3, 131097, 4, 4, -196583, 4, 2, -131047, 4, 3, -65511, 4, 4, -393191, 4, 2, -327655, 4, 3, -262119, 4, 4, -589799, 4, 2, -524263, 4, 3, -458727, 4, 4, -786407, 4, 2, -720871, 4, 3, -983015, 4, 2, -917479, 131076, 5, -851943, 4, 4, -851978, 4, 5, -851977, 65540, 5, -851976, 131076, 5, -851975, 4, 5, -851974, 65540, 5, -851973, 131076, 5, -851972, 4, 5, -851971, 65540, 5, -851970, 131076, 5, -851969, 4, 5, -917504, 65540, 5, -917503, 131076, 5, -917502, 4, 5, -917501, 65540, 5, -917500, 131076, 5, -917499, 4, 5, -917498, 65540, 5, -917497, 131076, 5, -917496, 4, 5, -917495, 65540, 5, -917494, 131076, 5, -917493, 4, 5, -917492, 65540, 5, -917491, 131076, 5, -917490, 4, 5, -917489, 65540, 5, -917488, 131076, 5, -917487, 4, 5, -917486, 65540, 5, -917485, 131076, 5, -917484, 4, 5, -917483, 65540, 5, -917482, 131076, 5, -917481, 4, 5, -917480, 65540, 5, -65545, 4, 1, -65544, 65540, 1, -65543, 131076, 1, -65542, 4, 1, -65541, 65540, 1, -65540, 131076, 1, -65539, 4, 1, -65538, 65540, 1, -65537, 131076, 1, -131070, 131076, 3, -65534, 131076, 4, 2, 131076, 2, 65538, 131076, 3, 131074, 131076, 4, -917514, 131076, 2, 131079, 131076, 3, 65543, 131076, 4, -65529, 131076, 2, 7, 131076, 3, -262137, 131076, 2, -196601, 131076, 3, -131065, 131076, 4, 9, 131076, 2, 65545, 131076, 3, 131081, 131076, 4, 12, 131076, 2, 65548, 131076, 3, 131084, 131076, 4, -196596, 131076, 4, -131060, 131076, 3, -65524, 131076, 4, -327668, 131076, 2, -262132, 131076, 3, -65521, 131076, 2, 15, 131076, 3, -196593, 131076, 3, -131057, 131076, 4, -131056, 10, 0, -65520, 10, 1, 16, 10, 2, -131055, 65546, 0, -65519, 65546, 1, 17, 65546, 2, -131054, 131082, 0, -65518, 131082, 1, 18, 131082, 2, -524285, 131076, 2, -458749, 131076, 3, -393213, 131076, 4, -393212, 4, 5, -393211, 65540, 5, -393210, 131076, 5, -589821, 4, 5, -589820, 65540, 5, -589819, 131076, 5, -655351, 4, 5, -655350, 65540, 5, -655349, 131076, 5, -786418, 4, 5, -786417, 65540, 5, -786416, 131076, 5, -131053, 196618, 0, -65517, 196618, 1, 19, 196618, 2, -131052, 262154, 0, -65516, 262154, 1, 20, 262154, 2, -131051, 327690, 0, -65515, 327690, 1, 21, 327690, 2, -262153, 10, 0, -196617, 10, 1, -131081, 10, 2, -262152, 65546, 0, -196616, 65546, 1, -131080, 65546, 2, -262151, 131082, 0, -196615, 131082, 1, -131079, 131082, 2, -262150, 196618, 0, -196614, 196618, 1, -131078, 196618, 2, -262149, 262154, 0, -196613, 262154, 1, -131077, 262154, 2, -262148, 327690, 0, -196612, 327690, 1, -131076, 327690, 2, 131076, 0, 65536, 131077, 0, 65536, 131072, 0, 65536, 131073, 4, 4, 196606, 4, 4, 196607, 4, 4, 131075, 4, 4, 131078, 4, 4, -262129, 131076, 3)
 layer_1/tile_data = PackedInt32Array(-65539, 0, 131072, -65538, 0, 131072, -65537, 0, 131072, -131072, 0, 131072, 131075, 0, 131072, 131078, 0, 131072)
 
 [node name="Enemies" type="Node" parent="Game/Coast"]
@@ -252,14 +254,12 @@ knockbackMultiplier = 1.0
 position = Vector2(285, -65)
 collision_layer = 8
 script = ExtResource("8_ruxkq")
-weight = 20
+knockbackMultiplier = 0.4
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Game/Coast/Enemies/Heli_Rotor"]
 target_desired_distance = 30.0
 path_postprocessing = 1
 debug_enabled = true
-debug_use_custom = true
-debug_path_custom_color = Color(1, 0.411765, 0.34902, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Game/Coast/Enemies/Heli_Rotor"]
 sprite_frames = SubResource("SpriteFrames_u5erw")
@@ -274,10 +274,11 @@ starting_state = NodePath("Flying")
 
 [node name="Flying" type="Node" parent="Game/Coast/Enemies/Heli_Rotor/state_machine"]
 script = ExtResource("10_wfg6f")
-ideal_range = 40
+ideal_range = 80
 player_detection_range = 700
 speed = 100
 accel = 3.0
+stationary = true
 
 [node name="navigationUpdateTimer" type="Timer" parent="Game/Coast/Enemies/Heli_Rotor/state_machine/Flying"]
 process_callback = 0
@@ -316,10 +317,10 @@ script = ExtResource("3_f6oo0")
 
 [node name="LoadingScreen" type="ColorRect" parent="Game"]
 modulate = Color(1, 1, 1, 0)
-offset_left = -776.0
-offset_top = -368.0
-offset_right = 668.0
-offset_bottom = 394.0
+offset_left = -768.0
+offset_top = -374.0
+offset_right = 676.0
+offset_bottom = 388.0
 mouse_filter = 2
 color = Color(0.0705882, 0.0705882, 0.0705882, 1)
 
@@ -330,10 +331,10 @@ libraries = {
 
 [connection signal="pressed" from="GUI/ColorRect/PauseMenu/Resume" to="GUI/ColorRect" method="_on_resume_pressed"]
 [connection signal="pressed" from="GUI/ColorRect/PauseMenu/Quit" to="GUI/ColorRect" method="_on_quit_pressed"]
-[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/Safe_Marker" to="Game/Coast/Level/NavigationRegion2D/Foreground/Safe_Marker" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@67356" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@67356" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@67357" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@67357" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@67358" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@67358" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@67359" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@67359" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@67360" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@67360" method="_on_body_exited"]
+[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@92509" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@92509" method="_on_body_exited"]
+[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@92510" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@92510" method="_on_body_exited"]
+[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@92511" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@92511" method="_on_body_exited"]
+[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@92512" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@92512" method="_on_body_exited"]
+[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@92513" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@92513" method="_on_body_exited"]
+[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@92514" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@92514" method="_on_body_exited"]
 [connection signal="timeout" from="Game/Coast/Enemies/Heli_Rotor/state_machine/Flying/navigationUpdateTimer" to="Game/Coast/Enemies/Heli_Rotor/state_machine/Flying" method="_on_navigation_update_timer_timeout"]

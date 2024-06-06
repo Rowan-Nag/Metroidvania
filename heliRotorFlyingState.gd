@@ -9,12 +9,16 @@ var helirotor : Enemy = null
 @export var speed : int = 10
 @export var accel : float = 3.14
 
+@export var stationary : bool = false
+
+var initial_position : Vector2
 var nav : NavigationAgent2D
 
 func enter() -> void:
 	helirotor = parent
 	nav = helirotor.get_node('NavigationAgent2D')
 	play_animation('flying')
+	initial_position = helirotor.position
 
 func nav_update():
 	if (parent.position.x < Global.player.position.x):
@@ -27,7 +31,11 @@ func nav_update():
 			nav.target_position = Global.player.position + Vector2(-ideal_range, -ideal_range)
 			
 func _on_navigation_update_timer_timeout():
-	nav_update()
+	if not stationary:
+		nav_update()
+	else:
+		nav.target_position = initial_position
+		nav.target_desired_distance = 5
 
 func process_physics(delta: float) -> State:
 	
@@ -43,7 +51,10 @@ func process_physics(delta: float) -> State:
 				# I'm accomplishing this by lerping again.
 		#print(parent.velocity)
 	if (nav.is_navigation_finished()):
-		parent.velocity = lerp(parent.velocity, Vector2.ZERO, accel * 0.5 * delta)
+		if (stationary):
+			parent.velocity = lerp(parent.velocity, initial_position - helirotor.position, accel * delta * 2)
+		else:
+			parent.velocity = lerp(parent.velocity, Vector2.ZERO, accel * delta / 2)
 		
 	helirotor.handle_knockback(delta)
 	var did_collide = helirotor.move_and_slide_timewise()
