@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://bv3kf0xx18qaa"]
+
+[ext_resource type="Texture2D" uid="uid://cfc1830m5qkvo" path="res://Sprites/attack3effect.png" id="1_jjx84"]
+[ext_resource type="Script" path="res://Scripts/Player/attack1.gd" id="2_eu8co"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmdbj"]
+atlas = ExtResource("1_jjx84")
+region = Rect2(0, 0, 60, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idtig"]
+atlas = ExtResource("1_jjx84")
+region = Rect2(60, 0, 60, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omgtq"]
+atlas = ExtResource("1_jjx84")
+region = Rect2(120, 0, 60, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsnx2"]
+atlas = ExtResource("1_jjx84")
+region = Rect2(180, 0, 60, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rny0d"]
+atlas = ExtResource("1_jjx84")
+region = Rect2(240, 0, 60, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xj7qa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmdbj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idtig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omgtq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jsnx2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rny0d")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exruq"]
+size = Vector2(51.7812, 31.6406)
+
+[node name="Attack" type="AnimatedSprite2D"]
+position = Vector2(3, -11)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_xj7qa")
+autoplay = "default"
+offset = Vector2(28, 2.08165e-12)
+script = ExtResource("2_eu8co")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(25.1094, 0.390625)
+shape = SubResource("RectangleShape2D_exruq")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-7.16666, -1.98682e-08)
+target_position = Vector2(23.1667, -3.97363e-08)
+collision_mask = 9
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

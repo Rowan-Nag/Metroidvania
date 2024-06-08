@@ -26,6 +26,10 @@ var inputDir: float
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * gravityMultiplier
 
 @onready var attack1 = preload("res://Player Scenes/attack1.tscn")
+@onready var attack2 = preload("res://Player Scenes/attack2.tscn")
+@onready var attack3 = preload("res://Player Scenes/attack3.tscn")
+
+@onready var fire_particles = preload('res://fire_spurt_small.tscn')
 
 var direction: float = 1
 
@@ -148,13 +152,23 @@ func attack(modulate : Color = Color.WHITE):
 	#if(attackNum == 3):
 		#Global.screen_shake()
 	parent.attackCooldown.start()
-	var attack : AnimatedSprite2D = attack1.instantiate()
+	var attack : AnimatedSprite2D
+	if attackNum == 1:
+		attack = attack1.instantiate()
+	if attackNum == 2:
+		attack = attack2.instantiate()
+	if attackNum == 3:
+		attack = attack3.instantiate()
 	attack.speed_scale = attack_rate
 	
 	attack.selfKnockbackMultiplier = 0.5
 	if(attackNum == 3):
 		attack.speed_scale *= 0.3
 		attack.knockbackMagnitude = 200
+
+		var particles = fire_particles.instantiate()
+		particles.scale.x = parent.animations.scale.x
+		parent.add_child(particles)
 	parent.add_child(attack)
 	
 	attack.modulate = modulate

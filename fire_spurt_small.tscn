@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3ywgn735an14"]
+
+[ext_resource type="Script" path="res://Particles/selfTerminating_CPUParticle.gd" id="1_uuv48"]
+
+[sub_resource type="Curve" id="Curve_c523n"]
+_data = [Vector2(0, 0.982113), 0.0, -0.0667767, 0, 0, Vector2(0.83871, 0.803247), -0.913271, -0.913271, 0, 0, Vector2(0.995392, 0.0341221), -3.41563, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_5pr6e"]
+colors = PackedColorArray(0.842515, 0.326058, 0.316684, 1, 0.880557, 0.738303, 0.306125, 1)
+
+[node name="fire_spurt_small" type="CPUParticles2D"]
+lifetime = 0.8
+explosiveness = 1.0
+fixed_fps = 30
+direction = Vector2(0.5, -1)
+spread = 25.0
+gravity = Vector2(2.08165e-12, 100)
+initial_velocity_min = 42.92
+initial_velocity_max = 129.16
+damping_min = 5.579
+damping_max = 10.3
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_c523n")
+color = Color(0.803922, 0.682353, 0.509804, 1)
+color_initial_ramp = SubResource("Gradient_5pr6e")
+script = ExtResource("1_uuv48")

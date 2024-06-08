@@ -473,10 +473,4 @@ libraries = {
 
 [connection signal="pressed" from="GUI/ColorRect/PauseMenu/Resume" to="GUI/ColorRect" method="_on_resume_pressed"]
 [connection signal="pressed" from="GUI/ColorRect/PauseMenu/Quit" to="GUI/ColorRect" method="_on_quit_pressed"]
-[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/Safe_Marker" to="Game/Coast/Level/NavigationRegion2D/Foreground/Safe_Marker" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@125808" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@125808" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@125809" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@125809" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@125810" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@125810" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@125811" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@125811" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@125812" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@125812" method="_on_body_exited"]
 [connection signal="timeout" from="Game/Coast/Enemies/Heli_Rotor/state_machine/Flying/navigationUpdateTimer" to="Game/Coast/Enemies/Heli_Rotor/state_machine/Flying" method="_on_navigation_update_timer_timeout"]

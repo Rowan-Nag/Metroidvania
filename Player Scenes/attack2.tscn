@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://cvf54cnbjmybk"]
+
+[ext_resource type="Texture2D" uid="uid://b2yirjfrbybme" path="res://Sprites/RobotGuy/robotguyattackeffect.png" id="1_mqvtl"]
+[ext_resource type="Script" path="res://Scripts/Player/attack1.gd" id="2_xrp3x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjjar"]
+atlas = ExtResource("1_mqvtl")
+region = Rect2(0, 0, 60, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_byrml"]
+atlas = ExtResource("1_mqvtl")
+region = Rect2(60, 0, 60, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acy7y"]
+atlas = ExtResource("1_mqvtl")
+region = Rect2(120, 0, 60, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qd6ju"]
+atlas = ExtResource("1_mqvtl")
+region = Rect2(180, 0, 60, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_07x2t"]
+atlas = ExtResource("1_mqvtl")
+region = Rect2(240, 0, 60, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xj7qa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjjar")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_byrml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_acy7y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qd6ju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_07x2t")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exruq"]
+size = Vector2(51.7812, 31.6406)
+
+[node name="Attack" type="AnimatedSprite2D"]
+position = Vector2(3, 0)
+sprite_frames = SubResource("SpriteFrames_xj7qa")
+autoplay = "default"
+frame = 4
+frame_progress = 1.0
+offset = Vector2(28, 2.08165e-12)
+flip_v = true
+script = ExtResource("2_xrp3x")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(25.1094, 0.390625)
+shape = SubResource("RectangleShape2D_exruq")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-7.16666, -1.98682e-08)
+target_position = Vector2(23.1667, -3.97363e-08)
+collision_mask = 9
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
