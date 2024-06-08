@@ -12,7 +12,7 @@ var node2d_shake = preload("res://Level Scenes/Helper Scenes/node_2d_shake.tscn"
 
 func _ready():
 	Global.hudController = self
-	
+	visible = true
 	$HealthBarContainer.visible = true
 	healthBar.visible = true
 	healthBar.play('normal')
