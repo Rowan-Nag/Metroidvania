@@ -4,6 +4,7 @@ var player : Player
 var activeCamera : ControllableCamera
 var debug : DebugUI
 var Game : GameManager
+var hudController : HudController
 
 var camera_shake = preload("res://Level Scenes/Helper Scenes/camera_shake.tscn")
 

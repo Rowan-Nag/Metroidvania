@@ -18,7 +18,7 @@ var state_machine = $state_machine
 @onready var rayDown : RayCast2D = $RayDown
 
 @export_category("Combat")
-@export var maxHealth : int = 100
+@export var maxHealth : int = 4
 var health : int = maxHealth
 @export var immunityTime : float = 0.2
 
@@ -50,8 +50,8 @@ func grant_immunity(immuneTime):
 	immunity.start(immuneTime)
 
 func take_damage(damage : int, knockback, enemy : Enemy = null) -> void:
-	took_damage.emit(damage, enemy)
 	if(immunity.is_stopped()):
+		took_damage.emit(damage, enemy)
 		immunity.start(immunityTime)
 		health -= damage
 		if (knockback is float):
@@ -64,6 +64,10 @@ func take_damage(damage : int, knockback, enemy : Enemy = null) -> void:
 			death.emit()
 			print("Dead.")
 		
+		if Global.hudController:
+			Global.hudController.updateHealthBar()
+			Global.hudController.shake(10 * damage)
+			Global.screen_shake()
 
 func _ready() -> void:
 	# Initialize the state machine, passing a reference of the player to the states,
@@ -101,6 +105,7 @@ func knockback(direction : float):
 	Global.screen_shake(scaledKb * 10)
 
 func knockback_vec(direction : Vector2):
+	print(direction, knockbackMultiplier, weight)
 	velocity = direction * knockbackMultiplier / weight
 
 func play_animation(animationName):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bc30sl33ar0er"]
+[gd_scene load_steps=49 format=3 uid="uid://bc30sl33ar0er"]
 
 [ext_resource type="Script" path="res://Scripts/DebugUI.gd" id="1_dv0al"]
 [ext_resource type="PackedScene" uid="uid://cta7vnl86huxp" path="res://Player Scenes/player.tscn" id="2_lx8fk"]
@@ -8,8 +8,11 @@
 [ext_resource type="Script" path="res://GUI/PauseMenu.gd" id="3_ufsyv"]
 [ext_resource type="TileSet" uid="uid://5iwb7kuuxp5u" path="res://Sprites/Tiles/Coast/CoastTileset.tres" id="3_xe3hy"]
 [ext_resource type="PackedScene" uid="uid://eo28tapbfmtf" path="res://Level Scenes/CameraBounds.tscn" id="4_3mewt"]
+[ext_resource type="Texture2D" uid="uid://r0jrfscq50pm" path="res://Sprites/RobotGuy/healthbarhud.png" id="4_871bd"]
+[ext_resource type="Script" path="res://Scripts/HUDController.gd" id="4_he82r"]
 [ext_resource type="PackedScene" uid="uid://osrkuvyh5mee" path="res://Level Scenes/Helper Scenes/camera_shake.tscn" id="4_xn4hc"]
 [ext_resource type="PackedScene" uid="uid://c7bluxuv6c2rp" path="res://Enemies/trash_collector.tscn" id="5_tib4v"]
+[ext_resource type="PackedScene" uid="uid://cdhiu2v742a84" path="res://Level Scenes/Helper Scenes/node_2d_shake.tscn" id="6_m1oj0"]
 [ext_resource type="Shader" path="res://Lines.gdshader" id="8_8uuey"]
 [ext_resource type="Script" path="res://Scripts/Enemies & States/Enemy.gd" id="8_ruxkq"]
 [ext_resource type="Texture2D" uid="uid://uym8tomp4uxe" path="res://Sprites/flyinggrappleenemy.png" id="9_41pfd"]
@@ -32,6 +35,97 @@ Button/styles/hover = SubResource("StyleBoxEmpty_kfe8a")
 Button/styles/normal = SubResource("StyleBoxEmpty_syhsh")
 Button/styles/pressed = SubResource("StyleBoxEmpty_0tlrp")
 VBoxContainer/constants/separation = 85
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xj0v6"]
+atlas = ExtResource("4_871bd")
+region = Rect2(30, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qap6"]
+atlas = ExtResource("4_871bd")
+region = Rect2(60, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6ein"]
+atlas = ExtResource("4_871bd")
+region = Rect2(90, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rc80v"]
+atlas = ExtResource("4_871bd")
+region = Rect2(120, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogb8b"]
+atlas = ExtResource("4_871bd")
+region = Rect2(150, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugwyi"]
+atlas = ExtResource("4_871bd")
+region = Rect2(0, 0, 30, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_llgnb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xj0v6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5qap6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6ein")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rc80v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogb8b")
+}],
+"loop": true,
+"name": &"dying",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugwyi")
+}],
+"loop": true,
+"name": &"normal",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlc6c"]
+atlas = ExtResource("4_871bd")
+region = Rect2(270, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5m8e3"]
+atlas = ExtResource("4_871bd")
+region = Rect2(300, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73o7w"]
+atlas = ExtResource("4_871bd")
+region = Rect2(330, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2g6up"]
+atlas = ExtResource("4_871bd")
+region = Rect2(360, 0, 30, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fjh8v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jlc6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5m8e3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73o7w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2g6up")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b58oq"]
 shader = ExtResource("8_8uuey")
@@ -148,6 +242,7 @@ script = ExtResource("1_dv0al")
 
 [node name="Label" type="Label" parent="GUI/DebugUI"]
 layout_mode = 2
+text = "DEBUG MENU"
 
 [node name="ColorRect" type="ColorRect" parent="GUI"]
 process_mode = 3
@@ -209,6 +304,51 @@ offset_right = 424.0
 offset_bottom = 636.0
 text = "MAIN MENU"
 
+[node name="HUD" type="Container" parent="GUI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+scale = Vector2(6.24, 6.24)
+mouse_filter = 2
+script = ExtResource("4_he82r")
+
+[node name="HealthBarContainer" type="Container" parent="GUI/HUD"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+
+[node name="healthBar_anchor" type="Node2D" parent="GUI/HUD/HealthBarContainer"]
+position = Vector2(-20, 20)
+
+[node name="healthBar" type="AnimatedSprite2D" parent="GUI/HUD/HealthBarContainer/healthBar_anchor"]
+scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_llgnb")
+animation = &"normal"
+speed_scale = 1.5
+
+[node name="hp1" type="AnimatedSprite2D" parent="GUI/HUD/HealthBarContainer/healthBar_anchor/healthBar"]
+position = Vector2(-3, -1)
+sprite_frames = SubResource("SpriteFrames_fjh8v")
+speed_scale = 1.5
+
+[node name="hp2" type="AnimatedSprite2D" parent="GUI/HUD/HealthBarContainer/healthBar_anchor/healthBar"]
+position = Vector2(1, -1)
+sprite_frames = SubResource("SpriteFrames_fjh8v")
+speed_scale = 1.5
+
+[node name="hp3" type="AnimatedSprite2D" parent="GUI/HUD/HealthBarContainer/healthBar_anchor/healthBar"]
+position = Vector2(5, -1)
+sprite_frames = SubResource("SpriteFrames_fjh8v")
+speed_scale = 1.5
+
+[node name="hp4" type="AnimatedSprite2D" parent="GUI/HUD/HealthBarContainer/healthBar_anchor/healthBar"]
+position = Vector2(9, -1)
+sprite_frames = SubResource("SpriteFrames_fjh8v")
+speed_scale = 1.5
+
+[node name="node2d_shake" parent="GUI/HUD/HealthBarContainer/healthBar_anchor/healthBar" instance=ExtResource("6_m1oj0")]
+
 [node name="Game" type="CanvasLayer" parent="."]
 layer = 0
 follow_viewport_enabled = true
@@ -259,7 +399,6 @@ knockbackMultiplier = 0.4
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Game/Coast/Enemies/Heli_Rotor"]
 target_desired_distance = 30.0
 path_postprocessing = 1
-debug_enabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Game/Coast/Enemies/Heli_Rotor"]
 sprite_frames = SubResource("SpriteFrames_u5erw")
@@ -305,6 +444,7 @@ drag = 500
 acceleration = 700
 moveSpeed = 120
 terminal_velocity = 200
+maxHealth = 4
 
 [node name="Camera2D" type="Camera2D" parent="Game/Player"]
 zoom = Vector2(5, 5)
@@ -323,6 +463,7 @@ offset_right = 676.0
 offset_bottom = 388.0
 mouse_filter = 2
 color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+metadata/_edit_lock_ = true
 
 [node name="Fade_AnimationPlayer" type="AnimationPlayer" parent="Game/LoadingScreen"]
 libraries = {
@@ -331,10 +472,10 @@ libraries = {
 
 [connection signal="pressed" from="GUI/ColorRect/PauseMenu/Resume" to="GUI/ColorRect" method="_on_resume_pressed"]
 [connection signal="pressed" from="GUI/ColorRect/PauseMenu/Quit" to="GUI/ColorRect" method="_on_quit_pressed"]
-[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@92509" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@92509" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@92510" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@92510" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@92511" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@92511" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@92512" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@92512" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@92513" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@92513" method="_on_body_exited"]
-[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@92514" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@92514" method="_on_body_exited"]
+[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/Safe_Marker" to="Game/Coast/Level/NavigationRegion2D/Foreground/Safe_Marker" method="_on_body_exited"]
+[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@123563" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@123563" method="_on_body_exited"]
+[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@123564" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@123564" method="_on_body_exited"]
+[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@123565" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@123565" method="_on_body_exited"]
+[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@123566" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@123566" method="_on_body_exited"]
+[connection signal="body_exited" from="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@123567" to="Game/Coast/Level/NavigationRegion2D/Foreground/@Area2D@123567" method="_on_body_exited"]
 [connection signal="timeout" from="Game/Coast/Enemies/Heli_Rotor/state_machine/Flying/navigationUpdateTimer" to="Game/Coast/Enemies/Heli_Rotor/state_machine/Flying" method="_on_navigation_update_timer_timeout"]
