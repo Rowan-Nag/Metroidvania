@@ -140,7 +140,7 @@ func push_player_forward(amount : int = 50):
 		#push the player forward (as long as they're not movinng very quickly already)
 		if (sign(parent.animations.scale.x) * parent.velocity.x < 30):
 			#print("Push forward")
-			print(parent.animations.scale.x * amount)
+			#print(parent.animations.scale.x * amount)
 			parent.velocity.x += parent.animations.scale.x * amount
 	# if the player is moving forward already, no need to give them extra vel.
 	#parent.velocity.x += parent.animations.scale.x * amount
