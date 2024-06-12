@@ -28,7 +28,7 @@ func _process(delta):
 		parent.offset = get_noise_offset(delta)
 	#print(shake_strength)
 	#Global.set_debug_text("Shake strength: " + str(shake_strength))
-	print(parent.offset, get_noise_offset(delta))
+	#print(parent.offset, get_noise_offset(delta))
 	if(shake_strength < 1):
 		queue_free()
 		

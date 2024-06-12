@@ -50,14 +50,15 @@ animations = [{
 size = Vector2(51.7812, 31.6406)
 
 [node name="Attack" type="AnimatedSprite2D"]
-position = Vector2(3, -11)
+position = Vector2(1, -3.8147e-06)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_xj7qa")
 autoplay = "default"
-offset = Vector2(28, 2.08165e-12)
+offset = Vector2(16.58, -10.77)
 script = ExtResource("2_eu8co")
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -15.3333)
 collision_layer = 4
 collision_mask = 9
 
@@ -66,7 +67,7 @@ position = Vector2(25.1094, 0.390625)
 shape = SubResource("RectangleShape2D_exruq")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(-7.16666, -1.98682e-08)
+position = Vector2(19.3333, -10)
 target_position = Vector2(23.1667, -3.97363e-08)
 collision_mask = 9
 

@@ -323,7 +323,6 @@ size_flags_vertical = 4
 position = Vector2(-20, 20)
 
 [node name="healthBar" type="AnimatedSprite2D" parent="GUI/HUD/HealthBarContainer/healthBar_anchor"]
-scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_llgnb")
 animation = &"normal"
 speed_scale = 1.5

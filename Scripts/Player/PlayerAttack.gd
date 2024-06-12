@@ -140,13 +140,30 @@ func push_player_forward(amount : int = 50):
 		#push the player forward (as long as they're not movinng very quickly already)
 		if (sign(parent.animations.scale.x) * parent.velocity.x < 30):
 			#print("Push forward")
+			print(parent.animations.scale.x * amount)
 			parent.velocity.x += parent.animations.scale.x * amount
 	# if the player is moving forward already, no need to give them extra vel.
 	#parent.velocity.x += parent.animations.scale.x * amount
 	
-	
-	
+func get_ledge_snap_distance() -> float:
+	parent.rayLedgeCheck1.force_raycast_update()
+	if (parent.rayLedgeCheck1.is_colliding()):
+		return 0
+	parent.rayLedgeCheck2.force_raycast_update()
+	if (parent.rayLedgeCheck2.is_colliding()):
+		return 5
+	parent.rayLedgeCheck3.force_raycast_update()
+	if (parent.rayLedgeCheck3.is_colliding()):
+		return 15
+	parent.rayLedgeCheck4.force_raycast_update()
+	if (parent.rayLedgeCheck4.is_colliding()):
+		return 20
+	return 25
 
+func snap_parent_to_ledge():
+	pass
+	#parent.position.x -= get_ledge_snap_distance() * sign(parent.animations.scale.x)
+	
 func attack(modulate : Color = Color.WHITE):
 	Global.screen_shake(3, 6, 3)
 	#if(attackNum == 3):
@@ -165,10 +182,12 @@ func attack(modulate : Color = Color.WHITE):
 	if(attackNum == 3):
 		attack.speed_scale *= 0.3
 		attack.knockbackMagnitude = 200
-
+	
 		var particles = fire_particles.instantiate()
 		particles.scale.x = parent.animations.scale.x
 		parent.add_child(particles)
+		attack.top_level = true
+		attack.position = parent.position
 	parent.add_child(attack)
 	
 	attack.modulate = modulate
