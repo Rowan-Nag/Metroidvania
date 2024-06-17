@@ -1198,21 +1198,25 @@ sprite_frames = SubResource("SpriteFrames_ydj5b")
 animation = &"attack3"
 
 [node name="RayOffsetDown1" type="RayCast2D" parent="AnimatedSprite2D"]
+modulate = Color(1, 1, 1, 0.4)
 position = Vector2(25, 7.764)
 enabled = false
 target_position = Vector2(0, 10.9678)
 
 [node name="RayOffsetDown2" type="RayCast2D" parent="AnimatedSprite2D"]
+modulate = Color(1, 1, 1, 0.4)
 position = Vector2(20, 7.764)
 enabled = false
 target_position = Vector2(0, 10.9678)
 
 [node name="RayOffsetDown3" type="RayCast2D" parent="AnimatedSprite2D"]
+modulate = Color(1, 1, 1, 0.4)
 position = Vector2(15, 7.764)
 enabled = false
 target_position = Vector2(0, 10.9678)
 
 [node name="RayOffsetDown4" type="RayCast2D" parent="AnimatedSprite2D"]
+modulate = Color(1, 1, 1, 0.4)
 position = Vector2(10, 7.764)
 enabled = false
 target_position = Vector2(0, 10.9678)
