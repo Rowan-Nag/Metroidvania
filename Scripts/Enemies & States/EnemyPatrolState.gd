@@ -22,7 +22,7 @@ func enter() -> void:
 	if(has_node("AnimationPlayer")): #If there's an assigned wait animation
 		var waitAnim : AnimationPlayer = get_node("AnimationPlayer")
 		waitAnim.pause()
-		var offset = (randf() * 4)
+		var offset = (randf() * 2)
 		#print(offset)
 		await get_tree().create_timer(offset).timeout #We offset it by 1-2 seconds (at random) to add variation.
 		waitAnim.play()

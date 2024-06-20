@@ -7,6 +7,7 @@ extends State
 @export var moveSpeedMultiplier: float = 1
 
 @export var dodge_velocity : Vector2 = Vector2.RIGHT
+@export var immunity_time : float = 0.5
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * gravityMultiplier
 
@@ -14,19 +15,25 @@ var is_completely_finished : bool = false
 var is_recovering : bool = false
 var is_successful_dodge : bool = false
 var can_parry : bool = false
+var can_dodge : bool = false
+
 @onready var dummyPlayer : Player = $dummyPlayerHitbox
 @onready var anims : AnimationPlayer = $backdodgeAnimationPlayer
 func enter() -> void:
+	parent.grant_immunity(immunity_time)
 	anims.play("backdodge")
 	disable_dummy_hitbox()
+	dummyPlayer.position = parent.position
 	is_completely_finished = false
 	is_recovering = false
 	is_successful_dodge = false
 	can_parry = false
+	can_dodge = false
 
 	play_animation("backdodge-jump") # fall
 	parent.velocity = -dodge_velocity
 	parent.velocity.x *= sign(parent.animations.scale.x)
+	
 	super()
 	
 	await parent.animations.animation_finished
@@ -38,11 +45,17 @@ func exit() -> void:
 
 func process_input(event: InputEvent) -> State:
 	
+	if (can_parry and Input.is_action_just_pressed("Attack")):
+		Global.text_alert('PARRY')
+		parent.grant_immunity(0.2)
+		parent.velocity.x += 400 * sign(parent.animations.scale.x)
+		return parent.attack_state
 	
 	return null
 
 func process_physics(delta: float) -> State:
 	#Physics
+	Global.set_debug_text("can_dodge: " + str(can_dodge))
 	var groundDrag = parent.drag * groundDragMultiplier
 	var airDrag = parent.drag * airDragMultiplier
 	var acceleration = parent.acceleration*accelerationMultiplier
@@ -80,15 +93,20 @@ func finish_dodge():
 	is_completely_finished = true
 	
 func disable_dummy_hitbox():
-	#dummyPlayer.process_mode = Node.PROCESS_MODE_DISABLED
-	pass
-	
+	can_dodge = false
+	dummyPlayer.visible = false
+	dummyPlayer.collision.disabled = true
+	#pass
 func enable_dummy_hitbox():
-	#dummyPlayer.process_mode = Node.PROCESS_MODE_INHERIT
-	pass
-	
+	dummyPlayer.visible = true
+	dummyPlayer.collision.disabled = false
+	can_dodge = true
 
 func _on_dummy_player_hitbox_took_damage(amount, enemy):
-	Global.text_alert("Dodged!")
-	print("dodged")
-	can_parry = true
+	print("took damage!" + str(can_dodge))
+	if (can_dodge):
+		disable_dummy_hitbox()
+		Global.text_alert("Dodged!")
+		print("dodged")
+		can_parry = true
+		can_dodge = false

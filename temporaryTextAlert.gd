@@ -9,6 +9,7 @@ var shouldFollowParent : bool = true
 @onready var textLabel : Label = $container/text
 
 func _ready():
+	await_death()
 	anims.play("textMoveAndHide")
 	anims.speed_scale = 1.0 / time
 	textLabel.label_settings.font_color = textColor
@@ -18,3 +19,7 @@ func _ready():
 		top_level = true
 		position = pos
 		
+func await_death():
+	await get_tree().create_timer(time).timeout
+	if (is_instance_valid(self)):
+		queue_free()

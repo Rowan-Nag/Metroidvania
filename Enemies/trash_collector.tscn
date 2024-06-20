@@ -196,7 +196,7 @@ starting_state = NodePath("patrol")
 script = ExtResource("5_3q4so")
 alert_distance = 300
 walkSpeed = 50
-waitTime = 2.08165e-12
+waitTime = 0.5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="state_machine/patrol"]
 libraries = {
