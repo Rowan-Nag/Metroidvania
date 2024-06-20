@@ -198,6 +198,7 @@ size = Vector2(14, 14)
 
 [sub_resource type="Animation" id="Animation_bhwx3"]
 resource_name = "fade_in"
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -224,6 +225,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_c4fus"]
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -480,7 +482,6 @@ script = ExtResource("3_f6oo0")
 [node name="camera_shake" parent="Game/Player/Camera2D" instance=ExtResource("4_xn4hc")]
 
 [node name="LoadingScreen" type="ColorRect" parent="Game"]
-visible = false
 modulate = Color(1, 1, 1, 0)
 z_index = 100
 z_as_relative = false
