@@ -43,6 +43,7 @@ var health : int = maxHealth
 @onready var wallcling_state : State = $state_machine/wallcling
 @onready var shield_state : State = $state_machine/shield
 @onready var shoot_state : State = $state_machine/shoot
+@onready var backdodge_state : State = $state_machine/backdodge
 
 @export var jumpBufferTime : float = 0.2
 

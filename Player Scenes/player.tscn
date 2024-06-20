@@ -1,4 +1,4 @@
-[gd_scene load_steps=143 format=3 uid="uid://cta7vnl86huxp"]
+[gd_scene load_steps=167 format=3 uid="uid://cta7vnl86huxp"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_m1lax"]
 [ext_resource type="Texture2D" uid="uid://bpmkfdb0413yd" path="res://Sprites/FeatherFrog/sidefeatherfrogoutline.png" id="2_a1ld4"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ccsulijcnsm0u" path="res://Sprites/FeatherFrog/featherfrogjump.png" id="4_u5v6k"]
 [ext_resource type="Texture2D" uid="uid://dyj8ea6x7hond" path="res://Sprites/RobotGuy/robotguyattack3.png" id="4_xn5sy"]
 [ext_resource type="Texture2D" uid="uid://cykur00es85bw" path="res://Sprites/FeatherFrog/featherfrogrun.png" id="5_h4bds"]
+[ext_resource type="Texture2D" uid="uid://cx2e3xaqxrcmj" path="res://Sprites/RobotGuy/robotguybackdodgejump.png" id="5_u4cn6"]
 [ext_resource type="Texture2D" uid="uid://dfa1tp45eqrpw" path="res://Sprites/RobotGuy/robotguygunattack.png" id="6_3vu45"]
 [ext_resource type="Texture2D" uid="uid://cmbr0ep1tko1u" path="res://Sprites/FeatherFrog/wallslidefeatherfrog.png" id="6_rk5os"]
 [ext_resource type="Script" path="res://Scripts/StateMachine.gd" id="7_0xfl2"]
@@ -23,6 +24,8 @@
 [ext_resource type="Texture2D" uid="uid://bn3v3ilnguhy4" path="res://Sprites/RobotGuy/robotguyrun.png" id="18_tirwi"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerShield.gd" id="19_okehv"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerShoot.gd" id="20_jqvoq"]
+[ext_resource type="Script" path="res://Player Scenes/PlayerBackdodge.gd" id="25_lqi6e"]
+[ext_resource type="Script" path="res://Player Scenes/dummyPlayerHitbox.gd" id="26_qnqkg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h3i86"]
 atlas = ExtResource("14_ckadx")
@@ -119,6 +122,78 @@ region = Rect2(360, 0, 40, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_uxpa1"]
 atlas = ExtResource("4_xn5sy")
 region = Rect2(400, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6cjya"]
+atlas = ExtResource("5_u4cn6")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_418dp"]
+atlas = ExtResource("5_u4cn6")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6uig"]
+atlas = ExtResource("5_u4cn6")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qc62q"]
+atlas = ExtResource("5_u4cn6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tni3u"]
+atlas = ExtResource("5_u4cn6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbpt5"]
+atlas = ExtResource("5_u4cn6")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gx4ib"]
+atlas = ExtResource("5_u4cn6")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5nx5"]
+atlas = ExtResource("5_u4cn6")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61wv3"]
+atlas = ExtResource("5_u4cn6")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sevv3"]
+atlas = ExtResource("5_u4cn6")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fy2ik"]
+atlas = ExtResource("5_u4cn6")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vexel"]
+atlas = ExtResource("5_u4cn6")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78eu6"]
+atlas = ExtResource("5_u4cn6")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mysij"]
+atlas = ExtResource("5_u4cn6")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sq86n"]
+atlas = ExtResource("5_u4cn6")
+region = Rect2(416, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hbb1"]
+atlas = ExtResource("5_u4cn6")
+region = Rect2(448, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knv55"]
+atlas = ExtResource("5_u4cn6")
+region = Rect2(480, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25e4c"]
+atlas = ExtResource("5_u4cn6")
+region = Rect2(512, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r1ur8"]
 atlas = ExtResource("15_reb5b")
@@ -360,6 +435,75 @@ animations = [{
 "loop": false,
 "name": &"attack3",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6cjya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_418dp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b6uig")
+}],
+"loop": true,
+"name": &"backdodge-fall",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qc62q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tni3u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbpt5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gx4ib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5nx5")
+}],
+"loop": false,
+"name": &"backdodge-jump",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61wv3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sevv3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fy2ik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vexel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78eu6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mysij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sq86n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3hbb1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knv55")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_25e4c")
+}],
+"loop": false,
+"name": &"backdodge-recover",
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1164,6 +1308,33 @@ _data = {
 "PlayerShootAnimation": SubResource("Animation_5gecj")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_73ug6"]
+
+[sub_resource type="Animation" id="Animation_7s7kj"]
+resource_name = "backdodge"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"enable_dummy_hitbox"
+}, {
+"args": [],
+"method": &"disable_dummy_hitbox"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_by5b0"]
+_data = {
+"backdodge": SubResource("Animation_7s7kj")
+}
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(-2.38419e-07, 0)
 scale = Vector2(0.613918, 0.547057)
@@ -1195,7 +1366,7 @@ autostart = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1.34006, -2.27963)
 sprite_frames = SubResource("SpriteFrames_ydj5b")
-animation = &"attack3"
+animation = &"backdodge-recover"
 
 [node name="RayOffsetDown1" type="RayCast2D" parent="AnimatedSprite2D"]
 modulate = Color(1, 1, 1, 0.4)
@@ -1321,4 +1492,25 @@ libraries = {
 "": SubResource("AnimationLibrary_w7evk")
 }
 
+[node name="backdodge" type="Node" parent="state_machine"]
+script = ExtResource("25_lqi6e")
+groundDragMultiplier = 0.8
+airDragMultiplier = 0.1
+dodge_velocity = Vector2(180, 100)
+
+[node name="dummyPlayerHitbox" type="CharacterBody2D" parent="state_machine/backdodge"]
+motion_mode = 1
+script = ExtResource("26_qnqkg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="state_machine/backdodge/dummyPlayerHitbox"]
+position = Vector2(1, -28)
+shape = SubResource("RectangleShape2D_73ug6")
+debug_color = Color(0, 0.627451, 0.509804, 0.827451)
+
+[node name="backdodgeAnimationPlayer" type="AnimationPlayer" parent="state_machine/backdodge"]
+libraries = {
+"": SubResource("AnimationLibrary_by5b0")
+}
+
 [connection signal="took_damage" from="." to="state_machine/shield" method="_on_player_took_damage"]
+[connection signal="took_damage" from="state_machine/backdodge/dummyPlayerHitbox" to="state_machine/backdodge" method="_on_dummy_player_hitbox_took_damage"]

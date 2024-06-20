@@ -43,7 +43,3 @@ func shake(strength : float = 10):
 	shaker.use_position_instead_of_offset = true
 	healthBar.add_child(shaker)
 
-func _process(delta):
-	if Input.is_action_just_pressed("Dash"):
-		Global.player.health -= 1
-		updateHealthBar()
