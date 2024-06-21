@@ -28,4 +28,12 @@ func reset_player_to_checkpoint():
 	Global.player.velocity = Vector2.ZERO
 	print("RESET PLAYER POSITION")
 
-			
+func modulate_foreground(modulation : Color):
+	var foreground = find_child('Foreground')
+	if is_instance_valid(foreground):
+		foreground.modulate = modulation
+		
+func modulate_background(modulation : Color):
+	var background = find_child('Background')
+	if is_instance_valid(background):
+		background.modulate = modulation

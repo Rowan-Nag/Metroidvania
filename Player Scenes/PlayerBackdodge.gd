@@ -14,8 +14,9 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * gravit
 var is_completely_finished : bool = false
 var is_recovering : bool = false
 var is_successful_dodge : bool = false
-var can_parry : bool = false
+@export var can_parry : bool = false
 var can_dodge : bool = false
+var dodged_enemy : Enemy
 
 @onready var dummyPlayer : Player = $dummyPlayerHitbox
 @onready var anims : AnimationPlayer = $backdodgeAnimationPlayer
@@ -103,10 +104,29 @@ func enable_dummy_hitbox():
 	can_dodge = true
 
 func _on_dummy_player_hitbox_took_damage(amount, enemy):
-	print("took damage!" + str(can_dodge))
 	if (can_dodge):
 		disable_dummy_hitbox()
 		Global.text_alert("Dodged!")
-		print("dodged")
 		can_parry = true
 		can_dodge = false
+		if enemy is Enemy:
+			dodged_enemy = enemy
+		parry(0.5)
+
+func parry(time):
+	Engine.time_scale = 0.3
+	parent.modulate = Color(1.5, 1.5, 1.5)
+	Global.Game.modulate_foreground(Color(0.8, 0.8, 0.8))
+	Global.Game.modulate_background(Color(0.8, 0.8, 0.8))
+	if is_instance_valid(dodged_enemy):
+		dodged_enemy.modulate = Color(1.5, 1.5, 1.5)
+	
+	await get_tree().create_timer(time).timeout
+	
+	Engine.time_scale = 1
+	parent.modulate = Color.WHITE
+	Global.Game.modulate_foreground(Color.WHITE)
+	Global.Game.modulate_background(Color.WHITE)
+	if is_instance_valid(dodged_enemy):
+		dodged_enemy.modulate = Color.WHITE
+	
