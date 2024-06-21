@@ -5,8 +5,9 @@ var text : String = ""
 var textColor : Color = Color.WHITE
 var shouldFollowParent : bool = true
 
-@onready var anims : AnimationPlayer = $container/AnimationPlayer
+@onready var anims : AnimationPlayer = $containerAnimationPlayer
 @onready var textLabel : Label = $container/text
+@onready var container : Node2D = $container
 
 func _ready():
 	await_death()
@@ -18,7 +19,7 @@ func _ready():
 		var pos = global_position
 		top_level = true
 		position = pos
-		
+
 func await_death():
 	await get_tree().create_timer(time).timeout
 	if (is_instance_valid(self)):

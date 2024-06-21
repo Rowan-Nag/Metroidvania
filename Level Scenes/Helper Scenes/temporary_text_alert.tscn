@@ -1,43 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://ceb6sdy30x1o8"]
+[gd_scene load_steps=5 format=3 uid="uid://ceb6sdy30x1o8"]
 
 [ext_resource type="Script" path="res://temporaryTextAlert.gd" id="1_tfsw4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8tc8t"]
 font_size = 12
 
-[sub_resource type="Animation" id="Animation_x3w8h"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("temporaryTextAlert/container:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2.08165e-12, 2.08165e-12)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("temporaryTextAlert/container:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_rfvqf"]
+[sub_resource type="Animation" id="Animation_n0wgo"]
 resource_name = "textMoveAndHide"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("temporaryTextAlert/container:position")
+tracks/0/path = NodePath("container:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -49,7 +22,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("temporaryTextAlert/container:modulate")
+tracks/1/path = NodePath("container:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -59,10 +32,9 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_48jur"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qn3ve"]
 _data = {
-"RESET": SubResource("Animation_x3w8h"),
-"textMoveAndHide": SubResource("Animation_rfvqf")
+"textMoveAndHide": SubResource("Animation_n0wgo")
 }
 
 [node name="temporaryTextAlert" type="Node2D"]
@@ -88,8 +60,7 @@ text = "test"
 label_settings = SubResource("LabelSettings_8tc8t")
 horizontal_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="container"]
-root_node = NodePath("../../..")
+[node name="containerAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_48jur")
+"": SubResource("AnimationLibrary_qn3ve")
 }
