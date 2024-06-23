@@ -18,6 +18,9 @@ var is_successful_dodge : bool = false
 var can_dodge : bool = false
 var dodged_enemy : Enemy
 
+var afterImages_scene = preload('res://Player Scenes/playerAfterImages.tscn')
+var afterImages : Node2D
+
 @onready var dummyPlayer : Player = $dummyPlayerHitbox
 @onready var anims : AnimationPlayer = $backdodgeAnimationPlayer
 func enter() -> void:
@@ -37,12 +40,23 @@ func enter() -> void:
 	
 	super()
 	
+	beginAfterimages(0.05, 2)
+	
 	await parent.animations.animation_finished
 	if not is_recovering:
 		play_animation('backdodge-fall')
 
 func exit() -> void:
 	disable_dummy_hitbox()
+
+func beginAfterimages(interval, time):
+	afterImages = afterImages_scene.instantiate()
+	afterImages.interval = interval
+	afterImages.parent_animations = parent.animations
+	afterImages.image_scale = parent.scale
+	#print(scn.scale)
+	
+	add_child(afterImages)
 
 func process_input(event: InputEvent) -> State:
 	

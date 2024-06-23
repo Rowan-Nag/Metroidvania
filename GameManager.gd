@@ -1,7 +1,7 @@
 class_name  GameManager
 extends CanvasLayer
 
-var current_scene : PackedScene
+@export var current_scene : Node2D
 @onready var fade_animation_player : AnimationPlayer = $LoadingScreen/Fade_AnimationPlayer
 
 var last_safe_position : Vector2 = Vector2.ZERO
@@ -9,19 +9,35 @@ var last_safe_position : Vector2 = Vector2.ZERO
 func _ready():
 	Global.Game = self;
 
-func load_new_scene(new_scene : PackedScene):
-	
-	if(new_scene and new_scene != current_scene):
+func load_new_scene(new_scene_path : String, door_name : String):
+	var new_scene : PackedScene = ResourceLoader.load(new_scene_path)
+	if(new_scene):
 		# Fade Out
 		fade_animation_player.play("fade_out")
 	
 		await fade_animation_player.animation_finished
+
+		get_tree().paused = true # pause game
+
 		# After screen is hidden, switch scenes
+		print("switching from " + current_scene.name)
 		current_scene.queue_free()
-		add_child(new_scene.instantiate())
-		current_scene = new_scene
+		current_scene = new_scene.instantiate()
+		add_child(current_scene)
+		print(" to " + current_scene.name)
 		#Fade back in
+		var door = current_scene.find_child(door_name)
+		Global.player.position = door.exit_marker.global_position
+		
+		#print(Global.player.position)
+		get_tree().paused = false
+		await  get_tree().create_timer(0.05).timeout
+		await get_tree().physics_frame
+		Global.player.snap_to_ground(30)
+		Global.activeCamera.reset_smoothing()
 		fade_animation_player.play("fade_in")
+
+
 
 func reset_player_to_checkpoint():
 	Global.player.position = last_safe_position

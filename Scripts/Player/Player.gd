@@ -117,3 +117,14 @@ func knockback_vec(direction : Vector2):
 func play_animation(animationName):
 	if(animationNames and animationName in animationNames):
 		animations.play(animationName)
+
+func snap_to_ground(distance):
+	rayDown.target_position = Vector2(0, distance)
+	if not is_on_floor():
+		print("snapping")
+		rayDown.force_raycast_update()
+		if rayDown.is_colliding():
+			var offset = to_local(rayDown.get_collision_point()).y - rayDown.position.y
+			print(offset)
+			position.y += offset
+			

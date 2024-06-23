@@ -1,0 +1,100 @@
+[gd_scene load_steps=13 format=3 uid="uid://cpped47gim4jo"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies & States/Enemy.gd" id="1_piyjv"]
+[ext_resource type="Texture2D" uid="uid://uym8tomp4uxe" path="res://Sprites/flyinggrappleenemy.png" id="2_6f8qb"]
+[ext_resource type="Script" path="res://Scripts/StateMachine.gd" id="3_ny50a"]
+[ext_resource type="Script" path="res://heliRotorFlyingState.gd" id="4_cwd1p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0oo1"]
+atlas = ExtResource("2_6f8qb")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukogg"]
+atlas = ExtResource("2_6f8qb")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwbke"]
+atlas = ExtResource("2_6f8qb")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbeea"]
+atlas = ExtResource("2_6f8qb")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwys0"]
+atlas = ExtResource("2_6f8qb")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvg8j"]
+atlas = ExtResource("2_6f8qb")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u5erw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m0oo1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukogg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwbke")
+}],
+"loop": true,
+"name": &"dying",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbeea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwys0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvg8j")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o1t1g"]
+size = Vector2(14, 14)
+
+[node name="Heli_Rotor" type="CharacterBody2D"]
+position = Vector2(285, -65)
+collision_layer = 8
+script = ExtResource("1_piyjv")
+knockbackMultiplier = 0.4
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 30.0
+path_postprocessing = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_u5erw")
+animation = &"flying"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_o1t1g")
+
+[node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("3_ny50a")
+starting_state = NodePath("Flying")
+
+[node name="Flying" type="Node" parent="state_machine"]
+script = ExtResource("4_cwd1p")
+ideal_range = 80
+player_detection_range = 700
+speed = 100
+accel = 3.0
+stationary = true
+
+[node name="navigationUpdateTimer" type="Timer" parent="state_machine/Flying"]
+process_callback = 0
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="state_machine/Flying/navigationUpdateTimer" to="state_machine/Flying" method="_on_navigation_update_timer_timeout"]

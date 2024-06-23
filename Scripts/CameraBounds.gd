@@ -1,3 +1,4 @@
+class_name CameraBounds
 extends Area2D
 
 @onready var collisionShape : CollisionShape2D = $CollisionShape2D

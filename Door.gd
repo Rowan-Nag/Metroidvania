@@ -1,10 +1,8 @@
-extends Node2D
+extends Area2D
 
-@export var nextScene : PackedScene
+@export_file var target_scene_path : String
+@onready var exit_marker : Node2D = $Marker2D
 
-
-
-
-func _on_area_2d_body_entered(body):
-	if body is Player:
-		Game.load_new_scene(nextScene)
+func _on_body_entered(body):
+	print('entered door' + name)
+	Global.Game.load_new_scene(target_scene_path, name)

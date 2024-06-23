@@ -1008,7 +1008,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wf78i"]
-size = Vector2(14.66, 29.2474)
+size = Vector2(14.66, 27.38)
 
 [sub_resource type="Animation" id="Animation_j4g8i"]
 resource_name = "attack1"
@@ -1349,6 +1349,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 2
 position = Vector2(-2.38419e-07, 0)
 scale = Vector2(0.613918, 0.547057)
 collision_layer = 2
@@ -1413,7 +1414,7 @@ animation = &"attack"
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2.15451, -0.451672)
+position = Vector2(2, 2.08165e-12)
 shape = SubResource("RectangleShape2D_wf78i")
 metadata/_edit_group_ = true
 
@@ -1436,8 +1437,9 @@ position = Vector2(-0.288818, -2.27964)
 target_position = Vector2(-16.2888, 0)
 
 [node name="RayDown" type="RayCast2D" parent="."]
-position = Vector2(-1.91771, 12.3441)
-target_position = Vector2(-4.76837e-07, 3.65593)
+position = Vector2(-1.629, 13.696)
+target_position = Vector2(2.08165e-12, 10)
+collide_with_areas = true
 
 [node name="jumpBufferTimer" type="Timer" parent="."]
 one_shot = true

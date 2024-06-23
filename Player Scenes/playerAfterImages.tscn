@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7dwhotywfgsh"]
+
+[ext_resource type="Script" path="res://Scripts/afterImages.gd" id="1_fxth4"]
+
+[node name="playerAfterImages" type="Node2D"]
+modulate = Color(1, 1, 1, 0.376471)
+top_level = true
+z_index = 1
+script = ExtResource("1_fxth4")
+
+[node name="afterImageTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="afterImageTimer" to="." method="_on_after_image_timer_timeout"]

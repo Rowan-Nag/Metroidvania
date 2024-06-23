@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://idga040r0d8h"]
+
+[ext_resource type="TileSet" uid="uid://5iwb7kuuxp5u" path="res://Sprites/Tiles/Coast/CoastTileset.tres" id="1_qy8ng"]
+[ext_resource type="PackedScene" uid="uid://dhlu5x0oq8n4m" path="res://Level Scenes/door.tscn" id="1_wfv1f"]
+[ext_resource type="PackedScene" uid="uid://eo28tapbfmtf" path="res://Level Scenes/CameraBounds.tscn" id="2_n8vea"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_v1gme"]
+outlines = Array[PackedVector2Array]([PackedVector2Array(413, -222, 416, 62, -164, 64, -161, -224)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 5.0
+
+[node name="LevelTemplate" type="Node2D"]
+
+[node name="Level" type="Node" parent="."]
+
+[node name="CoastDoor1" parent="Level" instance=ExtResource("1_wfv1f")]
+position = Vector2(-102, -12)
+target_scene_path = "res://Level Scenes/coast.tscn"
+
+[node name="Background" type="TileMap" parent="Level"]
+tile_set = ExtResource("1_qy8ng")
+format = 2
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Level"]
+self_modulate = Color(1, 1, 1, 0.129412)
+navigation_polygon = SubResource("NavigationPolygon_v1gme")
+constrain_avoidance = true
+
+[node name="Foreground" type="TileMap" parent="Level/NavigationRegion2D"]
+tile_set = ExtResource("1_qy8ng")
+format = 2
+layer_0/tile_data = PackedInt32Array(65529, 4, 5, 65530, 65540, 5, 65531, 131076, 5, 65532, 4, 5, 65533, 65540, 5, 65534, 131076, 5)
+layer_1/tile_data = PackedInt32Array()
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Camera-Nodes" type="Node" parent="."]
+
+[node name="CameraBounds" parent="Camera-Nodes" instance=ExtResource("2_n8vea")]

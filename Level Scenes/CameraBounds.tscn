@@ -3,15 +3,17 @@
 [ext_resource type="Script" path="res://Scripts/CameraBounds.gd" id="1_p5ps8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w71js"]
+size = Vector2(42.0458, 20.1535)
 
-[node name="Area2D" type="Area2D"]
-position = Vector2(-54, -31)
+[node name="CameraBounds" type="Area2D"]
+position = Vector2(-1.00001, 0.999998)
 scale = Vector2(10.531, 10.533)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_p5ps8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.43051e-06, -0.0949395)
 shape = SubResource("RectangleShape2D_w71js")
 debug_color = Color(1, 1, 1, 0.0352941)
 
