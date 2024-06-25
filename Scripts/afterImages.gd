@@ -6,6 +6,7 @@ var length : float = 1
 var parent_animations : AnimatedSprite2D
 var image_scale : Vector2
 
+var decayingAfterImage = preload('res://Player Scenes/decaying_after_image.tscn')
 @onready var afterImageTimer : Timer = $afterImageTimer
 
 func await_afterimage_end():
@@ -16,9 +17,11 @@ func _ready():
 	afterImageTimer.wait_time = interval
 	afterImageTimer.start()
 	await_afterimage_end()
+	
+	length -= 0.5 # time for individual afterimage animation to fade out.
 
 func create_afterImage():
-	var image_sprite = Sprite2D.new()
+	var image_sprite = decayingAfterImage.instantiate()
 	image_sprite.position = parent_animations.to_global(parent_animations.position)
 	
 	var anim = parent_animations.animation
@@ -29,6 +32,7 @@ func create_afterImage():
 	add_child(image_sprite)
 	
 func _on_after_image_timer_timeout():
-	print("new afterimage")
-	create_afterImage()
-	
+	#print("new afterimage")
+	if (length >= 0):
+		create_afterImage()
+		length -= interval

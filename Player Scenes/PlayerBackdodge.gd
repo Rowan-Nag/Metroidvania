@@ -40,7 +40,7 @@ func enter() -> void:
 	
 	super()
 	
-	beginAfterimages(0.05, 2)
+	beginAfterimages(0.05, 0.5)
 	
 	await parent.animations.animation_finished
 	if not is_recovering:
@@ -57,6 +57,7 @@ func beginAfterimages(interval, time):
 	#print(scn.scale)
 	
 	add_child(afterImages)
+	
 
 func process_input(event: InputEvent) -> State:
 	
