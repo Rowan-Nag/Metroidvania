@@ -1,4 +1,4 @@
-[gd_scene load_steps=167 format=3 uid="uid://cta7vnl86huxp"]
+[gd_scene load_steps=169 format=3 uid="uid://cta7vnl86huxp"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_m1lax"]
 [ext_resource type="Texture2D" uid="uid://bpmkfdb0413yd" path="res://Sprites/FeatherFrog/sidefeatherfrogoutline.png" id="2_a1ld4"]
@@ -26,6 +26,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/PlayerShoot.gd" id="20_jqvoq"]
 [ext_resource type="Script" path="res://Player Scenes/PlayerBackdodge.gd" id="25_lqi6e"]
 [ext_resource type="Script" path="res://Player Scenes/dummyPlayerHitbox.gd" id="26_qnqkg"]
+[ext_resource type="Script" path="res://Player Scenes/PlayerGrapple.gd" id="27_32n6q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h3i86"]
 atlas = ExtResource("14_ckadx")
@@ -644,6 +645,9 @@ animations = [{
 "name": &"walk",
 "speed": 12.0
 }]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_q7mxs"]
+points = PackedVector2Array(0, 0, 200, 100, 200, -100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m0kjc"]
 atlas = ExtResource("2_a1ld4")
@@ -1406,6 +1410,16 @@ position = Vector2(10, 7.764)
 enabled = false
 target_position = Vector2(0, 10.9678)
 
+[node name="GrapplePointDetector" type="Area2D" parent="AnimatedSprite2D"]
+position = Vector2(-1.34006, 2.27963)
+collision_layer = 32
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/GrapplePointDetector"]
+position = Vector2(3.88356e-07, 0)
+shape = SubResource("ConvexPolygonShape2D_q7mxs")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
 [node name="AnimatedSprite2D_frog" type="AnimatedSprite2D" parent="."]
 visible = false
 position = Vector2(1.62888, -5.72205e-06)
@@ -1440,6 +1454,9 @@ target_position = Vector2(-16.2888, 0)
 position = Vector2(-1.629, 13.696)
 target_position = Vector2(2.08165e-12, 10)
 collide_with_areas = true
+
+[node name="GrapplePointRay" type="RayCast2D" parent="."]
+enabled = false
 
 [node name="jumpBufferTimer" type="Timer" parent="."]
 one_shot = true
@@ -1530,6 +1547,9 @@ debug_color = Color(0, 0.627451, 0.509804, 0.0235294)
 libraries = {
 "": SubResource("AnimationLibrary_by5b0")
 }
+
+[node name="grapple" type="Node" parent="state_machine"]
+script = ExtResource("27_32n6q")
 
 [connection signal="took_damage" from="." to="state_machine/shield" method="_on_player_took_damage"]
 [connection signal="took_damage" from="state_machine/backdodge/dummyPlayerHitbox" to="state_machine/backdodge" method="_on_dummy_player_hitbox_took_damage"]

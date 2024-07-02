@@ -338,6 +338,7 @@ script = ExtResource("3_f6oo0")
 [node name="camera_shake" parent="Game/Player/Camera2D" instance=ExtResource("4_xn4hc")]
 
 [node name="Coast" parent="Game" instance=ExtResource("9_ehxnh")]
+z_index = -1
 
 [node name="LoadingScreen" type="ColorRect" parent="Game"]
 modulate = Color(1, 1, 1, 0)

@@ -35,7 +35,8 @@ func process_input(event: InputEvent) -> State:
 		return shield_state
 	if Input.is_action_just_pressed("Rocket"):
 		return parent.shoot_state
-	
+	if Input.is_action_just_pressed("Grapple"):
+		return parent.grapple_state
 	return null
 
 func process_physics(delta: float) -> State:

@@ -22,6 +22,9 @@ var state_machine = $state_machine
 @onready var rayLedgeCheck3 : RayCast2D = $AnimatedSprite2D/RayOffsetDown3
 @onready var rayLedgeCheck4 : RayCast2D = $AnimatedSprite2D/RayOffsetDown4
 
+@onready var grapplePointDetector : Area2D = $AnimatedSprite2D/GrapplePointDetector
+@onready var grapplePointRay : RayCast2D = $GrapplePointRay
+
 @export_category("Combat")
 @export var maxHealth : int = 4
 var health : int = maxHealth
@@ -44,6 +47,7 @@ var health : int = maxHealth
 @onready var shield_state : State = $state_machine/shield
 @onready var shoot_state : State = $state_machine/shoot
 @onready var backdodge_state : State = $state_machine/backdodge
+@onready var grapple_state : State = $state_machine/grapple
 
 @export var jumpBufferTime : float = 0.2
 

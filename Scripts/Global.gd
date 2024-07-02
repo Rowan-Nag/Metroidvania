@@ -20,12 +20,22 @@ func screen_shake(strength : float = 10, decay : float = 6, speed : float = 3):
 	shaker.shake_speed = speed
 	activeCamera.add_child(shaker)
 
-func text_alert(text : String = "No alert text set!", should_follow_player : bool = true, color : Color = Color.WHITE, time : float = 1.0):
+func get_text_alert(text : String = "No alert text set!", color : Color = Color.WHITE, time : float = 1.0):
 	var alert = alert_text.instantiate()
 	
 	alert.time = time
 	alert.textColor = color
 	alert.text = text
-	alert.shouldFollowParent = should_follow_player
+	alert.shouldFollowParent = true
+	
+	return alert
+
+func text_alert(text : String = "No alert text set!", color : Color = Color.WHITE, time : float = 1.0):
+	var alert = alert_text.instantiate()
+	
+	alert.time = time
+	alert.textColor = color
+	alert.text = text
+	alert.shouldFollowParent = true
 	
 	player.add_child(alert)

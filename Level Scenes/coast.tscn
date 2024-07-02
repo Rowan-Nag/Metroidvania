@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bu32ynk2dpvcj"]
+[gd_scene load_steps=8 format=3 uid="uid://bu32ynk2dpvcj"]
 
 [ext_resource type="TileSet" uid="uid://5iwb7kuuxp5u" path="res://Sprites/Tiles/Coast/CoastTileset.tres" id="1_nq3kr"]
 [ext_resource type="PackedScene" uid="uid://b5vj2l1mdeh52" path="res://Level Scenes/door_with_shadow.tscn" id="3_kq2vg"]
+[ext_resource type="PackedScene" uid="uid://cvmp6av2nxomd" path="res://Level Scenes/grapple_point.tscn" id="3_lo4wh"]
 [ext_resource type="PackedScene" uid="uid://cpped47gim4jo" path="res://Enemies/heli_rotor.tscn" id="5_d2ul8"]
 [ext_resource type="PackedScene" uid="uid://c7bluxuv6c2rp" path="res://Enemies/trash_collector.tscn" id="6_b4clf"]
 [ext_resource type="PackedScene" uid="uid://eo28tapbfmtf" path="res://Level Scenes/CameraBounds.tscn" id="11_yep2k"]
@@ -37,6 +38,8 @@ layer_1/tile_data = PackedInt32Array(-65539, 0, 131072, 131075, 0, 131072, 13107
 position = Vector2(429, 29)
 scale = Vector2(-1.32, 1)
 target_scene_path = "res://Level Scenes/LevelTemplate.tscn"
+
+[node name="GrapplePoint" parent="Level" instance=ExtResource("3_lo4wh")]
 
 [node name="Enemies" type="Node" parent="."]
 

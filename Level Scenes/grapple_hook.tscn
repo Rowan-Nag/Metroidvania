@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://dv12v6q1jr3kc"]
+
+[ext_resource type="Script" path="res://Player Scenes/grapple-hook.gd" id="1_202q4"]
+[ext_resource type="Texture2D" uid="uid://cp51aw12pr314" path="res://Sprites/grapplehook.png" id="2_byr5j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w0dw8"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0dgyo"]
+radius = 5.09902
+
+[node name="grapple-hook" type="Node2D"]
+script = ExtResource("1_202q4")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+width = 1.0
+default_color = Color(0.658824, 0.498039, 0.317647, 1)
+
+[node name="anchor" type="StaticBody2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="anchor"]
+shape = SubResource("CircleShape2D_w0dw8")
+
+[node name="Spring1" type="DampedSpringJoint2D" parent="."]
+visible = false
+node_a = NodePath("../anchor")
+node_b = NodePath("../middle")
+length = 1.0
+stiffness = 38.0
+damping = 4.1
+
+[node name="middle" type="RigidBody2D" parent="."]
+position = Vector2(0, 10)
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="middle"]
+shape = SubResource("CircleShape2D_w0dw8")
+
+[node name="Spring2" type="DampedSpringJoint2D" parent="."]
+visible = false
+position = Vector2(0, 10)
+node_a = NodePath("../middle")
+node_b = NodePath("../claw")
+length = 1.0
+stiffness = 38.0
+damping = 4.1
+
+[node name="claw" type="StaticBody2D" parent="."]
+position = Vector2(0, 20)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="claw"]
+texture = ExtResource("2_byr5j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="claw"]
+shape = SubResource("CircleShape2D_0dgyo")
