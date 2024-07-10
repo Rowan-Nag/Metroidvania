@@ -1,18 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://bu32ynk2dpvcj"]
+[gd_scene load_steps=9 format=3 uid="uid://bu32ynk2dpvcj"]
 
 [ext_resource type="TileSet" uid="uid://5iwb7kuuxp5u" path="res://Sprites/Tiles/Coast/CoastTileset.tres" id="1_nq3kr"]
 [ext_resource type="PackedScene" uid="uid://b5vj2l1mdeh52" path="res://Level Scenes/door_with_shadow.tscn" id="3_kq2vg"]
 [ext_resource type="PackedScene" uid="uid://cvmp6av2nxomd" path="res://Level Scenes/grapple_point.tscn" id="3_lo4wh"]
 [ext_resource type="PackedScene" uid="uid://cpped47gim4jo" path="res://Enemies/heli_rotor.tscn" id="5_d2ul8"]
 [ext_resource type="PackedScene" uid="uid://c7bluxuv6c2rp" path="res://Enemies/trash_collector.tscn" id="6_b4clf"]
+[ext_resource type="PackedScene" uid="uid://mrwkmkk7mo4g" path="res://Enemies/heli_rotor_stationary.tscn" id="6_dk54q"]
 [ext_resource type="PackedScene" uid="uid://eo28tapbfmtf" path="res://Level Scenes/CameraBounds.tscn" id="11_yep2k"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_gicn1"]
-vertices = PackedVector2Array(395, -149, 395, 43, 357, -26, 357, -37, 277, -171, 395, -155, 261, -69, 197, -139, 197, -165, 219, -171, 187, -85, 133, -69, 117, -75, 117, -101, 139, -139, 395, -203, 277, -197, -139, -203, 219, -197, 409, -155, 409, -149, 261, -37, 235, -69, 213, -85, 261, 21, 261, -26, 69, -101, 69, -123, 101, -123, 187, 43, 165, 43, 165, -5, 139, -5, 139, 43, 133, 43, 107, -69, 107, 27, 91, 27, 53, -37, 91, 34, 69, 34, 69, 27, 53, 27, 27, -37, 27, 27, 11, 27, 5, -11, 5, -37, 11, 34, 5, 34, 5, 27, -37, 27, -37, 43, -139, 43, -139, -11, -139, -37, -139, -74, -43, -74, -43, -85, -139, -85, 43, -149, 139, -165, 213, 43, 235, 21, 101, -149, 43, -75)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 0, 3, 6, 7, 8, 9), PackedInt32Array(10, 11, 12, 13, 14, 7), PackedInt32Array(15, 5, 4, 16), PackedInt32Array(17, 15, 16, 18), PackedInt32Array(5, 19, 20, 0), PackedInt32Array(3, 21, 6), PackedInt32Array(7, 6, 22, 23), PackedInt32Array(24, 25, 2, 1), PackedInt32Array(13, 26, 27, 28), PackedInt32Array(10, 29, 30, 31), PackedInt32Array(32, 33, 34, 11), PackedInt32Array(35, 36, 37, 38), PackedInt32Array(37, 39, 40, 41), PackedInt32Array(41, 42, 38), PackedInt32Array(43, 44, 45, 46, 47), PackedInt32Array(45, 48, 49, 50), PackedInt32Array(51, 52, 53, 54), PackedInt32Array(51, 54, 46, 50), PackedInt32Array(45, 50, 46), PackedInt32Array(47, 55, 56, 57), PackedInt32Array(58, 59, 17, 60), PackedInt32Array(17, 18, 9, 8, 61), PackedInt32Array(24, 1, 62, 63), PackedInt32Array(63, 62, 23, 22), PackedInt32Array(7, 23, 10), PackedInt32Array(14, 13, 28, 64, 61), PackedInt32Array(17, 61, 64, 60), PackedInt32Array(47, 57, 58, 60, 65, 43), PackedInt32Array(38, 43, 65, 12, 35), PackedInt32Array(31, 32, 11, 10), PackedInt32Array(12, 11, 35), PackedInt32Array(38, 37, 41)])
+vertices = PackedVector2Array(390, -102, 390, 26, 362, -21, 362, -42, 230, -102, 266, -74, 282, -166, 282, -198, 390, -198, 390, -138, 230, -138, 214, -166, 266, -42, 230, -74, 266, 26, 266, -21, 406, 26, 406, 38, 218, 38, 218, -138, 202, -138, 202, -170, 122, -106, 134, -134, 150, -134, 150, -102, 138, -74, 122, -74, 182, -102, 182, 38, 170, -10, 170, 38, 138, -10, 74, -106, 74, -118, 106, -118, 106, -154, 134, -170, 102, -70, 102, 22, 86, 22, 58, -42, 86, 29, 74, 29, 74, 22, 58, 22, -42, 22, -42, 38, -134, 38, -134, -6, 10, -6, 22, 22, 22, -42, 10, -42, -134, -42, -134, -69, -38, -69, -38, -90, -134, -90, -134, -198, 38, -154, 230, 26, 214, -198, 38, -70)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(6, 9, 10, 11), PackedInt32Array(3, 12, 5), PackedInt32Array(4, 5, 13), PackedInt32Array(14, 15, 2, 1), PackedInt32Array(1, 16, 17, 18), PackedInt32Array(19, 20, 21, 11), PackedInt32Array(22, 23, 24, 25, 26, 27), PackedInt32Array(25, 28, 29, 30), PackedInt32Array(29, 31, 30), PackedInt32Array(25, 30, 32, 26), PackedInt32Array(22, 33, 34, 35), PackedInt32Array(23, 22, 35, 36, 37), PackedInt32Array(38, 39, 40, 41), PackedInt32Array(40, 42, 43, 44), PackedInt32Array(44, 45, 41), PackedInt32Array(46, 47, 48, 49), PackedInt32Array(46, 49, 50, 51), PackedInt32Array(52, 51, 50, 53), PackedInt32Array(53, 54, 55, 56), PackedInt32Array(57, 58, 59, 60), PackedInt32Array(14, 1, 18), PackedInt32Array(61, 14, 18), PackedInt32Array(61, 18, 19, 13), PackedInt32Array(4, 13, 19), PackedInt32Array(10, 4, 19, 11), PackedInt32Array(62, 11, 21), PackedInt32Array(59, 62, 21, 37), PackedInt32Array(59, 37, 36, 60), PackedInt32Array(53, 56, 57, 60, 63, 52), PackedInt32Array(41, 52, 63, 38), PackedInt32Array(41, 40, 44)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(413, -222, 416, 62, -164, 64, -161, -224)])
 source_geometry_group_name = &"navigation_polygon_source_group"
-agent_radius = 5.0
 
 [node name="Coast" type="Node2D"]
 
@@ -40,15 +40,21 @@ scale = Vector2(-1.32, 1)
 target_scene_path = "res://Level Scenes/LevelTemplate.tscn"
 
 [node name="GrapplePoint" parent="Level" instance=ExtResource("3_lo4wh")]
+position = Vector2(399, -58)
 
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Heli_Rotor" parent="Enemies" instance=ExtResource("5_d2ul8")]
+position = Vector2(273, -62)
 
 [node name="Trash_Collector" parent="Enemies" instance=ExtResource("6_b4clf")]
-position = Vector2(265, 29)
+position = Vector2(260, -144)
 weight = 8
 knockbackMultiplier = 1.0
+
+[node name="Heli_Rotor2" parent="Enemies" instance=ExtResource("6_dk54q")]
+position = Vector2(291, -49)
+weight = 10
 
 [node name="Camera-Nodes" type="Node" parent="."]
 

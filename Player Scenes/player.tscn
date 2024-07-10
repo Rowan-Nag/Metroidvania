@@ -1,4 +1,4 @@
-[gd_scene load_steps=169 format=3 uid="uid://cta7vnl86huxp"]
+[gd_scene load_steps=171 format=3 uid="uid://cta7vnl86huxp"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_m1lax"]
 [ext_resource type="Texture2D" uid="uid://bpmkfdb0413yd" path="res://Sprites/FeatherFrog/sidefeatherfrogoutline.png" id="2_a1ld4"]
@@ -647,7 +647,7 @@ animations = [{
 }]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_q7mxs"]
-points = PackedVector2Array(0, 0, 200, 100, 200, -100)
+points = PackedVector2Array(0, 0, 200, 200, 200, -200)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m0kjc"]
 atlas = ExtResource("2_a1ld4")
@@ -1352,6 +1352,38 @@ _data = {
 "backdodge": SubResource("Animation_7s7kj")
 }
 
+[sub_resource type="Animation" id="Animation_7304t"]
+resource_name = "springy_grapple_pull"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:pullForceMultiplier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.4, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:is_finished")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ly1jo"]
+_data = {
+"springy_grapple_pull": SubResource("Animation_7304t")
+}
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 2
 position = Vector2(-2.38419e-07, 0)
@@ -1550,6 +1582,12 @@ libraries = {
 
 [node name="grapple" type="Node" parent="state_machine"]
 script = ExtResource("27_32n6q")
+pullForce = 300.0
+
+[node name="grappleAnimationPlayer" type="AnimationPlayer" parent="state_machine/grapple"]
+libraries = {
+"": SubResource("AnimationLibrary_ly1jo")
+}
 
 [connection signal="took_damage" from="." to="state_machine/shield" method="_on_player_took_damage"]
 [connection signal="took_damage" from="state_machine/backdodge/dummyPlayerHitbox" to="state_machine/backdodge" method="_on_dummy_player_hitbox_took_damage"]

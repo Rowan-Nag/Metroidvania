@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://cpped47gim4jo"]
+[gd_scene load_steps=14 format=3 uid="uid://cpped47gim4jo"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies & States/Enemy.gd" id="1_piyjv"]
 [ext_resource type="Texture2D" uid="uid://uym8tomp4uxe" path="res://Sprites/flyinggrappleenemy.png" id="2_6f8qb"]
+[ext_resource type="PackedScene" uid="uid://cvmp6av2nxomd" path="res://Level Scenes/grapple_point.tscn" id="2_rpd7j"]
 [ext_resource type="Script" path="res://Scripts/StateMachine.gd" id="3_ny50a"]
 [ext_resource type="Script" path="res://heliRotorFlyingState.gd" id="4_cwd1p"]
 
@@ -64,9 +65,9 @@ animations = [{
 size = Vector2(14, 14)
 
 [node name="Heli_Rotor" type="CharacterBody2D"]
-position = Vector2(285, -65)
 collision_layer = 8
 script = ExtResource("1_piyjv")
+weight = 4
 knockbackMultiplier = 0.4
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -80,6 +81,8 @@ animation = &"flying"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_o1t1g")
 
+[node name="GrapplePoint" parent="." instance=ExtResource("2_rpd7j")]
+
 [node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("3_ny50a")
 starting_state = NodePath("Flying")
@@ -90,7 +93,6 @@ ideal_range = 80
 player_detection_range = 700
 speed = 100
 accel = 3.0
-stationary = true
 
 [node name="navigationUpdateTimer" type="Timer" parent="state_machine/Flying"]
 process_callback = 0

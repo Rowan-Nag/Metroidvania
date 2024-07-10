@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://mrwkmkk7mo4g"]
+
+[ext_resource type="PackedScene" uid="uid://cpped47gim4jo" path="res://Enemies/heli_rotor.tscn" id="1_alvl3"]
+
+[node name="Heli_Rotor" instance=ExtResource("1_alvl3")]
+weight = 20
+
+[node name="Flying" parent="state_machine" index="0"]
+stationary = true

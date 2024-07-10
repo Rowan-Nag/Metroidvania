@@ -2,49 +2,61 @@ extends Node2D
 
 var target : Node2D
 
-var rope_velocity = 800
-var rope_drag = 5
+var rope_velocity = 1000
 
-@onready var anchor : StaticBody2D
-@onready var middle : RigidBody2D = $middle
 @onready var claw : StaticBody2D = $claw
 
 @onready var rope : Line2D = $Line2D
 
 var is_attached_yet : bool = false
+@onready var anims : AnimationPlayer = $AnimationPlayer
 
+@export_category("Rope drawing variables")
+@export var x_stretch : float = 4
+@export var v_stretch : float = 5
+@export var phase_shift : float = 0
+@export var sag_amount : float = 10
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	anims.play('grapple_start')
 	pass
 	
 func _process(delta):
+	
 	if (not is_attached_yet and is_instance_valid(target)):
-		rope_velocity = lerpf(rope_velocity, 300, rope_drag*delta)
-		claw.position = claw.position.move_toward(to_local(target.position), rope_velocity*delta)
-		if (claw.position == target.position):
+		#rope_velocity = lerpf(rope_velocity, 300, rope_drag*delta)
+		claw.position = claw.position.move_toward(to_local(target.global_position), rope_velocity*delta)
+		if (claw.position == to_local(target.global_position)):
+			#await get_tree().create_timer(0.2).timeout
+			#middle.gravity_scale = 0
+			anims.play('grapple_attached')
 			is_attached_yet = true
+	if is_attached_yet:
+		claw.poようsition = to_local(target.global_position)
+
+
+func _physics_process(delta):
 	draw_rope()
-	
-func make_rope_segment(next_segment: PhysicsBody2D) -> RigidBody2D:
-	var segment := DampedSpringJoint2D.new()
-	segment.node_b = next_segment.get_path()
-	var new_segment :=RigidBody2D.new()
-	add_child(new_segment)
-	segment.node_a = new_segment.get_path()
-	
-	add_child(segment)
-	
-	return new_segment
 
 func draw_rope():
-	#var middle_point = claw.position/2 + Vector2(0, rope_sag)
-	if (Input.is_action_just_pressed("Attack")):
-		#target = get_local_mouse_position()
-		rope_velocity = 800
-		is_attached_yet = false
-	var middle_point = $middle.position
-	for i in rope.get_point_count():
-		rope.points[i] = _quadratic_bezier(Vector2.ZERO, middle_point, claw.position, float(i)/(rope.get_point_count()-1)) 
+	
+	var midpoint = (claw.position + position)/2 + Vector2(0, sag_amount)
+	var length : float = (claw.position - position).length()
+	var numPoints : int = rope.points.size()
+	var ortho_unit_vector : Vector2 = (claw.position - position).orthogonal().normalized()
+	
+	rope.points[0] = Vector2.ZERO
+	rope.points[numPoints - 1] = claw.position
+	for i in range(1, numPoints-1):
+		var t = float(i) / (numPoints-1)
+		var disp = length * (float(i) / (numPoints-1))
+		
+		#rope.points[i] = claw.position * float(i) / (numPoints-1) # without sag
+		rope.points[i] = _quadratic_bezier(Vector2.ZERO, midpoint, claw.position, t) # with sag
+		rope.points[i] += ortho_unit_vector * v_stretch * sin((disp + phase_shift)/x_stretch)
+		
+		#rope.points[i].x = disp
+		#rope.points[i].y = sin(disp/x_stretch)*v_stretch
 	#rope.points[0] = $anchor.position
 	#rope.points[1] = $middle.position
 	#rope.points[2] = $claw.position
