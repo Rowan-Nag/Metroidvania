@@ -76,6 +76,10 @@ func process_physics(delta: float) -> State:
 	
 	if (is_finished):
 		return player.ground_state
+	
+	if (is_instance_valid(grapple_hook)):
+		if (grapple_hook.is_broken):
+			return player.ground_state
 	return null
 
 func pull_hook(multiplier):

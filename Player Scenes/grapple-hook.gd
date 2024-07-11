@@ -4,11 +4,14 @@ var target : Node2D
 
 var rope_velocity = 1000
 
-@onready var claw : StaticBody2D = $claw
+@onready var claw : Sprite2D = $claw
 
 @onready var rope : Line2D = $Line2D
 
+@onready var wallCheckRay : RayCast2D = $wallCheckRay
+
 var is_attached_yet : bool = false
+var is_broken : bool = false
 @onready var anims : AnimationPlayer = $AnimationPlayer
 
 @export_category("Rope drawing variables")
@@ -32,10 +35,13 @@ func _process(delta):
 			anims.play('grapple_attached')
 			is_attached_yet = true
 	if is_attached_yet:
-		claw.poようsition = to_local(target.global_position)
+		claw.position = to_local(target.global_position)
 
 
 func _physics_process(delta):
+	wallCheckRay.target_position = to_local(target.global_position)
+	if (wallCheckRay.is_colliding()):
+		is_broken = true
 	draw_rope()
 
 func draw_rope():

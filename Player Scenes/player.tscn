@@ -1389,7 +1389,7 @@ z_index = 2
 position = Vector2(-2.38419e-07, 0)
 scale = Vector2(0.613918, 0.547057)
 collision_layer = 2
-collision_mask = 17
+collision_mask = 81
 script = ExtResource("1_m1lax")
 drag = 800
 acceleration = 1500
@@ -1423,24 +1423,28 @@ modulate = Color(1, 1, 1, 0.4)
 position = Vector2(25, 7.764)
 enabled = false
 target_position = Vector2(0, 10.9678)
+collision_mask = 65
 
 [node name="RayOffsetDown2" type="RayCast2D" parent="AnimatedSprite2D"]
 modulate = Color(1, 1, 1, 0.4)
 position = Vector2(20, 7.764)
 enabled = false
 target_position = Vector2(0, 10.9678)
+collision_mask = 65
 
 [node name="RayOffsetDown3" type="RayCast2D" parent="AnimatedSprite2D"]
 modulate = Color(1, 1, 1, 0.4)
 position = Vector2(15, 7.764)
 enabled = false
 target_position = Vector2(0, 10.9678)
+collision_mask = 65
 
 [node name="RayOffsetDown4" type="RayCast2D" parent="AnimatedSprite2D"]
 modulate = Color(1, 1, 1, 0.4)
 position = Vector2(10, 7.764)
 enabled = false
 target_position = Vector2(0, 10.9678)
+collision_mask = 65
 
 [node name="GrapplePointDetector" type="Area2D" parent="AnimatedSprite2D"]
 position = Vector2(-1.34006, 2.27963)
@@ -1485,10 +1489,10 @@ target_position = Vector2(-16.2888, 0)
 [node name="RayDown" type="RayCast2D" parent="."]
 position = Vector2(-1.629, 13.696)
 target_position = Vector2(2.08165e-12, 10)
+collision_mask = 65
 collide_with_areas = true
 
 [node name="GrapplePointRay" type="RayCast2D" parent="."]
-enabled = false
 
 [node name="jumpBufferTimer" type="Timer" parent="."]
 one_shot = true
