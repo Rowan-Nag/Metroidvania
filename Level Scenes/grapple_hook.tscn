@@ -126,7 +126,7 @@ width = 1.0
 default_color = Color(0.443137, 0.32549, 0.192157, 1)
 
 [node name="claw" type="Sprite2D" parent="."]
-position = Vector2(0, 20)
+position = Vector2(0, -1)
 texture = ExtResource("2_byr5j")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

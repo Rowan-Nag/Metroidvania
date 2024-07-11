@@ -39,8 +39,10 @@ func _process(delta):
 
 
 func _physics_process(delta):
-	wallCheckRay.target_position = to_local(target.global_position)
+	wallCheckRay.target_position = claw.position
 	if (wallCheckRay.is_colliding()):
+		print(wallCheckRay.get_collider())
+		print(wallCheckRay.target_position)
 		is_broken = true
 	draw_rope()
 

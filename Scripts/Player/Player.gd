@@ -22,7 +22,7 @@ var state_machine = $state_machine
 @onready var rayLedgeCheck3 : RayCast2D = $AnimatedSprite2D/RayOffsetDown3
 @onready var rayLedgeCheck4 : RayCast2D = $AnimatedSprite2D/RayOffsetDown4
 
-@onready var grapplePointDetector : Area2D = $AnimatedSprite2D/GrapplePointDetector
+@onready var grapplePointDetector : Area2D = $GrapplePointDetector
 @onready var grapplePointRay : RayCast2D = $GrapplePointRay
 
 @export_category("Combat")

@@ -27,9 +27,14 @@ func enter() -> void:
 	is_finished = false
 	is_pulling = false
 	pullForceMultiplier = 0
-
 	player = parent
+	
+	
+	player.grapplePointDetector.position = player.to_local(player.get_global_mouse_position())
+	await get_tree().physics_frame
+	await get_tree().physics_frame
 	var points := find_best_grapple_points()
+	print(points.size())
 	if(points.size() > 0):
 
 		attached_point = points[0]
@@ -57,7 +62,7 @@ func process_physics(delta: float) -> State:
 	
 	inputDir = Input.get_axis("Left", "Right")
 	
-	if is_pulling:
+	if is_pulling and node2d_visible_to_player(attached_point):
 		var distance = player.global_position.distance_to(attached_point.global_position)
 		var distanceScalar = min(1, distance/100 + 0.5)
 		pull_hook(pullForceMultiplier * distanceScalar)
@@ -123,7 +128,7 @@ func find_best_grapple_points() -> Array[Area2D]:
 	var grapplepoints : Array[Area2D] = player.grapplePointDetector.get_overlapping_areas()
 	if (grapplepoints.size() > 0):
 		grapplepoints.sort_custom(node2d_closer_to_player)
-		grapplepoints.filter(node2d_visible_to_player)
+		#grapplepoints.filter(node2d_visible_to_player)
 	
 	return grapplepoints
 

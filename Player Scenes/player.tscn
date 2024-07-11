@@ -646,9 +646,6 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_q7mxs"]
-points = PackedVector2Array(0, 0, 200, 200, 200, -200)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_m0kjc"]
 atlas = ExtResource("2_a1ld4")
 region = Rect2(0, 0, 32, 32)
@@ -1013,6 +1010,9 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wf78i"]
 size = Vector2(14.66, 27.38)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ycxaf"]
+radius = 60.3794
 
 [sub_resource type="Animation" id="Animation_j4g8i"]
 resource_name = "attack1"
@@ -1446,16 +1446,6 @@ enabled = false
 target_position = Vector2(0, 10.9678)
 collision_mask = 65
 
-[node name="GrapplePointDetector" type="Area2D" parent="AnimatedSprite2D"]
-position = Vector2(-1.34006, 2.27963)
-collision_layer = 32
-collision_mask = 32
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/GrapplePointDetector"]
-position = Vector2(3.88356e-07, 0)
-shape = SubResource("ConvexPolygonShape2D_q7mxs")
-debug_color = Color(0, 0.6, 0.701961, 0)
-
 [node name="AnimatedSprite2D_frog" type="AnimatedSprite2D" parent="."]
 visible = false
 position = Vector2(1.62888, -5.72205e-06)
@@ -1496,6 +1486,16 @@ collide_with_areas = true
 
 [node name="jumpBufferTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="GrapplePointDetector" type="Area2D" parent="."]
+position = Vector2(6.82121e-13, 0)
+collision_layer = 32
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrapplePointDetector"]
+position = Vector2(3.88356e-07, 0)
+shape = SubResource("CircleShape2D_ycxaf")
+debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("7_0xfl2")
@@ -1587,6 +1587,7 @@ libraries = {
 [node name="grapple" type="Node" parent="state_machine"]
 script = ExtResource("27_32n6q")
 pullForce = 300.0
+pullForceMultiplier = 0.4
 
 [node name="grappleAnimationPlayer" type="AnimationPlayer" parent="state_machine/grapple"]
 libraries = {
