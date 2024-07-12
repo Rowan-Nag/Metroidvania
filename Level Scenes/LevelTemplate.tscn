@@ -11,7 +11,7 @@ agent_radius = 5.0
 
 [node name="LevelTemplate" type="Node2D"]
 
-[node name="Level" type="Node" parent="."]
+[node name="Level" type="Node2D" parent="."]
 
 [node name="CoastDoor1" parent="Level" instance=ExtResource("1_wfv1f")]
 position = Vector2(-102, -12)
@@ -32,8 +32,8 @@ format = 2
 layer_0/tile_data = PackedInt32Array(65529, 4, 5, 65530, 65540, 5, 65531, 131076, 5, 65532, 4, 5, 65533, 65540, 5, 65534, 131076, 5)
 layer_1/tile_data = PackedInt32Array()
 
-[node name="Enemies" type="Node" parent="."]
+[node name="Enemies" type="Node2D" parent="."]
 
-[node name="Camera-Nodes" type="Node" parent="."]
+[node name="Camera-Nodes" type="Node2D" parent="."]
 
 [node name="CameraBounds" parent="Camera-Nodes" instance=ExtResource("2_n8vea")]

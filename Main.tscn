@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://osrkuvyh5mee" path="res://Level Scenes/Helper Scenes/camera_shake.tscn" id="4_xn4hc"]
 [ext_resource type="PackedScene" uid="uid://cdhiu2v742a84" path="res://Level Scenes/Helper Scenes/node_2d_shake.tscn" id="6_m1oj0"]
 [ext_resource type="Shader" path="res://Lines.gdshader" id="8_8uuey"]
-[ext_resource type="PackedScene" uid="uid://bu32ynk2dpvcj" path="res://Level Scenes/coast.tscn" id="9_ehxnh"]
+[ext_resource type="PackedScene" uid="uid://yun5ndaf3lmb" path="res://Level Scenes/GrappleTestLevel.tscn" id="12_v1ide"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bqtkt"]
 
@@ -304,11 +304,10 @@ speed_scale = 1.5
 
 [node name="node2d_shake" parent="GUI/HUD/HealthBarContainer/healthBar_anchor/healthBar" instance=ExtResource("6_m1oj0")]
 
-[node name="Game" type="CanvasLayer" parent="." node_paths=PackedStringArray("current_scene")]
+[node name="Game" type="CanvasLayer" parent="."]
 layer = 0
 follow_viewport_enabled = true
 script = ExtResource("2_oe6uh")
-current_scene = NodePath("Coast")
 
 [node name="Scanlines" type="ColorRect" parent="Game"]
 z_index = 5
@@ -337,8 +336,8 @@ script = ExtResource("3_f6oo0")
 
 [node name="camera_shake" parent="Game/Player/Camera2D" instance=ExtResource("4_xn4hc")]
 
-[node name="Coast" parent="Game" instance=ExtResource("9_ehxnh")]
-z_index = -1
+[node name="LevelTemplate" parent="Game" instance=ExtResource("12_v1ide")]
+position = Vector2(392, -32)
 
 [node name="LoadingScreen" type="ColorRect" parent="Game"]
 modulate = Color(1, 1, 1, 0)

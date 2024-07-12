@@ -1,4 +1,5 @@
 extends Node2D
+class_name grappleHook
 
 var target : Node2D
 
@@ -25,6 +26,9 @@ func _ready():
 	pass
 	
 func _process(delta):
+	pass
+
+func _physics_process(delta):
 	
 	if (not is_attached_yet and is_instance_valid(target)):
 		#rope_velocity = lerpf(rope_velocity, 300, rope_drag*delta)
@@ -36,13 +40,9 @@ func _process(delta):
 			is_attached_yet = true
 	if is_attached_yet:
 		claw.position = to_local(target.global_position)
-
-
-func _physics_process(delta):
+	
 	wallCheckRay.target_position = claw.position
 	if (wallCheckRay.is_colliding()):
-		print(wallCheckRay.get_collider())
-		print(wallCheckRay.target_position)
 		is_broken = true
 	draw_rope()
 

@@ -40,7 +40,7 @@ func load_new_scene(new_scene_path : String, door_name : String):
 
 
 func reset_player_to_checkpoint():
-	Global.player.position = last_safe_position
+	Global.player.global_position = last_safe_position
 	Global.player.velocity = Vector2.ZERO
 	print("RESET PLAYER POSITION")
 

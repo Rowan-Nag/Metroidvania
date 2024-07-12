@@ -18,17 +18,17 @@ func enter() -> void:
 	helirotor = parent
 	nav = helirotor.get_node('NavigationAgent2D')
 	play_animation('flying')
-	initial_position = helirotor.position
+	initial_position = helirotor.global_position
 
 func nav_update():
-	if (parent.position.x < Global.player.position.x):
-		nav.target_position = Global.player.position + Vector2(-ideal_range, -ideal_range)
+	if (parent.global_position.x < Global.player.global_position.x):
+		nav.target_position = Global.player.global_position + Vector2(-ideal_range, -ideal_range)
 		if (!nav.is_target_reachable()):
-			nav.target_position = Global.player.position + Vector2(ideal_range, -ideal_range)
+			nav.target_position = Global.player.global_position + Vector2(ideal_range, -ideal_range)
 	else:
-		nav.target_position = Global.player.position + Vector2(ideal_range, -ideal_range)
+		nav.target_position = Global.player.global_position + Vector2(ideal_range, -ideal_range)
 		if (!nav.is_target_reachable()):
-			nav.target_position = Global.player.position + Vector2(-ideal_range, -ideal_range)
+			nav.target_position = Global.player.global_position + Vector2(-ideal_range, -ideal_range)
 			
 func _on_navigation_update_timer_timeout():
 	if not stationary:
@@ -42,7 +42,7 @@ func process_physics(delta: float) -> State:
 	#nav.target_position = helirotor.get_global_mouse_position()
 
 	if helirotor.getPlayerDistance() < player_detection_range and not nav.is_navigation_finished():
-		var new_velocity : Vector2 = parent.position.direction_to(nav.get_next_path_position()) * speed 
+		var new_velocity : Vector2 = parent.global_position.direction_to(nav.get_next_path_position()) * speed 
 		parent.velocity = lerp(parent.velocity, new_velocity, accel * delta)
 		if (new_velocity.dot(parent.velocity)):
 				parent.velocity = lerp(parent.velocity, new_velocity, accel * delta)
@@ -52,7 +52,7 @@ func process_physics(delta: float) -> State:
 		#print(parent.velocity)
 	if (nav.is_navigation_finished()):
 		if (stationary):
-			parent.velocity = lerp(parent.velocity, initial_position - helirotor.position, accel * delta * 2)
+			parent.velocity = lerp(parent.velocity, initial_position - helirotor.global_position, accel * delta * 2)
 		else:
 			parent.velocity = lerp(parent.velocity, Vector2.ZERO, accel * delta / 2)
 		
@@ -61,9 +61,9 @@ func process_physics(delta: float) -> State:
 
 	if (did_collide):
 		if (helirotor.is_on_wall()):
-			helirotor.velocity.y *= -1
-		if (helirotor.is_on_ceiling()):
-			helirotor.velocity.x *= -1
+			helirotor.velocity.y *= -1.1
+		if (helirotor.is_on_ceiling() or helirotor.is_on_floor()):
+			helirotor.velocity.x *= -1.1
 		
 	return null
 

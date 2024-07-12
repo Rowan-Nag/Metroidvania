@@ -1354,6 +1354,7 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_7304t"]
 resource_name = "springy_grapple_pull"
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1373,7 +1374,7 @@ tracks/1/path = NodePath(".:is_finished")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.2),
+"times": PackedFloat32Array(0.1),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -1586,7 +1587,7 @@ libraries = {
 
 [node name="grapple" type="Node" parent="state_machine"]
 script = ExtResource("27_32n6q")
-pullForce = 300.0
+minimumGrappleLength = 50.0
 pullForceMultiplier = 0.4
 
 [node name="grappleAnimationPlayer" type="AnimationPlayer" parent="state_machine/grapple"]
