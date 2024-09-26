@@ -59,6 +59,9 @@ func process_physics(delta: float) -> State:
 		
 	parent.handle_knockback(delta)
 	parent.move_and_slide_timewise()
+	
+	
+	
 	return null
 
 func play_animation(animation) -> void:

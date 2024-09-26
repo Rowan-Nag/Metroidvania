@@ -7,7 +7,7 @@ signal has_been_killed(killingBlowDamage)
 #or make enemy arenas with kill conditions, or make enemies that react when others are killed, etc
 
 
-@export var maxHealth : float = 100 # Enemy max health
+@export var maxHealth : float = 4 # Enemy max health
 var health : float = maxHealth # Enemy current health
 @export_category("Weight / Knockback")
 @export var weight = 10
@@ -62,6 +62,7 @@ func take_damage(damage : float, knockbackDir: float = 0):
 		has_been_killed.emit(damage)
 		
 		
+
 func knockback(knockbackDir : float):
 	simpleKnockback = knockbackDir * knockbackMultiplier / weight
 #	print("knockback:", simpleKnockback)

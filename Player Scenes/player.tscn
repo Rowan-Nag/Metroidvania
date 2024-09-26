@@ -1587,7 +1587,8 @@ libraries = {
 
 [node name="grapple" type="Node" parent="state_machine"]
 script = ExtResource("27_32n6q")
-minimumGrappleLength = 50.0
+maximumGrappleLength = 150.0
+maxSwingSpeed = 200.0
 pullForceMultiplier = 0.4
 
 [node name="grappleAnimationPlayer" type="AnimationPlayer" parent="state_machine/grapple"]

@@ -31,6 +31,7 @@ var swing_distance : float = 0
 func enter() -> void:
 	swing_distance = 0
 	is_finished = false
+	is_swinging = false
 	is_pulling = false
 	pullForceMultiplier = 0
 	player = parent
@@ -51,10 +52,11 @@ func enter() -> void:
 func exit() -> void:
 	if (is_instance_valid(grapple_hook)):
 		grapple_hook.queue_free()
+	else:
+		print('error removing grapple hook - instance invalid')
 
 func process_input(event: InputEvent) -> State:
 	if (Input.is_action_just_pressed("Jump")):
-		print('jump')
 		if (is_swinging):
 			return player.jump_state
 		is_pulling = true
@@ -102,7 +104,7 @@ func process_physics(delta: float) -> State:
 	if (is_instance_valid(grapple_hook)):
 		if (grapple_hook.is_broken):
 			return player.ground_state
-	if (is_pulling):
+	if (is_pulling or is_swinging):
 		var distance = player.global_position.distance_to(attached_point.global_position)
 		if (distance < minimumGrappleLength):
 			return player.ground_state
@@ -143,11 +145,23 @@ func pull_hook(multiplier):
 		player.velocity = (attached_point.position - player.position + Vector2(0, -2)).normalized() * pullForce *  multiplier
 
 func swing(delta):
-	
+	var pull_velocity = Vector2(0, 0)
 	var assist = inputDir * sign(player.velocity.x)
 	# 1 if player is holding correct direction, -1 if player is holding against.
 	
 	var ropeVec : Vector2 = player.global_position - attached_point.global_position
+	#pull_velocity = ropeVec.normalized() * -700 * delta
+	#if (pull_velocity.y > 0):
+		#pull_velocity.y *= 0.65
+	#if (pull_velocity.y < 0):
+		#pull_velocity.y *= 1.6
+	#if sign(inputDir) == sign(ropeVec.x):
+		#pull_velocity.x *= 1.2
+	#
+	#player.velocity += pull_velocity
+	#
+	#if player.velocity.length() > maxSwingSpeed:
+		#player.velocity = player.velocity.normalized() * maxSwingSpeed
 	if (swing_distance == 0):
 		swing_distance = ropeVec.length()
 	if (player.velocity.length() > 10):
@@ -164,7 +178,7 @@ func swing(delta):
 		player.velocity = new_vel_direction * new_speed
 		player.position += ropeVec.normalized() * (swing_distance - ropeVec.length())
 	if attached_point.is_parent_movable:
-		attached_point.parent.velocity += ropeVec.normalized() * 3 * player.weight / attached_point.parent.weight
+		attached_point.parent.velocity += ropeVec.normalized() * 4 * player.weight / attached_point.parent.weight
 
 
 func create_grapple_hook(target : Node2D):

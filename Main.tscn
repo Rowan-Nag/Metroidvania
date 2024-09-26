@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bc30sl33ar0er"]
+[gd_scene load_steps=35 format=3 uid="uid://bc30sl33ar0er"]
 
 [ext_resource type="Script" path="res://Scripts/DebugUI.gd" id="1_dv0al"]
 [ext_resource type="PackedScene" uid="uid://cta7vnl86huxp" path="res://Player Scenes/player.tscn" id="2_lx8fk"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://osrkuvyh5mee" path="res://Level Scenes/Helper Scenes/camera_shake.tscn" id="4_xn4hc"]
 [ext_resource type="PackedScene" uid="uid://cdhiu2v742a84" path="res://Level Scenes/Helper Scenes/node_2d_shake.tscn" id="6_m1oj0"]
 [ext_resource type="Shader" path="res://Lines.gdshader" id="8_8uuey"]
+[ext_resource type="PackedScene" uid="uid://c7bluxuv6c2rp" path="res://Enemies/trash_collector.tscn" id="9_qmv1a"]
 [ext_resource type="PackedScene" uid="uid://yun5ndaf3lmb" path="res://Level Scenes/GrappleTestLevel.tscn" id="12_v1ide"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bqtkt"]
@@ -309,6 +310,15 @@ layer = 0
 follow_viewport_enabled = true
 script = ExtResource("2_oe6uh")
 
+[node name="GrappleTestLevel" parent="Game" instance=ExtResource("12_v1ide")]
+position = Vector2(415, -18)
+
+[node name="Trash_Collector" parent="Game/GrappleTestLevel" instance=ExtResource("9_qmv1a")]
+position = Vector2(-75, -16)
+
+[node name="Trash_Collector2" parent="Game/GrappleTestLevel" instance=ExtResource("9_qmv1a")]
+position = Vector2(161, -16)
+
 [node name="Scanlines" type="ColorRect" parent="Game"]
 z_index = 5
 material = SubResource("ShaderMaterial_b58oq")
@@ -335,9 +345,6 @@ position_smoothing_speed = 6.0
 script = ExtResource("3_f6oo0")
 
 [node name="camera_shake" parent="Game/Player/Camera2D" instance=ExtResource("4_xn4hc")]
-
-[node name="LevelTemplate" parent="Game" instance=ExtResource("12_v1ide")]
-position = Vector2(392, -32)
 
 [node name="LoadingScreen" type="ColorRect" parent="Game"]
 modulate = Color(1, 1, 1, 0)

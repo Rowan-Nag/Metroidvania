@@ -11,7 +11,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(378, -98, 426, -3, -216
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 5.0
 
-[node name="LevelTemplate" type="Node2D"]
+[node name="GrappleTestLevel" type="Node2D"]
 
 [node name="Level" type="Node2D" parent="."]
 

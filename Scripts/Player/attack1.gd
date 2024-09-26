@@ -27,7 +27,7 @@ func _on_area_2d_body_entered(body):
 	var hitEnemy = false
 	if(body is Enemy):
 		var knockBackDir= sign(body.global_position.x-global_position.x) * knockbackMagnitude * Global.player.weight
-		body.take_damage(10, 0)
+		body.take_damage(1, 0)
 		body.change_time_scale(0, enemyFreezeTime * Global.player.weight / body.weight, knockBackDir)
 		Global.player.knockback(-knockBackDir * selfKnockbackMultiplier)
 		hitEnemy = true
