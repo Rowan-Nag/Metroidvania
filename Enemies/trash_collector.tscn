@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c7bluxuv6c2rp"]
+[gd_scene load_steps=27 format=3 uid="uid://c7bluxuv6c2rp"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies & States/Enemy.gd" id="1_uhhc5"]
 [ext_resource type="PackedScene" uid="uid://b7gxparcwu871" path="res://Enemies/enemy_contact_damage.tscn" id="2_558rh"]
