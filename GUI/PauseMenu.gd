@@ -15,7 +15,6 @@ func pause():
 	get_tree().paused = true;
 
 func resume():
-	print("resuming")
 	get_tree().paused = false;
 	hide()
 
