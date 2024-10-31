@@ -6,8 +6,13 @@ var debug : DebugUI
 var Game : GameManager
 var hudController : HudController
 
+var attackProfiles : Dictionary
+
 var camera_shake = preload("res://Level Scenes/Helper Scenes/camera_shake.tscn")
 var alert_text = preload("res://Level Scenes/Helper Scenes/temporary_text_alert.tscn")
+
+func _ready():
+	load_attack_profiles()
 
 func set_debug_text(text):
 	if(debug):
@@ -39,3 +44,7 @@ func text_alert(text : String = "No alert text set!", color : Color = Color.WHIT
 	alert.shouldFollowParent = true
 	
 	player.add_child(alert)
+
+func load_attack_profiles():
+	var json_string = FileAccess.get_file_as_string('res://Data/attack_profiles.json')
+	attackProfiles = JSON.parse_string(json_string)

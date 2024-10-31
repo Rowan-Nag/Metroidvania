@@ -8,6 +8,8 @@ extends Container
 @onready var healthPip3 : AnimatedSprite2D = $HealthBarContainer/healthBar_anchor/healthBar/hp3
 @onready var healthPip4 : AnimatedSprite2D = $HealthBarContainer/healthBar_anchor/healthBar/hp4
 
+@onready var healthBarItemSelection : Sprite2D = $HealthBarContainer/healthBar_anchor/healthBar/Selection
+
 var node2d_shake = preload("res://Level Scenes/Helper Scenes/node_2d_shake.tscn")
 
 func _ready():
@@ -16,6 +18,18 @@ func _ready():
 	$HealthBarContainer.visible = true
 	healthBar.visible = true
 	healthBar.play('normal')
+
+func updateSelection():
+	var selectedState = Global.player.get_selected_state()
+	var icon : Texture2D
+	if("icon" in selectedState):
+		icon = selectedState.icon
+	else: 
+
+		push_warning("no icon for selected state found.")
+		return
+	
+	healthBarItemSelection.texture = icon
 
 func updateHealthBar():
 	var health = Global.player.health

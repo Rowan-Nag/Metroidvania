@@ -8,3 +8,5 @@ func _on_area_2d_body_entered(body):
 		Global.Game.reset_player_to_checkpoint()
 		Global.activeCamera.reset_smoothing() # forces the camera back to the player. Otherwise, it can be seen 'swiping' back.
 		Global.Game.fade_animation_player.play("fade_in")
+	if (body is Enemy):
+		body.take_damage(100)

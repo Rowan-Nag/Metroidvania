@@ -49,7 +49,17 @@ var health : int = maxHealth
 @onready var backdodge_state : State = $state_machine/backdodge
 @onready var grapple_state : State = $state_machine/grapple
 
+@onready var quick_attack_state : State = $state_machine/quick_attack
+
 @export var jumpBufferTime : float = 0.2
+
+@onready var actionSelections : Array[State] = [
+	attack_state,
+	shoot_state,
+	grapple_state,
+	quick_attack_state
+]
+var currentSelection : int = 0
 
 var animationNames
 
@@ -84,9 +94,17 @@ func _ready() -> void:
 	# that way they can move and react accordingly
 	state_machine.init(self)
 	Global.player = self
+	Global.hudController.updateSelection()
 	animationNames = animations.sprite_frames.get_animation_names()
 
 func _unhandled_input(event: InputEvent) -> void:
+	if(Input.is_action_just_pressed("Rotate Selection")):
+		currentSelection += 1
+		if(currentSelection >= actionSelections.size()):
+			currentSelection = 0
+		Global.hudController.updateSelection()
+		Global.text_alert("debug: Switched arm", Color.YELLOW, 0.5)
+		
 	if(Input.is_action_just_pressed("Jump")):
 		jumpBuffer.start(jumpBufferTime)
 	state_machine.process_input(event)
@@ -132,3 +150,20 @@ func snap_to_ground(distance):
 			print(offset)
 			position.y += offset
 			
+func get_ledge_snap_distance() -> float:
+	rayLedgeCheck1.force_raycast_update()
+	if (rayLedgeCheck1.is_colliding()):
+		return 0
+	rayLedgeCheck2.force_raycast_update()
+	if (rayLedgeCheck2.is_colliding()):
+		return 5
+	rayLedgeCheck3.force_raycast_update()
+	if (rayLedgeCheck3.is_colliding()):
+		return 15
+	rayLedgeCheck4.force_raycast_update()
+	if (rayLedgeCheck4.is_colliding()):
+		return 20
+	return 25
+	
+func get_selected_state():
+	return actionSelections[currentSelection]

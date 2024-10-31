@@ -7,14 +7,10 @@ extends AnimatedSprite2D
 @export var selfKnockbackMultiplier : float = 1.0
 @export var enemyFreezeTime : float = 0.1
 
+signal on_enemy_hit
+
 func _ready():
 	awaitCompletion() # Awaits to remove itself (putting it in a function like this starts it as a coroutine)
-	
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 func awaitCompletion():
 	# Waits until it's finished
@@ -26,20 +22,18 @@ func awaitCompletion():
 func _on_area_2d_body_entered(body):
 	var hitEnemy = false
 	if(body is Enemy):
-		var knockBackDir= sign(body.global_position.x-global_position.x) * knockbackMagnitude * Global.player.weight
-		body.take_damage(1, 0)
-		body.change_time_scale(0, enemyFreezeTime * Global.player.weight / body.weight, knockBackDir)
-		Global.player.knockback(-knockBackDir * selfKnockbackMultiplier)
+		body.take_damage(1, "player_primary_attack_1")
 		hitEnemy = true
+		on_enemy_hit.emit()
 #	attackRay.set_target_position(to_local(body.global_position))
-	attackRay.force_raycast_update()
-	if(attackRay.is_colliding()):
-
-		var hit = hitParticles.instantiate()
-		add_child(hit)
-		hit.position = to_local(attackRay.get_collision_point())
-#		print(to_local(hit.position))
-		hit.direction = -attackRay.target_position
-		if(hitEnemy):
-			hit.color = Color.RED
-			hit.scale_amount_min = 5
+	#attackRay.force_raycast_update()
+	#if(attackRay.is_colliding()):
+#
+		#var hit = hitParticles.instantiate()
+		#add_child(hit)
+		#hit.position = to_local(attackRay.get_collision_point())
+##		print(to_local(hit.position))
+		#hit.direction = -attackRay.target_position
+		#if(hitEnemy):
+			#hit.color = Color.RED
+			#hit.scale_amount_min = 5

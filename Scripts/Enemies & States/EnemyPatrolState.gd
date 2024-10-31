@@ -15,6 +15,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var waiting = false
 
 func enter() -> void:
+	parent.took_damage.connect(pause_temporarily)
 	parent.play_animation("walk")
 	wallDetector = parent.find_child("wallDetector")
 	floorDetector = parent.find_child("floorDetector")
@@ -31,6 +32,20 @@ func enter() -> void:
 func exit() -> void:
 	pass
 
+func pause_temporarily(type, dir):
+	#print('waiting')
+	var waitAnim : AnimationPlayer = get_node("AnimationPlayer")
+	
+	waitAnim.pause()
+
+	waiting = true
+	await get_tree().create_timer(1).timeout
+	waiting = false
+
+	waitAnim.play()
+	
+	
+	
 #func process_input(event: InputEvent) -> State:
 	#return null
 #

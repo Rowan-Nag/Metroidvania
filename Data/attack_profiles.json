@@ -1,0 +1,16 @@
+{
+	"default": {
+		"type": "melee",
+		"knockback_tier": 1
+	},
+	"player_primary_attack_1": {
+		"type": "melee",
+		"knockback_tier" : 1,
+		"damage": 1
+	},
+	"player_primary_attack_final": {
+		"type": "melee",
+		"knockback_tier": 2,
+		"damage": 2
+	}
+}

@@ -4,6 +4,8 @@ var player : Player
 
 @onready var anims : AnimationPlayer = $grappleAnimationPlayer
 
+@export var icon : Texture2D
+
 @onready var grapple_hook_scn = preload('res://Level Scenes/grapple_hook.tscn')
 var grapple_hook : grappleHook
 

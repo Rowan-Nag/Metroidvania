@@ -24,25 +24,44 @@ var ongoing_time_scale_effects : Array = [1.0]
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision : CollisionShape2D = $CollisionShape2D
 
-@onready var state_machine = $state_machine
+var controller
 
 var animationNames
 
+signal took_damage(type)
+signal died(enemy)
+signal dealt_damage_to_player(enemy, damage) # SOURCE SHOULD BE THIS ENEMY
+signal spawned(enemy)
+
 func _ready():
 	animationNames = animated_sprite.sprite_frames.get_animation_names()
-	state_machine.init(self)
-
+	spawned.emit(self)
+	if has_node("state_machine"):
+		controller = $state_machine
+		controller.init(self)
+	else:
+		pass
+		# if there is no state machine, then the enemy has some other node
+		# (see: trashcollecter_controller) that controls it. 
+		
 func handle_knockback(delta):
+	# DEPRECATED
 	simpleKnockback = move_toward(simpleKnockback, 0, abs(simpleKnockback)*8*delta*time_scale) 
 	#technically this is an exponentially decaying velocity (should be quadratic) but this is much easier than fiddling with numbers (500*delta is alternative)
 	velocity.x += simpleKnockback
 	velocity.y += simpleKnockback / 10
 
 func _physics_process(delta):
-	state_machine.process_physics(delta)
+	if controller:
+		controller.process_physics(delta)
+	else:
+		push_warning("attempted to use enemy controller before initialization")
 
 func _process(delta: float) -> void:
-	state_machine.process_frame(delta)
+	if controller:
+		controller.process_frame(delta)
+	else:
+		push_warning("attempted to use enemy controller before initialization")
 	
 func deactivate_collision(): #Deactivates contact damage (like if the enemy is playing it's deaht animation before dissapearing)
 	if(has_node("EnemyContactDamage")):
@@ -52,11 +71,11 @@ func activate_collision(): #Activates contact damage
 	if(has_node("EnemyContactDamage")):
 		$EnemyContactDamage.isActive = true
 
-func take_damage(damage : float, knockbackDir: float = 0):
-#	print(health)
-
+func take_damage(damage : float, knockbackType : String = 'default'):
+	
+	took_damage.emit(knockbackType)
 	health -= damage
-	knockback(knockbackDir)
+	#knockback(knockbackDir)
 	if(health <= 0):
 		die()
 		has_been_killed.emit(damage)
@@ -64,6 +83,7 @@ func take_damage(damage : float, knockbackDir: float = 0):
 		
 
 func knockback(knockbackDir : float):
+	# DEPRECATED: Knockback should be handled in knockbackhandler
 	simpleKnockback = knockbackDir * knockbackMultiplier / weight
 #	print("knockback:", simpleKnockback)
 func die():
@@ -73,7 +93,7 @@ func die():
 	
 	if("death" in animationNames): #If it has a death animation, play it, wait for it to complete, then remove itself
 		animated_sprite.play("death")
-
+		died.emit(self)
 		await animated_sprite.animation_finished
 		queue_free()
 		
@@ -118,3 +138,4 @@ func change_time_scale(new_time_scale : float, duration : float, delayed_knockba
 	ongoing_time_scale_effects.erase(new_time_scale)
 	time_scale = ongoing_time_scale_effects.min() # if all time scale effects are gone, there will still be a 1.0 in the array.
 	animated_sprite.speed_scale = time_scale
+

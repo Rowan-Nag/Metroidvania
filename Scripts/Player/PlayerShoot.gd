@@ -1,6 +1,8 @@
 extends State
 
-@export var ground_state : State
+@export var icon : Texture2D
+
+var ground_state : State
 @export var gravityMultiplier: float = 1
 @export var floorDragMultiplier: float = 1
 @export var airDragMultiplier: float = 1

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://o2uu27dqbl6i"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies & States/EnemyKnockbackHandler.gd" id="1_sure3"]
+
+[node name="EnemyKnockbackHandler" type="Node"]
+script = ExtResource("1_sure3")

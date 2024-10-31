@@ -1,12 +1,16 @@
 extends State
 
-@export var fall_state : State
-@export var ground_state : State
+var fall_state : State
+var ground_state : State
 
+@export var icon : Texture2D
+
+@export_range(0, 4) var boost_multiplier : float = 1
+@export var cooldown = 0.5
 @export var maxAttacks : int = 3
 @export_range(0.1, 4) var attack_rate : float = 1
 ## @export var frames_before_attack : int = 1
-@export var frames_after_attack : int = 1
+#@export var frames_after_attack : int = 1
 
 @export var gravityMultiplier: float = 1
 @export var floorDragMultiplier: float = 1
@@ -52,6 +56,9 @@ func enter() -> void:
 	#attack()
 	#await get_tree().create_timer((frames_after_attack) / (60.0)).timeout  
 	#attackFinished = true
+	
+	await get_tree().physics_frame
+	attackBuffered = false
 
 func exit() -> void:
 	parent.animations.speed_scale = 1 # resetting it to default
@@ -60,14 +67,16 @@ func exit() -> void:
 	canAttackAgain = false;
 	attackBuffered = false;
 
+
 func process_input(event: InputEvent) -> State:
 	# No inputs while attacking
 	if (Input.is_action_just_pressed("Attack")):
 		attackBuffered = true
-	
-	
-	
 	return null
+	
+
+	
+	
 
 func process_physics(delta: float) -> State:
 	#Physics
@@ -104,7 +113,7 @@ func process_physics(delta: float) -> State:
 	# State switches
 	if (attackBuffered and canAttackAgain):
 		#print("ANOTHER ATTACK")
-		parent.attackCooldown.start()
+		parent.attackCooldown.start(cooldown)
 		attackBuffered = false
 		if(attackNum == 1):
 			attackPropertyAnimation.play('attack2')
@@ -131,34 +140,22 @@ func push_player_forward(amount : int = 50):
 	#Magnitude represents velocity in that direction.
 	
 	# Assume that if the player is holding the opposite direction, they do not want to be pushed forward.
-	if (sign(inputDir) != -sign(parent.animations.scale.x)):
+	#print(inputDir)
+	#print(parent.animations.scale.x)
+	if (sign(inputDir) != -sign(parent.animations.scale.x) or inputDir == 0):
 		#print("pushing player")
 		# arrest player momentum if going in opposite direction
 		if (sign(parent.animations.scale.x) * parent.velocity.x < -25):
 			#print("Arrest velocity")
 			parent.velocity.x *= 0.5
 		#push the player forward (as long as they're not movinng very quickly already)
-		if (sign(parent.animations.scale.x) * parent.velocity.x < 30):
+		if (sign(parent.animations.scale.x) * parent.velocity.x < 200):
 			#print("Push forward")
 			#print(parent.animations.scale.x * amount)
-			parent.velocity.x += parent.animations.scale.x * amount
+			parent.velocity.x += parent.animations.scale.x * amount * boost_multiplier
 	# if the player is moving forward already, no need to give them extra vel.
 	#parent.velocity.x += parent.animations.scale.x * amount
-	
-func get_ledge_snap_distance() -> float:
-	parent.rayLedgeCheck1.force_raycast_update()
-	if (parent.rayLedgeCheck1.is_colliding()):
-		return 0
-	parent.rayLedgeCheck2.force_raycast_update()
-	if (parent.rayLedgeCheck2.is_colliding()):
-		return 5
-	parent.rayLedgeCheck3.force_raycast_update()
-	if (parent.rayLedgeCheck3.is_colliding()):
-		return 15
-	parent.rayLedgeCheck4.force_raycast_update()
-	if (parent.rayLedgeCheck4.is_colliding()):
-		return 20
-	return 25
+
 
 func snap_parent_to_ledge():
 	pass
@@ -168,7 +165,7 @@ func attack(modulate : Color = Color.WHITE):
 	Global.screen_shake(3, 6, 3)
 	#if(attackNum == 3):
 		#Global.screen_shake()
-	parent.attackCooldown.start()
+	parent.attackCooldown.start(cooldown)
 	var attack : AnimatedSprite2D
 	if attackNum == 1:
 		attack = attack1.instantiate()
@@ -176,6 +173,9 @@ func attack(modulate : Color = Color.WHITE):
 		attack = attack2.instantiate()
 	if attackNum == 3:
 		attack = attack3.instantiate()
+	
+	attack.on_enemy_hit.connect(_on_enemy_hit)
+	
 	attack.speed_scale = attack_rate
 	
 	attack.selfKnockbackMultiplier = 0.5
@@ -194,3 +194,7 @@ func attack(modulate : Color = Color.WHITE):
 	
 	if(sign(parent.animations.scale.x) < 0):
 		attack.scale.x = -attack.scale.x
+		
+	
+func _on_enemy_hit():
+	parent.velocity.x = 0

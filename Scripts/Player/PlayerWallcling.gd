@@ -37,8 +37,8 @@ func enter() -> void:
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_pressed('Dash'):
 		return dash_state
-	if Input.is_action_just_pressed("Grapple"):
-		return parent.grapple_state
+	#if Input.is_action_just_pressed("Grapple"):
+		#return parent.grapple_state
 	#if Input.is_action_just_pressed("Attack"): # Can't attack while wall clinging
 		#return attack_state 
 	
