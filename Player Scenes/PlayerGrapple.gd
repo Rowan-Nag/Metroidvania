@@ -6,7 +6,7 @@ var player : Player
 
 @export var icon : Texture2D
 
-@onready var grapple_hook_scn = preload('res://Level Scenes/grapple_hook.tscn')
+@onready var grapple_hook_scn = preload('res://Level Scenes/Helper Scenes/grapple_hook.tscn')
 var grapple_hook : grappleHook
 
 var attached_point : Node2D

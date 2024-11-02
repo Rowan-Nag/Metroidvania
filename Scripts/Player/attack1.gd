@@ -25,6 +25,8 @@ func _on_area_2d_body_entered(body):
 		body.take_damage(1, "player_primary_attack_1")
 		hitEnemy = true
 		on_enemy_hit.emit()
+	elif body.has_method("take_damage"):
+		body.take_damage(1, "player_primary_attack_1")
 #	attackRay.set_target_position(to_local(body.global_position))
 	#attackRay.force_raycast_update()
 	#if(attackRay.is_colliding()):

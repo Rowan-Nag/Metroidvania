@@ -56,7 +56,7 @@ func process_physics(delta: float) -> State:
 	else:
 		parent.velocity.x = move_toward(parent.velocity.x, 0, drag*delta)
 	
-	if parent.jump_buffered() and Input.is_action_pressed("Jump") and not coyoteTimer.is_stopped():
+	if parent.is_jump_buffered() and not coyoteTimer.is_stopped():
 		return jump_state
 	
 	parent.move_and_slide()

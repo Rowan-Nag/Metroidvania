@@ -1,0 +1,118 @@
+[gd_scene load_steps=13 format=3 uid="uid://cwj50cvub7ruo"]
+
+[ext_resource type="PackedScene" uid="uid://idga040r0d8h" path="res://Level Scenes/LevelTemplate.tscn" id="1_m3fe8"]
+[ext_resource type="Script" path="res://Level Scenes/Full Levels/rainController.gd" id="2_6euoy"]
+[ext_resource type="Texture2D" uid="uid://btbo6fvg66ckr" path="res://Sprites/backgrounds/coastoutsidebackgroundmiddle.png" id="2_cwkkq"]
+[ext_resource type="Texture2D" uid="uid://f1e4gtd32rxi" path="res://Sprites/Tiles/cloudbackgroundcoast.png" id="2_lywyj"]
+
+[sub_resource type="Gradient" id="Gradient_1kih0"]
+colors = PackedColorArray(1, 1, 1, 0.160784, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gkipp"]
+gradient = SubResource("Gradient_1kih0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i0f42"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(-20, 2.08165e-12, 2.08165e-12)
+emission_shape = 3
+emission_box_extents = Vector3(250, 1, 1)
+angle_min = 90.0
+angle_max = 100.0
+direction = Vector3(0.2, 1, 2.08165e-12)
+spread = 0.0
+initial_velocity_min = 350.46
+initial_velocity_max = 350.46
+scale_min = 0.3
+scale_max = 0.4
+color_initial_ramp = SubResource("GradientTexture1D_gkipp")
+turbulence_noise_strength = 0.2
+turbulence_noise_scale = 3.0
+turbulence_noise_speed = Vector3(10, 2.08165e-12, 2.08165e-12)
+turbulence_influence_min = 0.079
+turbulence_influence_max = 0.079
+collision_mode = 2
+sub_emitter_mode = 3
+sub_emitter_amount_at_collision = 1
+
+[sub_resource type="Gradient" id="Gradient_36gah"]
+colors = PackedColorArray(0.132456, 0.583799, 0.8027, 1, 0.0935604, 0.598951, 0.812491, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ojk77"]
+gradient = SubResource("Gradient_36gah")
+width = 40
+
+[sub_resource type="Gradient" id="Gradient_83kqh"]
+offsets = PackedFloat32Array(0, 0.211082, 0.836412, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.764706, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nh03v"]
+gradient = SubResource("Gradient_83kqh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3v1kl"]
+particle_flag_disable_z = true
+direction = Vector3(2.08165e-12, -1, 2.08165e-12)
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+gravity = Vector3(2.08165e-12, 80, 2.08165e-12)
+scale_min = 0.3
+scale_max = 0.5
+color = Color(0.752941, 0.839216, 1, 1)
+color_ramp = SubResource("GradientTexture1D_nh03v")
+collision_mode = 2
+
+[node name="Coast_Outdoors_1" instance=ExtResource("1_m3fe8")]
+
+[node name="rain_gpuparticles" type="GPUParticles2D" parent="Level" index="0"]
+visible = false
+position = Vector2(-61, -119)
+amount = 200
+sub_emitter = NodePath("rain_groundsplash")
+process_material = SubResource("ParticleProcessMaterial_i0f42")
+texture = SubResource("GradientTexture1D_ojk77")
+lifetime = 0.75
+fixed_fps = 10
+collision_base_size = 4.0
+script = ExtResource("2_6euoy")
+
+[node name="rain_groundsplash" type="GPUParticles2D" parent="Level/rain_gpuparticles" index="0"]
+position = Vector2(29, 18)
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_3v1kl")
+lifetime = 0.8
+fixed_fps = 10
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Level" index="1"]
+color = Color(0.823529, 0.823529, 0.823529, 1)
+
+[node name="Foreground" parent="Level/NavigationRegion2D" index="0"]
+layer_0/tile_data = PackedInt32Array(65529, 6, 0, 65530, 6, 0, 65531, 6, 0, 65532, 6, 0, 65533, 6, 0, 65534, 6, 0, 65524, 6, 0, 65525, 6, 0, 65526, 6, 0, 65527, 6, 0, 65528, 6, 0, 65535, 6, 0, 0, 6, 0, 1, 6, 0, 2, 6, 0, 3, 6, 0, 4, 6, 0, 5, 6, 0, 6, 6, 0, 7, 6, 0, 8, 6, 0, 9, 6, 0, 10, 6, 0, 11, 6, 0, 12, 6, 0, 13, 6, 0, 14, 6, 0, 15, 6, 0, 16, 6, 0, 17, 6, 0, 18, 6, 0, 19, 6, 0, 20, 6, 0, 21, 6, 0, 22, 6, 0, 23, 6, 0, 24, 6, 0, 25, 6, 0, 26, 6, 0, 27, 6, 0, 28, 6, 0, 29, 6, 0, 30, 6, 0, 31, 6, 0, 32, 6, 0, 33, 6, 0, 34, 6, 0, 35, 6, 0, 36, 6, 0, 37, 6, 0, 38, 6, 0, 39, 6, 0, -65510, 0, 327680, -65507, 0, 327680, -65512, 0, 327680, -65522, 0, 196608, -2, 0, 327680, -65532, 0, 327680, -65528, 0, 196608, -65533, 196612, 5)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Level" index="5"]
+
+[node name="ParallaxLayer_Back" type="ParallaxLayer" parent="Level/ParallaxBackground" index="0"]
+position = Vector2(-123, -8)
+motion_scale = Vector2(0.15, 2.08165e-12)
+motion_mirroring = Vector2(336, 2.08165e-12)
+
+[node name="clouds_background" type="Sprite2D" parent="Level/ParallaxBackground/ParallaxLayer_Back" index="0"]
+position = Vector2(152, 44)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("2_lywyj")
+
+[node name="ParallaxLayer_Middle" type="ParallaxLayer" parent="Level/ParallaxBackground" index="1"]
+position = Vector2(-124, -10)
+motion_scale = Vector2(0.5, 2.08165e-12)
+motion_mirroring = Vector2(336, 2.08165e-12)
+
+[node name="buildings_background" type="Sprite2D" parent="Level/ParallaxBackground/ParallaxLayer_Middle" index="0"]
+modulate = Color(0.564706, 0.564706, 0.564706, 1)
+position = Vector2(154, 138)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("2_cwkkq")
+
+[node name="CameraBounds" parent="Camera-Nodes" index="0"]
+position = Vector2(-1, -90)
+bound_by_left = false
+bound_by_top = false
+bound_by_right = false

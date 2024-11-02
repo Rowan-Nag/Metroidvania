@@ -106,7 +106,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		Global.text_alert("debug: Switched arm", Color.YELLOW, 0.5)
 		
 	if(Input.is_action_just_pressed("Jump")):
-		jumpBuffer.start(jumpBufferTime)
+		buffer_jump()
 	state_machine.process_input(event)
 
 func _physics_process(delta: float) -> void:
@@ -121,8 +121,11 @@ func getAdjacentWalls():
 		"right": rayRight.is_colliding()
 	}
 	
-func jump_buffered() -> bool:
+func is_jump_buffered() -> bool:
 	return not jumpBuffer.is_stopped()
+	
+func buffer_jump():
+	jumpBuffer.start(jumpBufferTime)
 
 func knockback(direction : float):
 	var kbAmt = direction * knockbackMultiplier / weight

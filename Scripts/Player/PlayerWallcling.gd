@@ -64,7 +64,7 @@ func process_physics(delta: float) -> State:
 		parent.velocity.y += gravity*gravityMultiplier*delta
 		parent.velocity.y = clamp(parent.velocity.y, -terminal_velocity, 200)
 	
-	if parent.jump_buffered() and Input.is_action_pressed("Jump"):
+	if parent.is_jump_buffered() and Input.is_action_pressed("Jump"):
 		parent.velocity.x = -adjacent_wall * horizontal_jump_velocity
 		parent.velocity.y = -1 * vertical_jump_velocity
 		return fall_state

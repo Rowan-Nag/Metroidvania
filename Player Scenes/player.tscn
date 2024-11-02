@@ -1028,7 +1028,7 @@ tracks/0/path = NodePath(".:canAttackAgain")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.16, 0.528, 0.544),
+"times": PackedFloat32Array(0, 0.16, 0.448, 0.464),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [false, true, true, false]
@@ -1040,7 +1040,7 @@ tracks/1/path = NodePath(".:attackFinished")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.555373),
+"times": PackedFloat32Array(0, 0.464),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -1537,7 +1537,7 @@ moveSpeed = 250
 terminal_velocity = 400
 maxHealth = 400
 immunityTime = 0.81
-jumpBufferTime = 0.032
+jumpBufferTime = 0.1
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
 modulate = Color(1, 1, 1, 0.109804)
@@ -1556,7 +1556,7 @@ autostart = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1.34006, -2.27963)
 sprite_frames = SubResource("SpriteFrames_ydj5b")
-animation = &"idle"
+animation = &"walk"
 
 [node name="RayOffsetDown1" type="RayCast2D" parent="AnimatedSprite2D"]
 modulate = Color(1, 1, 1, 0.4)
@@ -1660,10 +1660,9 @@ script = ExtResource("11_yqrcq")
 [node name="attack" type="Node" parent="state_machine"]
 script = ExtResource("12_x4vra")
 icon = ExtResource("22_l0nc3")
-boost_multiplier = 0.0
 attack_rate = 1.8
-floorDragMultiplier = 0.5
-airDragMultiplier = 0.3
+floorDragMultiplier = 0.7
+airDragMultiplier = 0.5
 
 [node name="AttackAnimationPlayer" type="AnimationPlayer" parent="state_machine/attack"]
 libraries = {

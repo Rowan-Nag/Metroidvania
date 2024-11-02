@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://mrwkmkk7mo4g" path="res://Enemies/heli_rotor_stationary.tscn" id="2_00ynq"]
 [ext_resource type="TileSet" uid="uid://5iwb7kuuxp5u" path="res://Sprites/Tiles/Coast/CoastTileset.tres" id="2_wv4pg"]
-[ext_resource type="PackedScene" uid="uid://eo28tapbfmtf" path="res://Level Scenes/CameraBounds.tscn" id="3_08if1"]
+[ext_resource type="PackedScene" uid="uid://eo28tapbfmtf" path="res://Level Scenes/Level Components/CameraBounds.tscn" id="3_08if1"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_v1gme"]
 vertices = PackedVector2Array(213, -91, 375, -92, 418, -7, -16, -5, -211, -5, -216, -91, 213, -92)

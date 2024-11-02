@@ -31,7 +31,7 @@ func process_input(event: InputEvent) -> State:
 	#if Input.is_action_just_pressed('Dash'):
 		#return dash_state
 	
-	if Input.is_action_just_released("Jump"):
+	if not Input.is_action_pressed("Jump"):
 		parent.velocity.y *= 0.6
 		return fall_state
 	if Input.is_action_just_pressed("Dash"):

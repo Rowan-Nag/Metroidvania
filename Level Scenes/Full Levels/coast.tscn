@@ -1,12 +1,12 @@
 [gd_scene load_steps=9 format=3 uid="uid://bu32ynk2dpvcj"]
 
 [ext_resource type="TileSet" uid="uid://5iwb7kuuxp5u" path="res://Sprites/Tiles/Coast/CoastTileset.tres" id="1_nq3kr"]
-[ext_resource type="PackedScene" uid="uid://b5vj2l1mdeh52" path="res://Level Scenes/door_with_shadow.tscn" id="3_kq2vg"]
-[ext_resource type="PackedScene" uid="uid://cvmp6av2nxomd" path="res://Level Scenes/grapple_point.tscn" id="3_lo4wh"]
+[ext_resource type="PackedScene" uid="uid://b5vj2l1mdeh52" path="res://Level Scenes/Level Components/door_with_shadow.tscn" id="3_kq2vg"]
+[ext_resource type="PackedScene" uid="uid://cvmp6av2nxomd" path="res://Level Scenes/Level Components/grapple_point.tscn" id="3_lo4wh"]
 [ext_resource type="PackedScene" uid="uid://cpped47gim4jo" path="res://Enemies/heli_rotor.tscn" id="5_d2ul8"]
 [ext_resource type="PackedScene" uid="uid://c7bluxuv6c2rp" path="res://Enemies/trash_collector.tscn" id="6_b4clf"]
 [ext_resource type="PackedScene" uid="uid://mrwkmkk7mo4g" path="res://Enemies/heli_rotor_stationary.tscn" id="6_dk54q"]
-[ext_resource type="PackedScene" uid="uid://eo28tapbfmtf" path="res://Level Scenes/CameraBounds.tscn" id="11_yep2k"]
+[ext_resource type="PackedScene" uid="uid://eo28tapbfmtf" path="res://Level Scenes/Level Components/CameraBounds.tscn" id="11_yep2k"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_gicn1"]
 vertices = PackedVector2Array(390, -102, 390, 26, 362, -21, 362, -42, 230, -102, 266, -74, 282, -166, 282, -198, 390, -198, 390, -138, 230, -138, 214, -166, 266, -42, 230, -74, 266, 26, 266, -21, 406, 26, 406, 38, 218, 38, 218, -138, 202, -138, 202, -170, 122, -106, 134, -134, 150, -134, 150, -102, 138, -74, 122, -74, 182, -102, 182, 38, 170, -10, 170, 38, 138, -10, 74, -106, 74, -118, 106, -118, 106, -154, 134, -170, 102, -70, 102, 22, 86, 22, 58, -42, 86, 29, 74, 29, 74, 22, 58, 22, -42, 22, -42, 38, -134, 38, -134, -6, 10, -6, 22, 22, 22, -42, 10, -42, -134, -42, -134, -69, -38, -69, -38, -90, -134, -90, -134, -198, 38, -154, 230, 26, 214, -198, 38, -70)

@@ -1,0 +1,214 @@
+[gd_scene load_steps=14 format=3 uid="uid://bgaye23c66qru"]
+
+[ext_resource type="Script" path="res://Level Scenes/Full Levels/lampController.gd" id="1_tg4ws"]
+[ext_resource type="Texture2D" uid="uid://bvwyu5uevie7v" path="res://Sprites/Tiles/coaststreetlight.png" id="2_wqfci"]
+[ext_resource type="Texture2D" uid="uid://cqektb07a3h8o" path="res://Sprites/lightcone.png" id="3_kqdwy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ol0cf"]
+size = Vector2(12, 3)
+
+[sub_resource type="Animation" id="Animation_1n0rb"]
+resource_name = "flicker_1"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.29, 0.45, 0.5, 0.56, 0.6, 0.7, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../PointLight2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.29, 0.45, 0.5, 0.56, 0.6, 0.7, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false, true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_4rp5k"]
+resource_name = "flicker_2"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.07, 0.11, 0.3, 0.38, 0.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 0, 1, 0, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../PointLight2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.07, 0.11, 0.3, 0.38, 0.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_2kwpd"]
+resource_name = "flicker_3"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.07, 0.22, 0.26, 0.41, 0.66),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 0, 1, 0, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../PointLight2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.07, 0.22, 0.26, 0.41, 0.67),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_bqlbm"]
+resource_name = "flicker_4"
+length = 1.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.32, 0.4, 0.46, 0.54, 0.6, 1.1, 1.19),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../PointLight2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.32, 0.4, 0.46, 0.54, 0.6, 1.1, 1.19),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false, true, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vf4nk"]
+_data = {
+"flicker_1": SubResource("Animation_1n0rb"),
+"flicker_2": SubResource("Animation_4rp5k"),
+"flicker_3": SubResource("Animation_2kwpd"),
+"flicker_4": SubResource("Animation_bqlbm")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7ob7j"]
+radius = 54.0
+
+[sub_resource type="Gradient" id="Gradient_l18j6"]
+offsets = PackedFloat32Array(0.0105541, 0.746702, 1)
+colors = PackedColorArray(0.842936, 0.835257, 0.774006, 1, 0.975065, 0.960733, 0.702879, 0.780392, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_26k5f"]
+gradient = SubResource("Gradient_l18j6")
+width = 10
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cxkfh"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(5, 1, 1)
+direction = Vector3(2.08165e-12, -1, 2.08165e-12)
+initial_velocity_min = 60.0
+initial_velocity_max = 60.0
+gravity = Vector3(2.08165e-12, 200, 2.08165e-12)
+color_ramp = SubResource("GradientTexture1D_26k5f")
+hue_variation_min = -0.02
+hue_variation_max = 0.02
+collision_mode = 1
+collision_friction = 0.2
+collision_bounce = 0.4
+
+[node name="streetlamp_player_activated" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_tg4ws")
+
+[node name="lamp_hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(-6, -41)
+shape = SubResource("RectangleShape2D_ol0cf")
+
+[node name="lamp_sprite" type="Sprite2D" parent="."]
+position = Vector2(2.08165e-12, -24)
+texture = ExtResource("2_wqfci")
+hframes = 2
+frame = 1
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(-6, -9)
+rotation = 3.14159
+scale = Vector2(0.7, 1)
+color = Color(0.894118, 0.811765, 0.560784, 1)
+texture = ExtResource("3_kqdwy")
+
+[node name="PointLight2D2" type="PointLight2D" parent="PointLight2D"]
+position = Vector2(-1.20797e-06, 4)
+scale = Vector2(2.5, 0.8)
+color = Color(0.65098, 0.941176, 0.85098, 1)
+energy = 0.6
+texture = ExtResource("3_kqdwy")
+
+[node name="lamp_animationplayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../lamp_sprite")
+libraries = {
+"": SubResource("AnimationLibrary_vf4nk")
+}
+
+[node name="lamp_detector" type="Area2D" parent="."]
+position = Vector2(0, -32)
+collision_mask = 2
+
+[node name="lamp_detection_range" type="CollisionShape2D" parent="lamp_detector"]
+modulate = Color(1, 1, 1, 0.227451)
+position = Vector2(0, 10)
+shape = SubResource("CircleShape2D_7ob7j")
+debug_color = Color(1, 0.992157, 0.0980392, 0)
+
+[node name="lamp_break_particles" type="GPUParticles2D" parent="."]
+position = Vector2(-6, -41)
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_cxkfh")
+lifetime = 1.3
+one_shot = true
+preprocess = 0.1
+explosiveness = 1.0
+fixed_fps = 101
+
+[connection signal="body_entered" from="lamp_detector" to="." method="_on_lamp_detector_body_entered"]

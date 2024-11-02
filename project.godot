@@ -79,7 +79,7 @@ Grapple={
 
 [layer_names]
 
-2d_render/layer_1="Background"
+2d_render/layer_1="Level"
 2d_render/layer_2="Background Effects"
 2d_render/layer_3="Backdrop Walls"
 2d_render/layer_4="Middle - Level"

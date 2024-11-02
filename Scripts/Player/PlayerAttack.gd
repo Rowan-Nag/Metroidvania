@@ -72,6 +72,8 @@ func process_input(event: InputEvent) -> State:
 	# No inputs while attacking
 	if (Input.is_action_just_pressed("Attack")):
 		attackBuffered = true
+	if (Input.is_action_just_pressed("Jump")):
+		parent.buffer_jump()
 	return null
 	
 
@@ -91,15 +93,14 @@ func process_physics(delta: float) -> State:
 	if(inputDir and attackNum == 1): 
 		# attackNum == 1 Locks the player into attacking instead of moving
 		# (forced into using the attack-momentum instead of movement-momentum) 
-		
 		parent.velocity.x = move_toward(parent.velocity.x, inputDir*maxSpeed, acceleration*delta)
+	
+	if(parent.is_on_floor()):
+		drag = parent.drag * floorDragMultiplier
 	else:
-		if(parent.is_on_floor()):
-			drag = parent.drag * floorDragMultiplier
-		else:
-			drag = parent.drag * airDragMultiplier
+		drag = parent.drag * airDragMultiplier
 		
-		
+	
 	parent.velocity.x = move_toward(parent.velocity.x, 0, drag*delta)
 	
 	#Gravity (vertical movement)
@@ -112,6 +113,7 @@ func process_physics(delta: float) -> State:
 	
 	# State switches
 	if (attackBuffered and canAttackAgain):
+		reorient()
 		#print("ANOTHER ATTACK")
 		parent.attackCooldown.start(cooldown)
 		attackBuffered = false
@@ -133,12 +135,14 @@ func process_physics(delta: float) -> State:
 	
 	return null
 	
+func reorient():
+	if (sign(parent.animations.scale.x) == -sign(inputDir)):
+		parent.animations.scale.x *= -1
 
 func push_player_forward(amount : int = 50):
 	#sign(parent.animations.scale.x) * parent.velocity.x 
 	#Negative if going backwards, pos if going forwards.
 	#Magnitude represents velocity in that direction.
-	
 	# Assume that if the player is holding the opposite direction, they do not want to be pushed forward.
 	#print(inputDir)
 	#print(parent.animations.scale.x)
@@ -182,7 +186,7 @@ func attack(modulate : Color = Color.WHITE):
 	if(attackNum == 3):
 		attack.speed_scale *= 0.3
 		attack.knockbackMagnitude = 200
-	
+		Global.flicker_all_lights.emit()
 		var particles = fire_particles.instantiate()
 		particles.scale.x = parent.animations.scale.x
 		parent.add_child(particles)

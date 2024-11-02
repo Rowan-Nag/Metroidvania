@@ -36,13 +36,12 @@ func process_physics(delta: float):
 		
 	else:
 		enemy.play_animation("walk")
+		enemy.animated_sprite.flip_h = movement_direction > 0 
 		parent.velocity.x = walkSpeed * movement_direction
 		
 		if(not floorDetector.is_colliding() or wallDetector.is_colliding()):
 			# if there's either: no floor, a wall in front, then we turn around
 			wait_and_turn()
-			
-		
 	knockback_handler.apply_knockback(delta)
 	parent.move_and_slide_timewise()
 	

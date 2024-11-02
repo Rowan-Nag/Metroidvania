@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Enemies & States/Enemy.gd" id="1_piyjv"]
 [ext_resource type="Texture2D" uid="uid://uym8tomp4uxe" path="res://Sprites/flyinggrappleenemy.png" id="2_6f8qb"]
-[ext_resource type="PackedScene" uid="uid://cvmp6av2nxomd" path="res://Level Scenes/grapple_point.tscn" id="2_rpd7j"]
+[ext_resource type="PackedScene" uid="uid://cvmp6av2nxomd" path="res://Level Scenes/Level Components/grapple_point.tscn" id="2_rpd7j"]
 [ext_resource type="Script" path="res://Scripts/StateMachine.gd" id="3_ny50a"]
 [ext_resource type="Script" path="res://heliRotorFlyingState.gd" id="4_cwd1p"]
 

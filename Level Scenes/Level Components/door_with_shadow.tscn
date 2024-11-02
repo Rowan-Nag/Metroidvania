@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b5vj2l1mdeh52"]
 
-[ext_resource type="PackedScene" uid="uid://dhlu5x0oq8n4m" path="res://Level Scenes/door.tscn" id="1_ybxrg"]
+[ext_resource type="PackedScene" uid="uid://dhlu5x0oq8n4m" path="res://Level Scenes/Level Components/door.tscn" id="1_ybxrg"]
 
 [sub_resource type="Gradient" id="Gradient_py37h"]
 offsets = PackedFloat32Array(0, 0.5125, 1)

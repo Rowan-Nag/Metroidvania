@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dv12v6q1jr3kc"]
 
-[ext_resource type="Script" path="res://Player Scenes/grapple-hook.gd" id="1_202q4"]
-[ext_resource type="Texture2D" uid="uid://cp51aw12pr314" path="res://Sprites/grapplehook.png" id="2_byr5j"]
+[ext_resource type="Script" path="res://Player Scenes/grapple-hook.gd" id="1_ji1m3"]
+[ext_resource type="Texture2D" uid="uid://cp51aw12pr314" path="res://Sprites/grapplehook.png" id="2_0l45v"]
 
 [sub_resource type="Animation" id="Animation_2ta4o"]
 resource_name = "grapple_attached"
@@ -114,7 +114,7 @@ _data = {
 }
 
 [node name="grapple-hook" type="Node2D"]
-script = ExtResource("1_202q4")
+script = ExtResource("1_ji1m3")
 x_stretch = 12.0
 v_stretch = 2.0
 
@@ -125,7 +125,7 @@ default_color = Color(0.443137, 0.32549, 0.192157, 1)
 
 [node name="claw" type="Sprite2D" parent="."]
 position = Vector2(0, -1)
-texture = ExtResource("2_byr5j")
+texture = ExtResource("2_0l45v")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

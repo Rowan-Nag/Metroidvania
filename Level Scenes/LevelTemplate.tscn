@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://idga040r0d8h"]
 
 [ext_resource type="TileSet" uid="uid://5iwb7kuuxp5u" path="res://Sprites/Tiles/Coast/CoastTileset.tres" id="1_qy8ng"]
-[ext_resource type="PackedScene" uid="uid://dhlu5x0oq8n4m" path="res://Level Scenes/door.tscn" id="1_wfv1f"]
-[ext_resource type="PackedScene" uid="uid://eo28tapbfmtf" path="res://Level Scenes/CameraBounds.tscn" id="2_n8vea"]
+[ext_resource type="PackedScene" uid="uid://dhlu5x0oq8n4m" path="res://Level Scenes/Level Components/door.tscn" id="1_wfv1f"]
+[ext_resource type="PackedScene" uid="uid://eo28tapbfmtf" path="res://Level Scenes/Level Components/CameraBounds.tscn" id="2_n8vea"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_v1gme"]
 outlines = Array[PackedVector2Array]([PackedVector2Array(413, -222, 416, 62, -164, 64, -161, -224)])

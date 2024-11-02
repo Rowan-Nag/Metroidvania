@@ -19,7 +19,7 @@ func handle_knockback(attack_type):
 		types.TRASH_COLLECTOR: 
 			if attack.knockback_tier > 0 :
 				enemy.velocity.y += -100 * attack.knockback_tier
-				simpleKnockback = Vector2(50 * direction, 0)
+				simpleKnockback = Vector2(30 * direction, 0)
 
 func apply_knockback(delta):
 	match enemy_type:
