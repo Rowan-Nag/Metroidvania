@@ -32,13 +32,14 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * gravit
 @onready var attack1 = preload("res://Player Scenes/attack1.tscn")
 @onready var attack2 = preload("res://Player Scenes/attack2.tscn")
 @onready var attack3 = preload("res://Player Scenes/attack3.tscn")
-
+var attackSprite : AnimatedSprite2D
 @onready var fire_particles = preload('res://fire_spurt_small.tscn')
 
 var direction: float = 1
 
 func enter() -> void:
 	super()
+	attackSprite = null
 	ground_state = parent.ground_state
 	fall_state = parent.fall_state
 	#attackFinished = false
@@ -62,6 +63,7 @@ func enter() -> void:
 
 func exit() -> void:
 	parent.animations.speed_scale = 1 # resetting it to default
+	attackPropertyAnimation.stop(false)
 	attackNum = 1
 	attackFinished = false;
 	canAttackAgain = false;
@@ -74,6 +76,8 @@ func process_input(event: InputEvent) -> State:
 		attackBuffered = true
 	if (Input.is_action_just_pressed("Jump")):
 		parent.buffer_jump()
+	if (Input.is_action_just_pressed("Dash") and not is_instance_valid(attackSprite)):
+		return parent.backdodge_state
 	return null
 	
 
@@ -170,34 +174,33 @@ func attack(modulate : Color = Color.WHITE):
 	#if(attackNum == 3):
 		#Global.screen_shake()
 	parent.attackCooldown.start(cooldown)
-	var attack : AnimatedSprite2D
+	
 	if attackNum == 1:
-		attack = attack1.instantiate()
+		attackSprite = attack1.instantiate()
 	if attackNum == 2:
-		attack = attack2.instantiate()
+		attackSprite = attack2.instantiate()
 	if attackNum == 3:
-		attack = attack3.instantiate()
+		attackSprite = attack3.instantiate()
 	
-	attack.on_enemy_hit.connect(_on_enemy_hit)
+	attackSprite.on_enemy_hit.connect(_on_enemy_hit)
 	
-	attack.speed_scale = attack_rate
-	
-	attack.selfKnockbackMultiplier = 0.5
+	attackSprite.speed_scale = attack_rate
+	attackSprite.selfKnockbackMultiplier = 0.5
 	if(attackNum == 3):
-		attack.speed_scale *= 0.3
-		attack.knockbackMagnitude = 200
+		attackSprite.speed_scale *= 0.3
+		attackSprite.knockbackMagnitude = 200
 		Global.flicker_all_lights.emit()
 		var particles = fire_particles.instantiate()
 		particles.scale.x = parent.animations.scale.x
 		parent.add_child(particles)
-		attack.top_level = true
-		attack.position = parent.position
-	parent.add_child(attack)
+		attackSprite.top_level = true
+		attackSprite.position = parent.position
+	parent.add_child(attackSprite)
 	
-	attack.modulate = modulate
+	attackSprite.modulate = modulate
 	
 	if(sign(parent.animations.scale.x) < 0):
-		attack.scale.x = -attack.scale.x
+		attackSprite.scale.x = -attackSprite.scale.x
 		
 	
 func _on_enemy_hit():

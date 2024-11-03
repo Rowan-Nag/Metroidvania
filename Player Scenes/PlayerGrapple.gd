@@ -185,6 +185,7 @@ func swing(delta):
 
 func create_grapple_hook(target : Node2D):
 	grapple_hook = grapple_hook_scn.instantiate()
+	if player.is_on_floor(): grapple_hook_scn.x_stretch *= 2
 	grapple_hook.target = target
 	player.add_child(grapple_hook)
 

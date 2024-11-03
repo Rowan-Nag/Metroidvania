@@ -152,7 +152,7 @@ func snap_to_ground(distance):
 			var offset = to_local(rayDown.get_collision_point()).y - rayDown.position.y
 			print(offset)
 			position.y += offset
-			
+
 func get_ledge_snap_distance() -> float:
 	rayLedgeCheck1.force_raycast_update()
 	if (rayLedgeCheck1.is_colliding()):

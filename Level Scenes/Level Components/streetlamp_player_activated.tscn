@@ -175,6 +175,7 @@ position = Vector2(-6, -9)
 rotation = 3.14159
 scale = Vector2(0.7, 1)
 color = Color(0.894118, 0.811765, 0.560784, 1)
+energy = 1.1
 texture = ExtResource("3_kqdwy")
 
 [node name="PointLight2D2" type="PointLight2D" parent="PointLight2D"]

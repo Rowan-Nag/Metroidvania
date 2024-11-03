@@ -34,6 +34,7 @@ func flicker_nonplayer():
 
 func take_damage(damage, type):
 	flicker_off()
+	Global.screen_shake(2, 4, 4)
 	anims.speed_scale *= 3
 	is_broken = true
 	$lamp_break_particles.emitting = true

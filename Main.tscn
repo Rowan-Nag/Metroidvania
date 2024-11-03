@@ -324,7 +324,7 @@ offset_bottom = 761.0
 mouse_filter = 2
 
 [node name="Player" parent="Game" instance=ExtResource("2_lx8fk")]
-position = Vector2(-72, -24)
+position = Vector2(-447, -24)
 scale = Vector2(0.694, 0.618)
 drag = 500
 acceleration = 350
@@ -337,7 +337,7 @@ position = Vector2(0, 1.61813)
 zoom = Vector2(5, 5)
 limit_smoothed = true
 position_smoothing_enabled = true
-position_smoothing_speed = 6.0
+position_smoothing_speed = 4.0
 script = ExtResource("3_f6oo0")
 
 [node name="camera_shake" parent="Game/Player/Camera2D" instance=ExtResource("4_xn4hc")]
