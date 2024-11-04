@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://osrkuvyh5mee" path="res://Level Scenes/Helper Scenes/camera_shake.tscn" id="4_xn4hc"]
 [ext_resource type="PackedScene" uid="uid://cdhiu2v742a84" path="res://Level Scenes/Helper Scenes/node_2d_shake.tscn" id="6_m1oj0"]
 [ext_resource type="Shader" path="res://Lines.gdshader" id="8_8uuey"]
-[ext_resource type="PackedScene" uid="uid://cwj50cvub7ruo" path="res://Level Scenes/Full Levels/coast_outdoors_1.tscn" id="8_bug60"]
+[ext_resource type="PackedScene" uid="uid://vq38u4u8tw64" path="res://Level Scenes/Full Levels/coast_tutorial.tscn" id="8_kym7n"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bqtkt"]
 
@@ -307,12 +307,13 @@ speed_scale = 1.5
 
 [node name="node2d_shake" parent="GUI/HUD/HealthBarContainer/healthBar_anchor/healthBar" instance=ExtResource("6_m1oj0")]
 
-[node name="Game" type="CanvasLayer" parent="."]
+[node name="Game" type="CanvasLayer" parent="." node_paths=PackedStringArray("current_scene")]
 layer = 0
 follow_viewport_enabled = true
 script = ExtResource("2_oe6uh")
+current_scene = NodePath("Tutorial")
 
-[node name="Coast_Outdoors_1" parent="Game" instance=ExtResource("8_bug60")]
+[node name="Tutorial" parent="Game" instance=ExtResource("8_kym7n")]
 
 [node name="Scanlines" type="ColorRect" parent="Game"]
 z_index = 5
@@ -324,7 +325,7 @@ offset_bottom = 761.0
 mouse_filter = 2
 
 [node name="Player" parent="Game" instance=ExtResource("2_lx8fk")]
-position = Vector2(-447, -24)
+position = Vector2(-379, -24)
 scale = Vector2(0.694, 0.618)
 drag = 500
 acceleration = 350

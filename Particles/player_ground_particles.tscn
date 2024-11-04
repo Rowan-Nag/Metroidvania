@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://btcja2br05l82"]
+
+[ext_resource type="Script" path="res://Particles/selfTerminating_CPUParticle.gd" id="1_7gob5"]
+
+[sub_resource type="Gradient" id="Gradient_mqild"]
+offsets = PackedFloat32Array(0, 0.667458, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="ground_dust_gpuparticles" type="CPUParticles2D"]
+position = Vector2(-9.48447, 13.2474)
+emitting = false
+amount = 2
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.8
+direction = Vector2(-0.6, -0.5)
+spread = 20.0
+gravity = Vector2(2.08165e-12, 60)
+initial_velocity_min = 40.0
+initial_velocity_max = 50.0
+scale_amount_min = 0.3
+scale_amount_max = 0.6
+color = Color(0.760999, 0.760999, 0.760999, 1)
+color_ramp = SubResource("Gradient_mqild")
+script = ExtResource("1_7gob5")

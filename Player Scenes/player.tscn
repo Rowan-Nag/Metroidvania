@@ -1,4 +1,4 @@
-[gd_scene load_steps=178 format=3 uid="uid://cta7vnl86huxp"]
+[gd_scene load_steps=180 format=3 uid="uid://cta7vnl86huxp"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_m1lax"]
 [ext_resource type="Texture2D" uid="uid://bpmkfdb0413yd" path="res://Sprites/FeatherFrog/sidefeatherfrogoutline.png" id="2_a1ld4"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/PlayerGround.gd" id="8_ym70h"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerFall.gd" id="9_dv7pt"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerJump.gd" id="10_lx6wb"]
+[ext_resource type="PackedScene" uid="uid://btcja2br05l82" path="res://Particles/player_ground_particles.tscn" id="11_wwisj"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerDash.gd" id="11_yqrcq"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerAttack.gd" id="12_x4vra"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerWallcling.gd" id="13_r3n26"]
@@ -22,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://dnmbb16epgsnn" path="res://Sprites/RobotGuy/siderobotguy.png" id="16_xetss"]
 [ext_resource type="Texture2D" uid="uid://b8prvp7n621ss" path="res://Sprites/RobotGuy/robotguyjump.png" id="17_vyy50"]
 [ext_resource type="Texture2D" uid="uid://bn3v3ilnguhy4" path="res://Sprites/RobotGuy/robotguyrun.png" id="18_tirwi"]
+[ext_resource type="AudioStream" uid="uid://nkfslwebkxy8" path="res://Sounds/Effects/footsteps/wooden floor 1 loop.wav" id="19_2gcex"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerShield.gd" id="19_okehv"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerShoot.gd" id="20_jqvoq"]
 [ext_resource type="Texture2D" uid="uid://cgndvljskp61m" path="res://Sprites/Strings/atk1.png" id="22_l0nc3"]
@@ -1534,10 +1536,18 @@ script = ExtResource("1_m1lax")
 drag = 800
 acceleration = 1500
 moveSpeed = 250
+jumpBufferTime = 0.1
 terminal_velocity = 400
 maxHealth = 400
 immunityTime = 0.81
-jumpBufferTime = 0.1
+
+[node name="PassiveAudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+volume_db = -40.0
+
+[node name="SFXAudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+volume_db = -40.0
+pitch_scale = 2.0
+max_distance = 500.0
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
 modulate = Color(1, 1, 1, 0.109804)
@@ -1585,6 +1595,8 @@ position = Vector2(10, 7.764)
 enabled = false
 target_position = Vector2(0, 10.9678)
 collision_mask = 65
+
+[node name="ground_dust_gpuparticles" parent="AnimatedSprite2D" instance=ExtResource("11_wwisj")]
 
 [node name="AnimatedSprite2D_frog" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -1643,6 +1655,7 @@ starting_state = NodePath("fall")
 
 [node name="ground" type="Node" parent="state_machine"]
 script = ExtResource("8_ym70h")
+footstep_sound = ExtResource("19_2gcex")
 
 [node name="coyoteTimer" type="Timer" parent="state_machine/ground"]
 one_shot = true

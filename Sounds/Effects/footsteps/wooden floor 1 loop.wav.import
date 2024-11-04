@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://nkfslwebkxy8"
+path="res://.godot/imported/wooden floor 1 loop.wav-d9b5d6300ab5d8cc4582f167d7ebe9db.sample"
+
+[deps]
+
+source_file="res://Sounds/Effects/footsteps/wooden floor 1 loop.wav"
+dest_files=["res://.godot/imported/wooden floor 1 loop.wav-d9b5d6300ab5d8cc4582f167d7ebe9db.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

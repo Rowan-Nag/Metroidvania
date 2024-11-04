@@ -13,7 +13,7 @@ agent_radius = 5.0
 
 [node name="Level" type="Node2D" parent="."]
 
-[node name="CoastDoor1" parent="Level" instance=ExtResource("1_wfv1f")]
+[node name="door1" parent="Level" instance=ExtResource("1_wfv1f")]
 position = Vector2(-102, -12)
 target_scene_path = "res://Level Scenes/coast.tscn"
 
@@ -37,3 +37,5 @@ layer_1/tile_data = PackedInt32Array()
 [node name="Camera-Nodes" type="Node2D" parent="."]
 
 [node name="CameraBounds" parent="Camera-Nodes" instance=ExtResource("2_n8vea")]
+
+[node name="Sound" type="Node2D" parent="."]

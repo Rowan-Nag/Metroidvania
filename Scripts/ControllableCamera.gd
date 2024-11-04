@@ -6,7 +6,8 @@ func _ready():
 	Global.activeCamera = self
 	await get_tree().process_frame
 	reset_smoothing()
-	
+	await get_tree().process_frame
+	reset_smoothing()
 	
 
 

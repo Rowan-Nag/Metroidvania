@@ -296,7 +296,6 @@ texture = ExtResource("4_5u0vt")
 2:4/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_pwuje")
 3:4/next_alternative_id = 4
 3:4/0 = 0
-3:4/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_fle2o")
 3:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:4/0/physics_layer_0/angular_velocity = 0.0
 3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)

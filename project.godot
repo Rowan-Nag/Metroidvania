@@ -18,12 +18,17 @@ config/icon="res://Sprites/icon.svg"
 [autoload]
 
 Global="*res://Scripts/Global.gd"
+AudioManager="*res://audio_manager.tscn"
 
 [display]
 
 window/size/viewport_width=1600
 window/size/viewport_height=1000
 window/stretch/mode="viewport"
+
+[editor]
+
+movie_writer/movie_file="/Users/rowan/Godot/Metroidvania/movies/movie.avi"
 
 [gui]
 

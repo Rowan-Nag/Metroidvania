@@ -1,8 +1,23 @@
-[gd_scene load_steps=14 format=3 uid="uid://bgaye23c66qru"]
+[gd_scene load_steps=19 format=3 uid="uid://bgaye23c66qru"]
 
 [ext_resource type="Script" path="res://Level Scenes/Full Levels/lampController.gd" id="1_tg4ws"]
 [ext_resource type="Texture2D" uid="uid://bvwyu5uevie7v" path="res://Sprites/Tiles/coaststreetlight.png" id="2_wqfci"]
+[ext_resource type="AudioStream" uid="uid://brieu7yco7y0c" path="res://Sounds/Effects/glass/Bluezone_BC0274_glass_impact_break_002.wav" id="3_5nelk"]
 [ext_resource type="Texture2D" uid="uid://cqektb07a3h8o" path="res://Sprites/lightcone.png" id="3_kqdwy"]
+[ext_resource type="AudioStream" uid="uid://b4svu4wqcu5er" path="res://Sounds/Effects/electricity/AMBInd_Electrical Power Plant, Hum, Ext_344 Audio_Electromagnetic Design Vol 2.wav" id="4_4j0q7"]
+[ext_resource type="AudioStream" uid="uid://dj0nnjh3l3y1t" path="res://Sounds/Effects/glass/Bluezone_BC0274_glass_impact_break_falling_debris_004.wav" id="4_8caue"]
+[ext_resource type="AudioStream" uid="uid://6qj8svylkyxg" path="res://Sounds/Effects/glass/Bluezone_BC0274_glass_impact_break_small_014.wav" id="5_16qs2"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_idmr1"]
+random_pitch = 1.3
+random_volume_offset_db = 2.0
+streams_count = 3
+stream_0/stream = ExtResource("3_5nelk")
+stream_0/weight = 0.5
+stream_1/stream = ExtResource("4_8caue")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("5_16qs2")
+stream_2/weight = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ol0cf"]
 size = Vector2(12, 3)
@@ -12,7 +27,7 @@ resource_name = "flicker_1"
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -24,7 +39,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("../PointLight2D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -34,13 +49,54 @@ tracks/1/keys = {
 "update": 1,
 "values": [false, true, false, true, false, true, false, true, false, true]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.29, 0.45, 0.5, 0.56, 0.6, 0.7, 0.91),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"off"
+}, {
+"args": [],
+"method": &"on"
+}, {
+"args": [],
+"method": &"off"
+}, {
+"args": [],
+"method": &"on"
+}, {
+"args": [],
+"method": &"off"
+}, {
+"args": [],
+"method": &"on"
+}, {
+"args": [],
+"method": &"off"
+}, {
+"args": [],
+"method": &"on"
+}, {
+"args": [],
+"method": &"off"
+}, {
+"args": [],
+"method": &"on"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_4rp5k"]
 resource_name = "flicker_2"
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -52,7 +108,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("../PointLight2D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -62,13 +118,42 @@ tracks/1/keys = {
 "update": 1,
 "values": [false, true, false, true, false, true]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.07, 0.11, 0.3, 0.38, 0.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"off"
+}, {
+"args": [],
+"method": &"on"
+}, {
+"args": [],
+"method": &"off"
+}, {
+"args": [],
+"method": &"on"
+}, {
+"args": [],
+"method": &"off"
+}, {
+"args": [],
+"method": &"on"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_2kwpd"]
 resource_name = "flicker_3"
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -80,7 +165,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("../PointLight2D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -90,6 +175,35 @@ tracks/1/keys = {
 "update": 1,
 "values": [false, true, false, true, false, true]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.07, 0.22, 0.26, 0.41, 0.67),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"off"
+}, {
+"args": [],
+"method": &"on"
+}, {
+"args": [],
+"method": &"off"
+}, {
+"args": [],
+"method": &"on"
+}, {
+"args": [],
+"method": &"off"
+}, {
+"args": [],
+"method": &"on"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_bqlbm"]
 resource_name = "flicker_4"
@@ -97,7 +211,7 @@ length = 1.2
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -109,7 +223,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("../PointLight2D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -118,6 +232,41 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [false, true, false, true, false, true, false, true, false, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.32, 0.4, 0.46, 0.54, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"off"
+}, {
+"args": [],
+"method": &"on"
+}, {
+"args": [],
+"method": &"off"
+}, {
+"args": [],
+"method": &"on"
+}, {
+"args": [],
+"method": &"off"
+}, {
+"args": [],
+"method": &"on"
+}, {
+"args": [],
+"method": &"off"
+}, {
+"args": [],
+"method": &"on"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vf4nk"]
@@ -158,6 +307,8 @@ collision_bounce = 0.4
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_tg4ws")
+buzz_sound = ExtResource("4_4j0q7")
+shatter_sound = SubResource("AudioStreamRandomizer_idmr1")
 
 [node name="lamp_hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(-6, -41)
@@ -211,5 +362,14 @@ one_shot = true
 preprocess = 0.1
 explosiveness = 1.0
 fixed_fps = 101
+
+[node name="lamp_buzz" type="AudioStreamPlayer2D" parent="."]
+volume_db = -20.0
+max_distance = 200.0
+bus = &"Sound"
+
+[node name="lamp_shatter" type="AudioStreamPlayer2D" parent="."]
+volume_db = -30.0
+max_distance = 300.0
 
 [connection signal="body_entered" from="lamp_detector" to="." method="_on_lamp_detector_body_entered"]

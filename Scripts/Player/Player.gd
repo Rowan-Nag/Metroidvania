@@ -11,6 +11,7 @@ var state_machine = $state_machine
 @export var drag : int = 400
 @export var acceleration : int = 500
 @export var moveSpeed : int = 600
+@export var jumpBufferTime : float = 0.2
 @export var terminal_velocity : int = 1200
 
 @onready var rayLeft : RayCast2D = $RayLeft
@@ -48,10 +49,7 @@ var health : int = maxHealth
 @onready var shoot_state : State = $state_machine/shoot
 @onready var backdodge_state : State = $state_machine/backdodge
 @onready var grapple_state : State = $state_machine/grapple
-
 @onready var quick_attack_state : State = $state_machine/quick_attack
-
-@export var jumpBufferTime : float = 0.2
 
 @onready var actionSelections : Array[State] = [
 	attack_state,
@@ -60,6 +58,9 @@ var health : int = maxHealth
 	quick_attack_state
 ]
 var currentSelection : int = 0
+
+@onready var passiveAudio : AudioStreamPlayer2D = $PassiveAudioStreamPlayer
+@onready var SFXAudio : AudioStreamPlayer2D = $SFXAudioStreamPlayer
 
 var animationNames
 
@@ -170,3 +171,22 @@ func get_ledge_snap_distance() -> float:
 	
 func get_selected_state():
 	return actionSelections[currentSelection]
+
+### AUDIO
+func play_passive(sound : AudioStream, pitch : float = 1, volume : float = -40):
+	if passiveAudio.stream != sound: passiveAudio.stream = sound
+	if passiveAudio.pitch_scale != pitch: passiveAudio.pitch_scale = pitch
+	if passiveAudio.volume_db != volume: passiveAudio.volume_db = volume
+	
+	if not passiveAudio.playing:
+		passiveAudio.play()
+func stop_passive():
+	passiveAudio.stop()
+
+func play_effect(effect : AudioStream, pitch : float = 1, volume : float = -40):
+	if SFXAudio.stream != effect: SFXAudio.stream = effect
+	if SFXAudio.pitch_scale != pitch: SFXAudio.pitch_scale = pitch
+	if SFXAudio.volume_db != volume: SFXAudio.volume_db = volume
+	
+	if not SFXAudio.playing:
+		SFXAudio.play()

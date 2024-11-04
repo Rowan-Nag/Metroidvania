@@ -12,6 +12,10 @@ var shield_state : State
 @export var moveSpeedMultiplier: float = 1
 @export var coyoteTime : float = 0.1
 
+@export var footstep_sound : AudioStream
+
+@onready var ground_particles = preload("res://Particles/player_ground_particles.tscn")
+
 @onready var coyoteTimer : Timer = $coyoteTimer
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * gravityMultiplier
@@ -24,7 +28,11 @@ func enter() -> void:
 	dash_state = parent.dash_state
 	attack_state = parent.attack_state
 	shield_state = parent.shield_state
+	
 	super()
+
+func exit():
+	parent.stop_passive()
 
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_pressed('Dash'):
@@ -52,6 +60,9 @@ func process_physics(delta: float) -> State:
 		acceleration *= 2
 	
 	if(inputDir):
+		if parent.velocity.length() < 5.00:
+			emit_ground_particles()
+			
 		parent.velocity.x = move_toward(parent.velocity.x, inputDir*maxSpeed, acceleration*delta)
 	else:
 		parent.velocity.x = move_toward(parent.velocity.x, 0, drag*delta)
@@ -60,26 +71,17 @@ func process_physics(delta: float) -> State:
 		return jump_state
 	
 	parent.move_and_slide()
-	#if (parent.rayDown.is_colliding()):
-		#var col = parent.rayDown.get_collider()
-		#if (col is TileMap):
-			## local_to_map: Converts the local coordinates (of where the player touches the ground) to the tile's position
-			## get_cell_tile_data: gets the TileData given a tile position
-			#var tile : TileData = col.get_cell_tile_data(0, col.local_to_map(parent.rayDown.get_collision_point()))
-			#if(tile.get_custom_data("is_safe")):
-				#Game.last_safe_position = parent.position
-				#Global.set_debug_text("SAFE SAFE SAFE SAFE - POSITION SAVED")
-				#print(parent.position)
-			#else:
-				#print("bad")
 	
 	# Animations
 	if(inputDir == 0):
 		play_animation("idle")
+		parent.stop_passive()
 	else:
 		play_animation("walk")
+		parent.play_passive(footstep_sound, 2.2)
 		parent.animations.scale.x = sign(inputDir) * abs(parent.animations.scale.x)
 		
+	
 	# State switches
 	if(parent.is_on_floor()):
 		coyoteTimer.start(coyoteTime)
@@ -91,4 +93,7 @@ func process_physics(delta: float) -> State:
 	
 	Global.set_debug_text("Remaining coyote time: " + str(int(coyoteTimer.time_left*1000))+"ms")
 	return null
-	
+
+func emit_ground_particles():
+	var particles : CPUParticles2D = ground_particles.instantiate()
+	parent.animations.add_child(particles)
