@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://idga040r0d8h"]
+[gd_scene load_steps=5 format=4 uid="uid://idga040r0d8h"]
 
 [ext_resource type="TileSet" uid="uid://5iwb7kuuxp5u" path="res://Sprites/Tiles/Coast/CoastTileset.tres" id="1_qy8ng"]
 [ext_resource type="PackedScene" uid="uid://dhlu5x0oq8n4m" path="res://Level Scenes/Level Components/door.tscn" id="1_wfv1f"]
@@ -17,20 +17,22 @@ agent_radius = 5.0
 position = Vector2(-102, -12)
 target_scene_path = "res://Level Scenes/coast.tscn"
 
-[node name="Background" type="TileMap" parent="Level"]
+[node name="BackgroundLayer" type="TileMapLayer" parent="Level"]
+use_parent_material = true
 tile_set = ExtResource("1_qy8ng")
-format = 2
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Level"]
 self_modulate = Color(1, 1, 1, 0.129412)
 navigation_polygon = SubResource("NavigationPolygon_v1gme")
-constrain_avoidance = true
 
-[node name="Foreground" type="TileMap" parent="Level/NavigationRegion2D"]
+[node name="Foreground_0" type="TileMapLayer" parent="Level/NavigationRegion2D"]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD5/wAABAAAAAUAAAD6/wAABAABAAUAAAD7/wAABAACAAUAAAD8/wAABAAAAAUAAAD9/wAABAABAAUAAAD+/wAABAACAAUAAAA=")
 tile_set = ExtResource("1_qy8ng")
-format = 2
-layer_0/tile_data = PackedInt32Array(65529, 4, 5, 65530, 65540, 5, 65531, 131076, 5, 65532, 4, 5, 65533, 65540, 5, 65534, 131076, 5)
-layer_1/tile_data = PackedInt32Array()
+
+[node name="Foreground_1" type="TileMapLayer" parent="Level/NavigationRegion2D"]
+use_parent_material = true
+tile_set = ExtResource("1_qy8ng")
 
 [node name="Enemies" type="Node2D" parent="."]
 

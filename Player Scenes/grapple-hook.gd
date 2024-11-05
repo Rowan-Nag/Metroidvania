@@ -74,5 +74,3 @@ func _quadratic_bezier(p0: Vector2, p1: Vector2, p2: Vector2, t: float):
 	var q1 = p1.lerp(p2, t)
 	var r = q0.lerp(q1, t)
 	return r
-
-

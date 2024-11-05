@@ -56,4 +56,3 @@ func shake(strength : float = 10):
 	shaker.shake_strength = strength
 	shaker.use_position_instead_of_offset = true
 	healthBar.add_child(shaker)
-

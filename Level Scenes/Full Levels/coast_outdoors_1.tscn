@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwj50cvub7ruo"]
+[gd_scene load_steps=8 format=4 uid="uid://cwj50cvub7ruo"]
 
 [ext_resource type="PackedScene" uid="uid://idga040r0d8h" path="res://Level Scenes/LevelTemplate.tscn" id="1_m3fe8"]
 [ext_resource type="Texture2D" uid="uid://btbo6fvg66ckr" path="res://Sprites/backgrounds/coastoutsidebackgroundmiddle.png" id="2_cwkkq"]
@@ -10,21 +10,49 @@
 
 [node name="Coast_Outdoors_1" instance=ExtResource("1_m3fe8")]
 
-[node name="rain_effects" parent="Level" index="0" instance=ExtResource("2_lg25x")]
+[node name="Parallax" type="Node2D" parent="Level" index="0"]
 visible = false
+
+[node name="Parallax_Clouds" type="Parallax2D" parent="Level/Parallax" index="0"]
+scroll_scale = Vector2(0.15, 0)
+scroll_offset = Vector2(0, -27.96)
+repeat_size = Vector2(240, 0)
+autoscroll = Vector2(5, 0)
+repeat_times = 3
+follow_viewport = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Level/Parallax/Parallax_Clouds" index="0"]
+position = Vector2(-254, -161)
+texture = ExtResource("2_lywyj")
+centered = false
+
+[node name="Parallax_Buildings" type="Parallax2D" parent="Level/Parallax" index="1"]
+scroll_scale = Vector2(0.15, 0)
+scroll_offset = Vector2(0, -27.96)
+repeat_size = Vector2(240, 0)
+autoscroll = Vector2(5, 0)
+repeat_times = 3
+follow_viewport = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Level/Parallax/Parallax_Buildings" index="0"]
+position = Vector2(-254, -161)
+texture = ExtResource("2_lywyj")
+centered = false
+
+[node name="rain_effects" parent="Level" index="1" instance=ExtResource("2_lg25x")]
 lightning_on = true
 
-[node name="door1" parent="Level" index="1"]
-position = Vector2(-484, -13)
+[node name="door1" parent="Level" index="2"]
+position = Vector2(-473, 4)
 target_scene_path = "res://Level Scenes/Full Levels/coast_tutorial.tscn"
 
-[node name="Background" parent="Level" index="2"]
-layer_0/tile_data = PackedInt32Array(-6, 15, 0, -2, 65551, 0, -65534, 131087, 0, -131070, 131087, 0, -196606, 131087, 0, -65531, 65546, 2, -196604, 10, 0, -131068, 10, 1, -65532, 10, 2, -196603, 65546, 0, -131067, 65546, 1, -196602, 131082, 0, -131066, 131082, 1, -65530, 131082, 2, -196601, 196618, 0, -131065, 196618, 1, -65529, 196618, 2, -196600, 262154, 0, -131064, 262154, 1, -65528, 262154, 2, -196599, 327690, 0, -131063, 327690, 1, -65527, 327690, 2, -25, 15, 0, -15, 15, 0, -21, 65551, 0, -17, 65551, 0)
+[node name="Foreground_0" parent="Level/NavigationRegion2D" index="0"]
+tile_map_data = PackedByteArray("AAD5/wAADwABAAAAAAD6/wAADwACAAAAAAD7/wAADwAAAAAAAADi/wEABAADAAUAAADj/wEABAADAAUAAADk/wEABAADAAUAAADl/wEABAADAAUAAADm/wEABAADAAUAAADn/wEABAADAAUAAADo/wEABAADAAUAAADp/wEABAADAAUAAADq/wEABAADAAUAAADr/wEABAADAAUAAADs/wEABAADAAUAAADt/wEABAADAAUAAADu/wEABAADAAUAAADv/wEABAADAAUAAADw/wEABAADAAUAAADx/wEABAADAAUAAADy/wEABAADAAUAAADz/wEABAADAAUAAAD0/wEABAADAAUAAAD1/wEABAADAAUAAAD2/wEABAADAAUAAAD3/wEABAADAAUAAAD4/wEABAADAAUAAAD5/wEABAADAAUAAAD6/wEABAADAAUAAAD7/wEABAADAAUAAAD8/wEABAADAAUAAAD9/wEABAADAAUAAAD+/wEABAADAAUAAAD//wEABAADAAUAAAAAAAEABAADAAUAAAABAAEABAADAAUAAAACAAEABAADAAUAAAADAAEABAADAAUAAAAEAAEABAADAAUAAAAFAAEABAADAAUAAAAGAAEABAADAAUAAAAHAAEABAADAAUAAAAIAAEABAADAAUAAAAJAAEABAADAAUAAAAKAAEABAADAAUAAAALAAEABAADAAUAAAAMAAEABAADAAUAAAANAAEABAADAAUAAAAOAAEABAADAAUAAAAPAAEABAADAAUAAAAQAAEABAADAAUAAAARAAEABAADAAUAAAASAAEABAADAAUAAAATAAEABAADAAUAAAAUAAEABAADAAUAAAAVAAEABAADAAUAAAAWAAEABAADAAUAAAAXAAEABAADAAUAAAAYAAEABAADAAUAAAAZAAEABAADAAUAAAAaAAEABAADAAUAAAAbAAEABAADAAUAAAAcAAEABAADAAUAAAAdAAEABAADAAUAAAAeAAEABAADAAUAAAAfAAEABAADAAUAAAAgAAEABAADAAUAAAAhAAEABAADAAUAAAAiAAEABAADAAUAAAAiAAAABAADAAUAAAAiAP//BAADAAUAAAAiAP7/BAADAAUAAAAiAP3/BAADAAUAAAAiAPz/BAADAAUAAAAiAPv/BAADAAUAAAAiAPr/BAADAAUAAADh/wEABAADAAUAAADh/wAABAADAAUAAADh////BAADAAUAAADh//7/BAADAAUAAADh//3/BAADAAUAAADh//z/BAADAAUAAADh//v/BAADAAUAAADk/wAADwAAAAAAAADp/wAADwAAAAAAAADt/wAADwAAAAAAAAANAAAADwAAAAAAAADq/wAADwABAAAAAADm/wAADwABAAAAAADn/wAADwACAAAAAADn////DwACAAAAAAAHAAAACgACAAIAAAATAAAADwABAAAAAAAXAAAADwABAAAAAAASAAAADwACAAAAAAASAP//DwACAAAAAAASAP7/DwACAAAAAAD6//7/DwACAAAAAAD6////DwACAAAAAAAFAP7/CgAAAAAAAAAFAP//CgAAAAEAAAAFAAAACgAAAAIAAAAGAP7/CgABAAAAAAAGAP//CgABAAEAAAAGAAAACgABAAIAAAAHAP7/CgACAAAAAAAHAP//CgACAAEAAAAIAP7/CgADAAAAAAAIAP//CgADAAEAAAAIAAAACgADAAIAAAAJAP7/CgAEAAAAAAAJAP//CgAEAAEAAAAJAAAACgAEAAIAAAAKAP7/CgAFAAAAAAAKAP//CgAFAAEAAAAKAAAACgAFAAIAAAA=")
 
-[node name="Foreground" parent="Level/NavigationRegion2D" index="0"]
-layer_0/tile_data = PackedInt32Array(65529, 6, 0, 65530, 6, 0, 65531, 6, 0, 65532, 6, 0, 65533, 6, 0, 65534, 6, 0, 65524, 6, 0, 65525, 6, 0, 65526, 6, 0, 65527, 6, 0, 65528, 6, 0, 65535, 6, 0, 0, 6, 0, 1, 6, 0, 2, 6, 0, 3, 6, 0, 4, 6, 0, 5, 6, 0, 6, 6, 0, 7, 6, 0, 8, 6, 0, 9, 6, 0, 10, 6, 0, 11, 6, 0, 12, 6, 0, 13, 6, 0, 14, 6, 0, 15, 6, 0, 16, 6, 0, 17, 6, 0, 18, 6, 0, 19, 6, 0, 20, 6, 0, 21, 6, 0, 22, 6, 0, 23, 6, 0, 24, 6, 0, 25, 6, 0, 26, 6, 0, 27, 6, 0, 28, 6, 0, 29, 6, 0, 30, 6, 0, 31, 6, 0, 32, 6, 0, 33, 6, 0, 34, 6, 0, 35, 6, 0, 36, 6, 0, 37, 6, 0, 38, 6, 0, 39, 6, 0, -65535, 0, 327680, -65529, 0, 327680, -65523, 0, 327680, -65517, 0, 327680, -65511, 0, 327680, -65505, 0, 196608, 65513, 6, 0, 65514, 6, 0, 65515, 6, 0, 65516, 6, 0, 65517, 6, 0, 65518, 6, 0, 65519, 6, 0, 65520, 6, 0, 65521, 6, 0, 65522, 6, 0, 65523, 6, 0, 65506, 6, 0, 65507, 6, 0, 65508, 6, 0, 65509, 6, 0, 65510, 6, 0, 65511, 6, 0, 65512, 6, 0, -262175, 6, 0, -196639, 6, 0, -131103, 6, 0, -65567, 6, 0, -31, 6, 0, -524319, 6, 0, -458783, 6, 0, -393247, 6, 0, -327711, 6, 0, 65505, 6, 0, -7, 0, 196608)
+[node name="Foreground_1" parent="Level/NavigationRegion2D" index="1"]
+tile_map_data = PackedByteArray("AAAJAAAAAAAAAAAABQAPAAAAAAAAAAAABQAVAAAAAAAAAAAABQAbAAAAAAAAAAAAAwACAAAAAAAAAAAAAwDw/wAAAAAAAAAAAwD8/wAAAAAAAAAABQA=")
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="Level" index="4"]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Level" index="5"]
 
 [node name="ParallaxLayer_Back" type="ParallaxLayer" parent="Level/ParallaxBackground" index="0"]
 position = Vector2(-123, -8)
@@ -47,14 +75,17 @@ position = Vector2(154, 138)
 scale = Vector2(1.4, 1.4)
 texture = ExtResource("2_cwkkq")
 
-[node name="bugs2" parent="Level" index="5" instance=ExtResource("5_fs5a1")]
-position = Vector2(128, -17)
+[node name="bugs2" parent="Level" index="6" instance=ExtResource("5_fs5a1")]
+position = Vector2(140, -17)
 
-[node name="bugs" parent="Level" index="6" instance=ExtResource("5_fs5a1")]
-position = Vector2(-71, -15)
+[node name="bugs" parent="Level" index="7" instance=ExtResource("5_fs5a1")]
+position = Vector2(-152, -15)
 
-[node name="bugs3" parent="Level" index="7" instance=ExtResource("5_fs5a1")]
+[node name="bugs3" parent="Level" index="8" instance=ExtResource("5_fs5a1")]
 position = Vector2(-297, -15)
+
+[node name="Camera-Nodes" parent="." index="2"]
+position = Vector2(0, 15)
 
 [node name="CameraBounds" parent="Camera-Nodes" index="0"]
 position = Vector2(-251, -90)
@@ -68,10 +99,7 @@ bound_by_top = false
 [node name="rain_AudioStreamPlayer" type="AudioStreamPlayer" parent="Sound" index="0"]
 stream = ExtResource("7_lmbw6")
 volume_db = -32.47
-autoplay = true
 bus = &"Sound-far"
 
 [node name="Box_Audio" type="AudioStreamPlayer2D" parent="Sound" index="1"]
 position = Vector2(110, -37)
-
-[editable path="Level/rain_effects"]

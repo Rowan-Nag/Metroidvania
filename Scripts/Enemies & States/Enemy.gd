@@ -138,4 +138,3 @@ func change_time_scale(new_time_scale : float, duration : float, delayed_knockba
 	ongoing_time_scale_effects.erase(new_time_scale)
 	time_scale = ongoing_time_scale_effects.min() # if all time scale effects are gone, there will still be a 1.0 in the array.
 	animated_sprite.speed_scale = time_scale
-

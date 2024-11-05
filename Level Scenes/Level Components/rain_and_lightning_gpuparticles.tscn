@@ -25,11 +25,6 @@ initial_velocity_max = 350.46
 scale_min = 0.3
 scale_max = 0.4
 color_initial_ramp = SubResource("GradientTexture1D_gkipp")
-turbulence_noise_strength = 0.2
-turbulence_noise_scale = 3.0
-turbulence_noise_speed = Vector3(10, 2.08165e-12, 2.08165e-12)
-turbulence_influence_min = 0.079
-turbulence_influence_max = 0.079
 collision_mode = 2
 sub_emitter_mode = 3
 sub_emitter_amount_at_collision = 1
@@ -45,15 +40,12 @@ width = 40
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6uxju"]
 streams_count = 1
 stream_0/stream = ExtResource("2_tecre")
-stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_djqjo"]
 random_pitch = 1.5
 streams_count = 2
 stream_0/stream = ExtResource("2_ux0ua")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("3_p8o2p")
-stream_1/weight = 1.0
 
 [sub_resource type="Gradient" id="Gradient_83kqh"]
 offsets = PackedFloat32Array(0, 0.211082, 0.836412, 1)
