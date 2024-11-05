@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://f1e4gtd32rxi" path="res://Sprites/Tiles/cloudbackgroundcoast.png" id="2_lywyj"]
 [ext_resource type="PackedScene" uid="uid://bo8k33q6ssurg" path="res://Level Scenes/Level Components/glow_bugs.tscn" id="5_fs5a1"]
 [ext_resource type="PackedScene" uid="uid://eo28tapbfmtf" path="res://Level Scenes/Level Components/CameraBounds.tscn" id="6_xkaws"]
-[ext_resource type="AudioStream" uid="uid://cbfglx1kyqcs7" path="res://Sounds/Ambient/RAINVege_InsJ_Ambience_Rain_Moderate_02_LOOP.wav" id="7_lmbw6"]
+[ext_resource type="AudioStream" uid="uid://b70xlsaonyg0x" path="res://Sounds/Ambient/RAINVege_InsJ_Ambience_Rain_Moderate_02_LOOP.mp3" id="7_8klo1"]
 
 [node name="Coast_Outdoors_1" instance=ExtResource("1_m3fe8")]
 
@@ -40,6 +40,7 @@ texture = ExtResource("2_lywyj")
 centered = false
 
 [node name="rain_effects" parent="Level" index="1" instance=ExtResource("2_lg25x")]
+visible = false
 lightning_on = true
 
 [node name="door1" parent="Level" index="2"]
@@ -97,8 +98,9 @@ scale = Vector2(12.731, 10.533)
 bound_by_top = false
 
 [node name="rain_AudioStreamPlayer" type="AudioStreamPlayer" parent="Sound" index="0"]
-stream = ExtResource("7_lmbw6")
+stream = ExtResource("7_8klo1")
 volume_db = -32.47
+autoplay = true
 bus = &"Sound-far"
 
 [node name="Box_Audio" type="AudioStreamPlayer2D" parent="Sound" index="1"]

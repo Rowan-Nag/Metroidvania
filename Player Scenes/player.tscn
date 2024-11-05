@@ -1550,7 +1550,7 @@ pitch_scale = 2.0
 max_distance = 500.0
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
-modulate = Color(1, 1, 1, 0.109804)
+visible = false
 radius = 50.0
 
 [node name="AttackCooldown" type="Timer" parent="."]

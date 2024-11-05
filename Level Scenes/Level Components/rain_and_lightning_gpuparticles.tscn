@@ -1,9 +1,9 @@
 [gd_scene load_steps=17 format=3 uid="uid://dcoesf254yfa"]
 
 [ext_resource type="Script" path="res://Level Scenes/Full Levels/rainController.gd" id="1_d4618"]
-[ext_resource type="AudioStream" uid="uid://e7kaerbs11lq" path="res://Sounds/Ambient/THUN_InsJ_Thunder_Extremely-Close_03.wav" id="2_tecre"]
-[ext_resource type="AudioStream" uid="uid://dm25vfm36iidg" path="res://Sounds/Ambient/ThunderPowerful.wav" id="2_ux0ua"]
-[ext_resource type="AudioStream" uid="uid://drchgkeuo62o8" path="res://Sounds/Ambient/THUN_InsJ_Thunder_Distant_01_EQ.wav" id="3_p8o2p"]
+[ext_resource type="AudioStream" uid="uid://dv6mbwu4avvmt" path="res://Sounds/Ambient/THUN_InsJ_Thunder_Extremely-Close_03.ogg" id="2_474n1"]
+[ext_resource type="AudioStream" uid="uid://bx867b6xbexn6" path="res://Sounds/Ambient/ThunderPowerful_Distant02.ogg" id="3_iisqw"]
+[ext_resource type="AudioStream" uid="uid://b21eonnil56dr" path="res://Sounds/Ambient/THUN_InsJ_Thunder_Distant_01_EQ.ogg" id="4_365xl"]
 
 [sub_resource type="Gradient" id="Gradient_1kih0"]
 colors = PackedColorArray(1, 1, 1, 0.160784, 1, 1, 1, 1)
@@ -39,13 +39,13 @@ width = 40
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6uxju"]
 streams_count = 1
-stream_0/stream = ExtResource("2_tecre")
+stream_0/stream = ExtResource("2_474n1")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_djqjo"]
 random_pitch = 1.5
 streams_count = 2
-stream_0/stream = ExtResource("2_ux0ua")
-stream_1/stream = ExtResource("3_p8o2p")
+stream_0/stream = ExtResource("3_iisqw")
+stream_1/stream = ExtResource("4_365xl")
 
 [sub_resource type="Gradient" id="Gradient_83kqh"]
 offsets = PackedFloat32Array(0, 0.211082, 0.836412, 1)
@@ -102,7 +102,6 @@ thunder_close = SubResource("AudioStreamRandomizer_6uxju")
 thunder_far = SubResource("AudioStreamRandomizer_djqjo")
 
 [node name="thunder_player" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_p8o2p")
 volume_db = -30.0
 pitch_scale = 1.3
 bus = &"Sound-far"

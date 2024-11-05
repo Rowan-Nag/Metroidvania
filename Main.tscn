@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bc30sl33ar0er"]
+[gd_scene load_steps=53 format=3 uid="uid://bc30sl33ar0er"]
 
 [ext_resource type="Script" path="res://Scripts/DebugUI.gd" id="1_dv0al"]
 [ext_resource type="PackedScene" uid="uid://cta7vnl86huxp" path="res://Player Scenes/player.tscn" id="2_lx8fk"]
@@ -10,8 +10,16 @@
 [ext_resource type="Script" path="res://Scripts/HUDController.gd" id="4_he82r"]
 [ext_resource type="PackedScene" uid="uid://osrkuvyh5mee" path="res://Level Scenes/Helper Scenes/camera_shake.tscn" id="4_xn4hc"]
 [ext_resource type="PackedScene" uid="uid://cdhiu2v742a84" path="res://Level Scenes/Helper Scenes/node_2d_shake.tscn" id="6_m1oj0"]
+[ext_resource type="Script" path="res://loading_screen.gd" id="7_jk2hw"]
 [ext_resource type="Shader" path="res://Lines.gdshader" id="8_8uuey"]
 [ext_resource type="PackedScene" uid="uid://vq38u4u8tw64" path="res://Level Scenes/Full Levels/coast_tutorial.tscn" id="8_kym7n"]
+[ext_resource type="Texture2D" uid="uid://cykur00es85bw" path="res://Sprites/FeatherFrog/featherfrogrun.png" id="13_84lad"]
+[ext_resource type="Script" path="res://register_audio_onload.gd" id="15_7bh7f"]
+[ext_resource type="AudioStream" uid="uid://cdrnodetwjvuf" path="res://Sounds/Ambient/RAINVege_InsJ_Ambience_Rain_Moderate_02_LOOP.ogg" id="16_mtcue"]
+[ext_resource type="AudioStream" uid="uid://d3psf3esy35xt" path="res://Sounds/Effects/electricity/AMBInd_Electrical Power Plant, Hum, Ext_344 Audio_Electromagnetic Design Vol 2.ogg" id="17_xiu4a"]
+[ext_resource type="AudioStream" uid="uid://bx867b6xbexn6" path="res://Sounds/Ambient/ThunderPowerful_Distant02.ogg" id="18_cj0dg"]
+[ext_resource type="AudioStream" uid="uid://b21eonnil56dr" path="res://Sounds/Ambient/THUN_InsJ_Thunder_Distant_01_EQ.ogg" id="19_tv3kb"]
+[ext_resource type="AudioStream" uid="uid://dv6mbwu4avvmt" path="res://Sounds/Ambient/THUN_InsJ_Thunder_Extremely-Close_03.ogg" id="20_idmyn"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bqtkt"]
 
@@ -121,10 +129,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_b58oq"]
-shader = ExtResource("8_8uuey")
-shader_parameter/scanline_count = 190.0
-
 [sub_resource type="Animation" id="Animation_bhwx3"]
 resource_name = "fade_in"
 length = 0.2
@@ -186,6 +190,88 @@ _data = {
 "fade_out": SubResource("Animation_c4fus")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xuqy"]
+atlas = ExtResource("13_84lad")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1sbsr"]
+atlas = ExtResource("13_84lad")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1c2xg"]
+atlas = ExtResource("13_84lad")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_comgl"]
+atlas = ExtResource("13_84lad")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ud1c0"]
+atlas = ExtResource("13_84lad")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7wvp"]
+atlas = ExtResource("13_84lad")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5c63"]
+atlas = ExtResource("13_84lad")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmy88"]
+atlas = ExtResource("13_84lad")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wjof"]
+atlas = ExtResource("13_84lad")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epx0o"]
+atlas = ExtResource("13_84lad")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pcx1k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xuqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1sbsr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1c2xg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_comgl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ud1c0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7wvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5c63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmy88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2wjof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epx0o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b58oq"]
+shader = ExtResource("8_8uuey")
+shader_parameter/scanline_count = 190.0
+
 [node name="Main" type="Node2D"]
 
 [node name="GUI" type="CanvasLayer" parent="."]
@@ -199,7 +285,7 @@ script = ExtResource("1_dv0al")
 layout_mode = 2
 text = "DEBUG MENU"
 
-[node name="ColorRect" type="ColorRect" parent="GUI"]
+[node name="PauseMenu" type="ColorRect" parent="GUI"]
 process_mode = 3
 visible = false
 anchors_preset = 15
@@ -210,7 +296,7 @@ grow_vertical = 2
 color = Color(0.133333, 0.133333, 0.133333, 0.764706)
 script = ExtResource("3_ufsyv")
 
-[node name="PauseMenu" type="TextureRect" parent="GUI/ColorRect"]
+[node name="PauseMenu" type="TextureRect" parent="GUI/PauseMenu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -226,7 +312,7 @@ grow_vertical = 2
 theme = SubResource("Theme_jxttm")
 texture = ExtResource("2_p1yx2")
 
-[node name="Resume" type="Button" parent="GUI/ColorRect/PauseMenu"]
+[node name="Resume" type="Button" parent="GUI/PauseMenu/PauseMenu"]
 layout_mode = 2
 offset_left = 91.0
 offset_top = 90.0
@@ -234,7 +320,7 @@ offset_right = 425.0
 offset_bottom = 214.0
 text = "RESUME"
 
-[node name="Settings" type="Button" parent="GUI/ColorRect/PauseMenu"]
+[node name="Settings" type="Button" parent="GUI/PauseMenu/PauseMenu"]
 layout_mode = 2
 offset_left = 91.0
 offset_top = 233.0
@@ -242,7 +328,7 @@ offset_right = 426.0
 offset_bottom = 354.0
 text = "SETTINGS"
 
-[node name="BugReport" type="Button" parent="GUI/ColorRect/PauseMenu"]
+[node name="BugReport" type="Button" parent="GUI/PauseMenu/PauseMenu"]
 layout_mode = 2
 offset_left = 90.0
 offset_top = 372.0
@@ -251,7 +337,7 @@ offset_bottom = 494.0
 text = "REPORT BUG
 "
 
-[node name="Quit" type="Button" parent="GUI/ColorRect/PauseMenu"]
+[node name="Quit" type="Button" parent="GUI/PauseMenu/PauseMenu"]
 layout_mode = 2
 offset_left = 89.0
 offset_top = 514.0
@@ -269,7 +355,6 @@ mouse_filter = 2
 script = ExtResource("4_he82r")
 
 [node name="HealthBarContainer" type="Container" parent="GUI/HUD"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 4
@@ -307,6 +392,49 @@ speed_scale = 1.5
 
 [node name="node2d_shake" parent="GUI/HUD/HealthBarContainer/healthBar_anchor/healthBar" instance=ExtResource("6_m1oj0")]
 
+[node name="LoadingScreen" type="ColorRect" parent="GUI"]
+process_mode = 4
+visible = false
+modulate = Color(1, 1, 1, 0)
+z_index = 100
+z_as_relative = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+script = ExtResource("7_jk2hw")
+
+[node name="Fade_AnimationPlayer" type="AnimationPlayer" parent="GUI/LoadingScreen"]
+libraries = {
+"": SubResource("AnimationLibrary_0leaw")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GUI/LoadingScreen"]
+position = Vector2(831, 701)
+scale = Vector2(3.21831, 3.21831)
+sprite_frames = SubResource("SpriteFrames_pcx1k")
+autoplay = "default"
+frame_progress = 0.905691
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GUI/LoadingScreen"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.5
+anchor_right = 0.7
+anchor_bottom = 0.55
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 35
+bbcode_enabled = true
+text = "[shake rate=4.0 level=2 connected=0][b]Tip:[/b]    This is a testing build! Expect bugs, loads, and crashes. [/shake]
+"
+fit_content = true
+
 [node name="Game" type="CanvasLayer" parent="." node_paths=PackedStringArray("current_scene")]
 layer = 0
 follow_viewport_enabled = true
@@ -334,6 +462,7 @@ terminal_velocity = 200
 maxHealth = 4
 
 [node name="Camera2D" type="Camera2D" parent="Game/Player"]
+process_mode = 3
 position = Vector2(0, 1.61813)
 zoom = Vector2(5, 5)
 limit_smoothed = true
@@ -343,22 +472,9 @@ script = ExtResource("3_f6oo0")
 
 [node name="camera_shake" parent="Game/Player/Camera2D" instance=ExtResource("4_xn4hc")]
 
-[node name="LoadingScreen" type="ColorRect" parent="Game"]
-modulate = Color(1, 1, 1, 0)
-z_index = 100
-z_as_relative = false
-offset_left = -768.0
-offset_top = -374.0
-offset_right = 676.0
-offset_bottom = 388.0
-mouse_filter = 2
-color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-metadata/_edit_lock_ = true
+[node name="Node" type="Node" parent="."]
+script = ExtResource("15_7bh7f")
+audio = Array[AudioStream]([ExtResource("16_mtcue"), ExtResource("17_xiu4a"), ExtResource("18_cj0dg"), ExtResource("19_tv3kb"), ExtResource("20_idmyn"), null])
 
-[node name="Fade_AnimationPlayer" type="AnimationPlayer" parent="Game/LoadingScreen"]
-libraries = {
-"": SubResource("AnimationLibrary_0leaw")
-}
-
-[connection signal="pressed" from="GUI/ColorRect/PauseMenu/Resume" to="GUI/ColorRect" method="_on_resume_pressed"]
-[connection signal="pressed" from="GUI/ColorRect/PauseMenu/Quit" to="GUI/ColorRect" method="_on_quit_pressed"]
+[connection signal="pressed" from="GUI/PauseMenu/PauseMenu/Resume" to="GUI/PauseMenu" method="_on_resume_pressed"]
+[connection signal="pressed" from="GUI/PauseMenu/PauseMenu/Quit" to="GUI/PauseMenu" method="_on_quit_pressed"]

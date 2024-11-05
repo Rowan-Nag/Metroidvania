@@ -67,3 +67,4 @@ func take_damage(damage, type):
 func _on_lamp_detector_body_entered(body):
 	if not is_on and not is_broken:
 		flicker_on()
+		return

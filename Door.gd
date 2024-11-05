@@ -5,4 +5,4 @@ extends Area2D
 
 func _on_body_entered(body):
 	print('entered door' + name)
-	Global.Game.load_new_scene(target_scene_path, name)
+	Global.Game.switch_to_scene(target_scene_path, name)

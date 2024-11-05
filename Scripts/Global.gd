@@ -11,6 +11,10 @@ var attackProfiles : Dictionary
 var camera_shake = preload("res://Level Scenes/Helper Scenes/camera_shake.tscn")
 var alert_text = preload("res://Level Scenes/Helper Scenes/temporary_text_alert.tscn")
 
+signal fade_out
+signal fade_in
+
+
 signal flicker_all_lights
 
 func _ready():

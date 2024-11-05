@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://d3psf3esy35xt"
+path="res://.godot/imported/AMBInd_Electrical Power Plant, Hum, Ext_344 Audio_Electromagnetic Design Vol 2.ogg-8a7695344476e1c611fbf20aa4728955.oggvorbisstr"
+
+[deps]
+
+source_file="res://Sounds/Effects/electricity/AMBInd_Electrical Power Plant, Hum, Ext_344 Audio_Electromagnetic Design Vol 2.ogg"
+dest_files=["res://.godot/imported/AMBInd_Electrical Power Plant, Hum, Ext_344 Audio_Electromagnetic Design Vol 2.ogg-8a7695344476e1c611fbf20aa4728955.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

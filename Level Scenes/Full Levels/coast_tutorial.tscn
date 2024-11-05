@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=4 uid="uid://vq38u4u8tw64"]
+[gd_scene load_steps=4 format=4 uid="uid://vq38u4u8tw64"]
 
 [ext_resource type="PackedScene" uid="uid://idga040r0d8h" path="res://Level Scenes/LevelTemplate.tscn" id="1_51ifi"]
+[ext_resource type="AudioStream" uid="uid://b70xlsaonyg0x" path="res://Sounds/Ambient/RAINVege_InsJ_Ambience_Rain_Moderate_02_LOOP.mp3" id="2_1fuln"]
+[ext_resource type="Texture2D" uid="uid://bar8kjhj75jir" path="res://Sprites/2d_lights_and_shadows_neutral_point_light.webp" id="2_gbt13"]
 
 [node name="Tutorial" instance=ExtResource("1_51ifi")]
 
@@ -10,7 +12,18 @@ rotation = 3.14159
 target_scene_path = "res://Level Scenes/Full Levels/coast_outdoors_1.tscn"
 
 [node name="Foreground_0" parent="Level/NavigationRegion2D" index="0"]
-tile_map_data = PackedByteArray("AAD5/wAABAADAAUAAAD6/wAABAADAAUAAAD7/wAABAADAAUAAAD8/wAABAADAAUAAAD9/wAABAADAAUAAAD+/wAABAADAAUAAAD//wAABAADAAUAAAD4/wAABAADAAUAAAD3/wAABAADAAUAAAD2/wAABAADAAUAAAD1/wAABAADAAUAAAD0/wAABAADAAUAAADz/wAABAADAAUAAADy/wAABAADAAUAAADx/wAABAADAAUAAADw/wAABAADAAUAAADv/wAABAADAAUAAADu/wAABAADAAUAAADt/wAABAADAAUAAADs/wAABAADAAUAAADr/wAABAADAAUAAADq/wAABAADAAUAAADp/wAABAADAAUAAADo/wAABAADAAUAAADn/wAABAADAAUAAADm/wAABAADAAUAAADl/wAABAADAAUAAADl////BAADAAUAAADl//7/BAADAAUAAADl//3/BAADAAUAAADl//z/BAADAAUAAADl//v/BAADAAUAAADl//r/BAADAAUAAADl//n/BAADAAUAAAAAAAAABAADAAUAAAABAAAABAADAAUAAAACAAAABAADAAUAAADy////AAAAAAAAAwA=")
+tile_map_data = PackedByteArray("AAD5/wAABAADAAUAAAD6/wAABAADAAUAAAD7/wAABAADAAUAAAD8/wAABAADAAUAAAD9/wAABAADAAUAAAD+/wAABAADAAUAAAD//wAABAADAAUAAAD4/wAABAADAAUAAAD3/wAABAADAAUAAAD2/wAABAADAAUAAAD1/wAABAADAAUAAAD0/wAABAADAAUAAADz/wAABAADAAUAAADy/wAABAADAAUAAADx/wAABAADAAUAAADw/wAABAADAAUAAADv/wAABAADAAUAAADu/wAABAADAAUAAADt/wAABAADAAUAAADs/wAABAADAAUAAADr/wAABAADAAUAAADq/wAABAADAAUAAADp/wAABAADAAUAAADo/wAABAADAAUAAADn/wAABAADAAUAAADm/wAABAADAAUAAADl/wAABAADAAUAAADl//7/BAADAAUAAADl//3/BAADAAUAAADl//z/BAADAAUAAADl//v/BAADAAUAAADl//r/BAADAAUAAADl//n/BAADAAUAAAAAAAAABAADAAUAAAABAAAABAADAAUAAAACAAAABAADAAUAAADy////AAAAAAAAAwDl////BAADAAUAAAA=")
+
+[node name="PointLight2D" type="PointLight2D" parent="Level" index="3"]
+position = Vector2(-429, -112)
+texture = ExtResource("2_gbt13")
 
 [node name="CameraBounds" parent="Camera-Nodes" index="0"]
 position = Vector2(-193, -92)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sound" index="0"]
+stream = ExtResource("2_1fuln")
+volume_db = -40.0
+pitch_scale = 0.15
+autoplay = true
+bus = &"Sound-far"
