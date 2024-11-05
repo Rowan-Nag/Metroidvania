@@ -23,26 +23,28 @@ func _ready():
 	if is_on:
 		flicker_on()
 	
-func flicker_on():
+func flicker_on(speed : float = 1):
 	var anim : String = animation_list[randi_range(0, 3)]
 	var animSpeed = randf_range(0.8, 1.2)
 	anims.play(anim)
-	anims.speed_scale = animSpeed
+	anims.speed_scale = animSpeed * speed
 	is_on = true
 	
 
-func flicker_off():
+func flicker_off(speed : float = 1):
 	var anim : String = animation_list[randi_range(0, 3)]
 	var animSpeed = randf_range(0.8, 1.2)
 	anims.play_backwards(anim)
-	anims.speed_scale = animSpeed
+	anims.speed_scale = animSpeed * speed
 	is_on = false
 	
 func flicker_nonplayer():
 	if is_broken: return
 	if is_on:
+		off()
 		flicker_on()
 	else:
+		on()
 		flicker_off()
 
 func on():
@@ -56,9 +58,8 @@ func off():
 	lamp_buzz.stop()
 
 func take_damage(damage, type):
-	flicker_off()
+	flicker_off(2)
 	Global.screen_shake(2, 4, 4)
-	anims.speed_scale *= 3
 	is_broken = true
 	lamp_shatter.play()
 	$lamp_break_particles.emitting = true
