@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://cwj50cvub7ruo"]
+[gd_scene load_steps=9 format=4 uid="uid://cwj50cvub7ruo"]
 
 [ext_resource type="PackedScene" uid="uid://idga040r0d8h" path="res://Level Scenes/LevelTemplate.tscn" id="1_m3fe8"]
 [ext_resource type="Texture2D" uid="uid://btbo6fvg66ckr" path="res://Sprites/backgrounds/coastoutsidebackgroundmiddle.png" id="2_cwkkq"]
@@ -7,6 +7,25 @@
 [ext_resource type="PackedScene" uid="uid://bo8k33q6ssurg" path="res://Level Scenes/Level Components/glow_bugs.tscn" id="5_fs5a1"]
 [ext_resource type="PackedScene" uid="uid://eo28tapbfmtf" path="res://Level Scenes/Level Components/CameraBounds.tscn" id="6_xkaws"]
 [ext_resource type="AudioStream" uid="uid://b70xlsaonyg0x" path="res://Sounds/Ambient/RAINVege_InsJ_Ambience_Rain_Moderate_02_LOOP.mp3" id="7_8klo1"]
+
+[sub_resource type="GDScript" id="GDScript_okjfn"]
+script/source = "extends AudioStreamPlayer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	Global.fade_out.connect(fade_out)
+
+func fade_out():
+	var tween : Tween = get_tree().create_tween()
+	tween.tween_property(self, \"volume_db\", -60, 1)
+
+func fade_in():
+	var initial_db = volume_db
+	volume_db = -60
+	var tween : Tween = get_tree().create_tween()
+	tween.tween_property(self, \"volume_db\", volume_db, 1)
+"
 
 [node name="Coast_Outdoors_1" instance=ExtResource("1_m3fe8")]
 
@@ -98,10 +117,12 @@ scale = Vector2(12.731, 10.533)
 bound_by_top = false
 
 [node name="rain_AudioStreamPlayer" type="AudioStreamPlayer" parent="Sound" index="0"]
+process_mode = 3
 stream = ExtResource("7_8klo1")
-volume_db = -24.0
+volume_db = -28.0
 autoplay = true
 bus = &"Sound-far"
+script = SubResource("GDScript_okjfn")
 
 [node name="Box_Audio" type="AudioStreamPlayer2D" parent="Sound" index="1"]
 position = Vector2(110, -37)

@@ -362,6 +362,7 @@ explosiveness = 1.0
 fixed_fps = 101
 
 [node name="lamp_buzz" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
 volume_db = -14.0
 max_distance = 200.0
 bus = &"Sound"

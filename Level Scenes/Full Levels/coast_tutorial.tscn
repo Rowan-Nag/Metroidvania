@@ -70,7 +70,7 @@ position = Vector2(-193, -92)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sound" index="0"]
 stream = ExtResource("2_1fuln")
-volume_db = -40.0
+volume_db = -30.0
 pitch_scale = 0.15
 autoplay = true
 bus = &"Sound-far"
