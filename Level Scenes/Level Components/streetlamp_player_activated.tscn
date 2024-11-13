@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://bgaye23c66qru"]
 
-[ext_resource type="Script" path="res://Level Scenes/Full Levels/lampController.gd" id="1_tg4ws"]
+[ext_resource type="Script" path="res://Scripts/lampController.gd" id="1_tg4ws"]
 [ext_resource type="AudioStream" uid="uid://d3psf3esy35xt" path="res://Sounds/Effects/electricity/AMBInd_Electrical Power Plant, Hum, Ext_344 Audio_Electromagnetic Design Vol 2.ogg" id="2_5j1dq"]
 [ext_resource type="Texture2D" uid="uid://bvwyu5uevie7v" path="res://Sprites/Tiles/coaststreetlight.png" id="2_wqfci"]
 [ext_resource type="AudioStream" uid="uid://brieu7yco7y0c" path="res://Sounds/Effects/glass/Bluezone_BC0274_glass_impact_break_002.wav" id="3_5nelk"]
@@ -362,12 +362,12 @@ explosiveness = 1.0
 fixed_fps = 101
 
 [node name="lamp_buzz" type="AudioStreamPlayer2D" parent="."]
-volume_db = -20.0
+volume_db = -14.0
 max_distance = 200.0
 bus = &"Sound"
 
 [node name="lamp_shatter" type="AudioStreamPlayer2D" parent="."]
-volume_db = -30.0
+volume_db = -24.0
 max_distance = 300.0
 
 [connection signal="body_entered" from="lamp_detector" to="." method="_on_lamp_detector_body_entered"]

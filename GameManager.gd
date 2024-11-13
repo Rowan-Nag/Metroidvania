@@ -2,8 +2,7 @@ class_name  GameManager
 extends CanvasLayer
 
 @export var current_scene : Node2D
-@onready var fade_animation_player : AnimationPlayer = $LoadingScreen/Fade_AnimationPlayer
-@onready var loading_screen : ColorRect = $LoadingScreen
+
 var last_safe_position : Vector2 = Vector2.ZERO
 
 var scene_load_thread : Thread

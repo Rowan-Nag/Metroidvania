@@ -58,6 +58,7 @@ var health : int = maxHealth
 	quick_attack_state
 ]
 var currentSelection : int = 0
+var interactables : Array[Interactable] = []
 
 @onready var passiveAudio : AudioStreamPlayer2D = $PassiveAudioStreamPlayer
 @onready var SFXAudio : AudioStreamPlayer2D = $SFXAudioStreamPlayer

@@ -1,14 +1,16 @@
-[gd_scene load_steps=53 format=3 uid="uid://bc30sl33ar0er"]
+[gd_scene load_steps=51 format=3 uid="uid://bc30sl33ar0er"]
 
 [ext_resource type="Script" path="res://Scripts/DebugUI.gd" id="1_dv0al"]
 [ext_resource type="PackedScene" uid="uid://cta7vnl86huxp" path="res://Player Scenes/player.tscn" id="2_lx8fk"]
 [ext_resource type="Script" path="res://GameManager.gd" id="2_oe6uh"]
 [ext_resource type="Texture2D" uid="uid://bp2n7kk5opnct" path="res://GUI/pausemenu.png" id="2_p1yx2"]
 [ext_resource type="Script" path="res://Scripts/ControllableCamera.gd" id="3_f6oo0"]
+[ext_resource type="Theme" uid="uid://csp0idvs16hdr" path="res://SettingsTheme.tres" id="3_m37u6"]
 [ext_resource type="Script" path="res://GUI/PauseMenu.gd" id="3_ufsyv"]
 [ext_resource type="Texture2D" uid="uid://r0jrfscq50pm" path="res://Sprites/RobotGuy/healthbarhud.png" id="4_871bd"]
 [ext_resource type="Script" path="res://Scripts/HUDController.gd" id="4_he82r"]
 [ext_resource type="PackedScene" uid="uid://osrkuvyh5mee" path="res://Level Scenes/Helper Scenes/camera_shake.tscn" id="4_xn4hc"]
+[ext_resource type="Script" path="res://SettingsMenu.gd" id="5_6a6ha"]
 [ext_resource type="PackedScene" uid="uid://cdhiu2v742a84" path="res://Level Scenes/Helper Scenes/node_2d_shake.tscn" id="6_m1oj0"]
 [ext_resource type="Script" path="res://loading_screen.gd" id="7_jk2hw"]
 [ext_resource type="Shader" path="res://Lines.gdshader" id="8_8uuey"]
@@ -21,22 +23,21 @@
 [ext_resource type="AudioStream" uid="uid://b21eonnil56dr" path="res://Sounds/Ambient/THUN_InsJ_Thunder_Distant_01_EQ.ogg" id="19_tv3kb"]
 [ext_resource type="AudioStream" uid="uid://dv6mbwu4avvmt" path="res://Sounds/Ambient/THUN_InsJ_Thunder_Extremely-Close_03.ogg" id="20_idmyn"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bqtkt"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b58oq"]
+shader = ExtResource("8_8uuey")
+shader_parameter/scanline_count = 190.0
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kfe8a"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_syhsh"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0tlrp"]
-
-[sub_resource type="Theme" id="Theme_jxttm"]
-Button/colors/font_hover_color = Color(0.717647, 0.686275, 0.65098, 1)
-Button/font_sizes/font_size = 40
-Button/styles/focus = SubResource("StyleBoxEmpty_bqtkt")
-Button/styles/hover = SubResource("StyleBoxEmpty_kfe8a")
-Button/styles/normal = SubResource("StyleBoxEmpty_syhsh")
-Button/styles/pressed = SubResource("StyleBoxEmpty_0tlrp")
-VBoxContainer/constants/separation = 85
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t33cb"]
+border_color = Color(0.466181, 0.466181, 0.466181, 1)
+border_blend = true
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+expand_margin_left = 50.0
+expand_margin_top = 50.0
+expand_margin_right = 50.0
+expand_margin_bottom = 50.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xj0v6"]
 atlas = ExtResource("4_871bd")
@@ -268,11 +269,19 @@ animations = [{
 "speed": 16.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_b58oq"]
-shader = ExtResource("8_8uuey")
-shader_parameter/scanline_count = 190.0
-
 [node name="Main" type="Node2D"]
+
+[node name="Scanlines" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="Scanlines" type="ColorRect" parent="Scanlines"]
+z_index = 5
+material = SubResource("ShaderMaterial_b58oq")
+offset_left = -1360.0
+offset_top = -715.0
+offset_right = 1018.0
+offset_bottom = 736.0
+mouse_filter = 2
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
@@ -287,12 +296,12 @@ text = "DEBUG MENU"
 
 [node name="PauseMenu" type="ColorRect" parent="GUI"]
 process_mode = 3
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_m37u6")
 color = Color(0.133333, 0.133333, 0.133333, 0.764706)
 script = ExtResource("3_ufsyv")
 
@@ -309,7 +318,6 @@ offset_right = 256.5
 offset_bottom = 402.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_jxttm")
 texture = ExtResource("2_p1yx2")
 
 [node name="Resume" type="Button" parent="GUI/PauseMenu/PauseMenu"]
@@ -344,6 +352,56 @@ offset_top = 514.0
 offset_right = 424.0
 offset_bottom = 636.0
 text = "MAIN MENU"
+
+[node name="Settings" type="PanelContainer" parent="GUI/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = -199.0
+offset_right = 124.0
+offset_bottom = 199.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t33cb")
+script = ExtResource("5_6a6ha")
+
+[node name="Container" type="VBoxContainer" parent="GUI/PauseMenu/Settings"]
+layout_mode = 2
+
+[node name="Master_Volume_Text" type="RichTextLabel" parent="GUI/PauseMenu/Settings/Container"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Master Volume"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Master_Volume_Slider" type="HSlider" parent="GUI/PauseMenu/Settings/Container"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Music_Volume_Text" type="RichTextLabel" parent="GUI/PauseMenu/Settings/Container"]
+layout_mode = 2
+text = "Music Volume"
+fit_content = true
+
+[node name="Music_Volume_Slider" type="HSlider" parent="GUI/PauseMenu/Settings/Container"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Effects_Volume_Text" type="RichTextLabel" parent="GUI/PauseMenu/Settings/Container"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Effects Volume"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Effects_Volume_Slider" type="HSlider" parent="GUI/PauseMenu/Settings/Container"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
 
 [node name="HUD" type="Container" parent="GUI"]
 anchors_preset = 1
@@ -443,15 +501,6 @@ current_scene = NodePath("Tutorial")
 
 [node name="Tutorial" parent="Game" instance=ExtResource("8_kym7n")]
 
-[node name="Scanlines" type="ColorRect" parent="Game"]
-z_index = 5
-material = SubResource("ShaderMaterial_b58oq")
-offset_left = -985.0
-offset_top = -690.0
-offset_right = 1393.0
-offset_bottom = 761.0
-mouse_filter = 2
-
 [node name="Player" parent="Game" instance=ExtResource("2_lx8fk")]
 position = Vector2(-379, -24)
 scale = Vector2(0.694, 0.618)
@@ -459,7 +508,7 @@ drag = 500
 acceleration = 350
 moveSpeed = 100
 terminal_velocity = 200
-maxHealth = 4
+maxHealth = null
 
 [node name="Camera2D" type="Camera2D" parent="Game/Player"]
 process_mode = 3
@@ -474,7 +523,11 @@ script = ExtResource("3_f6oo0")
 
 [node name="Node" type="Node" parent="."]
 script = ExtResource("15_7bh7f")
-audio = Array[AudioStream]([ExtResource("16_mtcue"), ExtResource("17_xiu4a"), ExtResource("18_cj0dg"), ExtResource("19_tv3kb"), ExtResource("20_idmyn"), null])
+audio = Array[AudioStream]([ExtResource("16_mtcue"), ExtResource("17_xiu4a"), ExtResource("18_cj0dg"), ExtResource("19_tv3kb"), ExtResource("20_idmyn")])
 
 [connection signal="pressed" from="GUI/PauseMenu/PauseMenu/Resume" to="GUI/PauseMenu" method="_on_resume_pressed"]
+[connection signal="pressed" from="GUI/PauseMenu/PauseMenu/Settings" to="GUI/PauseMenu" method="_on_settings_pressed"]
 [connection signal="pressed" from="GUI/PauseMenu/PauseMenu/Quit" to="GUI/PauseMenu" method="_on_quit_pressed"]
+[connection signal="drag_ended" from="GUI/PauseMenu/Settings/Container/Master_Volume_Slider" to="GUI/PauseMenu/Settings" method="_set_master_audio"]
+[connection signal="drag_ended" from="GUI/PauseMenu/Settings/Container/Music_Volume_Slider" to="GUI/PauseMenu/Settings" method="_set_music_audio"]
+[connection signal="drag_ended" from="GUI/PauseMenu/Settings/Container/Effects_Volume_Slider" to="GUI/PauseMenu/Settings" method="_set_effects_audio"]

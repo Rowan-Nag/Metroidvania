@@ -1540,12 +1540,14 @@ jumpBufferTime = 0.1
 terminal_velocity = 400
 maxHealth = 400
 immunityTime = 0.81
+weight = null
+knockbackMultiplier = null
 
 [node name="PassiveAudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
-volume_db = -40.0
+volume_db = -30.0
 
 [node name="SFXAudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
-volume_db = -40.0
+volume_db = -30.0
 pitch_scale = 2.0
 max_distance = 500.0
 

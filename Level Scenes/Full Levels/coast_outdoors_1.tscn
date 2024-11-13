@@ -99,7 +99,7 @@ bound_by_top = false
 
 [node name="rain_AudioStreamPlayer" type="AudioStreamPlayer" parent="Sound" index="0"]
 stream = ExtResource("7_8klo1")
-volume_db = -32.47
+volume_db = -24.0
 autoplay = true
 bus = &"Sound-far"
 
